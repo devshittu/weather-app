@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import AppBG from "./components/AppBG";
 import Info from "./components/Info";
+import LogInButton from "./components/LogInButton";
 import LogInPin from "./components/LogInPin";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
       <Info />
       <LogInPin />
+      <LogInButton />
       <AppBG />
     </>
   );
