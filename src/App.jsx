@@ -2,8 +2,10 @@ import { useState } from "react";
 import "./App.css";
 import AppBG from "./components/AppBG";
 import Info from "./components/Info";
+import Loader from "./components/Loader";
 import LogInButton from "./components/LogInButton";
 import LogInPin from "./components/LogInPin";
+import Menu from "./components/Menu";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,12 +13,15 @@ function App() {
   return (
     <>
       {/* user status */}
-      <div className="App bg-gray-800"></div>
-
-      <Info />
-      <LogInPin />
-      <LogInButton />
-      <AppBG />
+      <div className="App bg-gray-800">
+        <Info />
+        <LogInPin />
+        {/* Menu */}
+        <Menu />
+        <AppBG />
+        <LogInButton />
+        <Loader />
+      </div>
     </>
   );
 }
