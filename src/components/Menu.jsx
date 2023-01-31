@@ -20,8 +20,11 @@ function Menu() {
           <section className="nav overflow-auto pb-2 w-full menu-app-section-bound">
             <h2 className="flex gap-3 items-center">Weather today:</h2>
             <div className="scrollable-menu mt-5">
-              <div className="backdrop-blur bg-white/10 border-white/20 h-32 w-32 shadow-lg rounded-lg relative border">
-                <div className="flex flex-col justify-around items-center p-3">
+              <div>
+                <h1 className="text-4xl">How it looks & feel out there?</h1>
+              </div>
+              <div className="day-card backdrop-blur bg-white/10 border border-white/20 h-[8vw] w-32 shadow-lg rounded-lg relative">
+                <div className="day-card-content flex flex-col h-full items-center justify-evenly p-3">
                   <div>32 deg F</div>
                   <div>Icon</div>
                   <div>Day of week</div>
