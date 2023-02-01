@@ -36,6 +36,22 @@ function Menu() {
           <section className="nav overflow-auto pb-2 w-full menu-app-section-bound">
             <div className="scrollable-menu mt-5">
               <div>
+                <h1 className="text-4xl">Meta Data:</h1>
+              </div>
+              <div className="flex gap-3">
+                <div className="meta-card h-[7vw] shadow-lg rounded-lg relative w-1/6 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500')] ">
+                  <div className="meta-card-content flex flex-col h-full items-end justify-start p-6  bg-gradient-to-b from-slate-900 rounded-lg">
+                    <div>33 Metric</div>
+                    <div>Icon</div>
+                    <div>Humidity</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="nav overflow-auto pb-2 w-full menu-app-section-bound">
+            <div className="scrollable-menu mt-5">
+              <div>
                 <h1 className="text-4xl">Nearby cities:</h1>
               </div>
               <div className="flex gap-3">
