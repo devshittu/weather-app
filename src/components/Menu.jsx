@@ -18,16 +18,33 @@ function Menu() {
             </button>
           </section>
           <section className="nav overflow-auto pb-2 w-full menu-app-section-bound">
-            <h2 className="flex gap-3 items-center">Weather today:</h2>
             <div className="scrollable-menu mt-5">
               <div>
                 <h1 className="text-4xl">How it looks & feel out there?</h1>
               </div>
-              <div className="day-card backdrop-blur bg-white/10 border border-white/20 h-[8vw] w-32 shadow-lg rounded-lg relative">
-                <div className="day-card-content flex flex-col h-full items-center justify-evenly p-3">
-                  <div>32 deg F</div>
-                  <div>Icon</div>
-                  <div>Day of week</div>
+              <div className="flex gap-3">
+                <div className="day-card backdrop-blur bg-white/10 border border-white/20 h-[8vw] w-32 shadow-lg rounded-lg relative">
+                  <div className="day-card-content flex flex-col h-full items-center justify-evenly p-3">
+                    <div>32 deg F</div>
+                    <div>Icon</div>
+                    <div>Day of week</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="nav overflow-auto pb-2 w-full menu-app-section-bound">
+            <div className="scrollable-menu mt-5">
+              <div>
+                <h1 className="text-4xl">Nearby cities:</h1>
+              </div>
+              <div className="flex gap-3">
+                <div className="city-card h-[14vw] shadow-lg rounded-lg relative w-1/4 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1533929736458-ca588d08c8be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkzNjgzNw&ixlib=rb-4.0.3&q=80&w=500')] ">
+                  <div className="city-card-content flex flex-col h-full items-end justify-end p-6  bg-gradient-to-t from-slate-900 rounded-lg">
+                    <div>Hot</div>
+                    <div>32 C</div>
+                    <div>London</div>
+                  </div>
                 </div>
               </div>
             </div>
