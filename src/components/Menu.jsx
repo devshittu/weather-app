@@ -41,6 +41,38 @@ function Menu() {
             {/* Section Heading bg-white/60 backdrop-blur-md rounded-3xl */}
             <header className="mb-8 p-4 pl-0 ">
               <h3 class="font-medium leading-tight text-5xl text-white-800">
+                Current City's Week
+              </h3>
+            </header>
+
+            <article className="md:max-w-xl w-1/3 rounded-lg backdrop-blur bg-white/50 shadow-lg bg-gradient-to-tr from-emerald-700/40 ">
+              <div className="p-6 flex flex-col justify-start space-y-4">
+                <div className="flex justify-between items-center">
+                  <span
+                    class="inline-block px-6 py-1 border-2 border-white/20 text-white-600 font-medium text-l leading-tight rounded bg-white bg-opacity-5 hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                  >
+                    Primary
+                  </span>
+
+                  <h5 className="font-medium leading-tight text-2xl">18:45</h5>
+                </div>
+                <h5 className="text-gray-900 text-xl font-medium mb-2">
+                  Card title
+                </h5>
+                <p className="text-gray-700 text-base mb-4">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+                <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
+              </div>
+            </article>
+          </section>
+
+          <section className="flex flex-col pb-2 mt-16 w-full">
+            {/* Section Heading bg-white/60 backdrop-blur-md rounded-3xl */}
+            <header className="mb-8 p-4 pl-0 ">
+              <h3 class="font-medium leading-tight text-5xl text-white-800">
                 Cities Elements
               </h3>
             </header>
@@ -66,6 +98,7 @@ function Menu() {
               </div>
             </article>
           </section>
+
           <section className="nav overflow-auto pb-2 w-full menu-app-section-bound">
             <div className="scrollable-menu mt-5">
               <div>
