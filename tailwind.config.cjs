@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     "./index.html",
@@ -12,8 +13,12 @@ module.exports = {
         //https://images.unsplash.com/photo-1674859659457-3dde5db387c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NDkxODYyMg&ixlib=rb-4.0.3&q=80&w=3000
       },
       fontFamily: {
-        display: ["Oswald", "sans"],
-        body: ["Rubik", "sans"]
+        sans: ['Proxima Nova', ...defaultTheme.fontFamily.sans],
+        heading: ['"Source Sans Pro"', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+        serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
+        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
+
       }
     },
   },

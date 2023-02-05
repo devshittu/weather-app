@@ -9,17 +9,17 @@ function LogInPin() {
         className="bg-transparent border-none ring-0 h-0 absolute w-0"
       />
       <div className="flex gap-2">
-        <div class="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
-          <span class="app-pin-digit-value text-5xl m-0 p-0">1</span>
+        <div className="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
+          <span className="app-pin-digit-value text-5xl m-0 p-0">1</span>
         </div>
-        <div class="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
-          <span class="app-pin-digit-value text-5xl m-0 p-0">2</span>
+        <div className="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
+          <span className="app-pin-digit-value text-5xl m-0 p-0">2</span>
         </div>
-        <div class="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
-          <span class="app-pin-digit-value text-5xl m-0 p-0">3</span>
+        <div className="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
+          <span className="app-pin-digit-value text-5xl m-0 p-0">3</span>
         </div>
-        <div class="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
-          <span class="app-pin-digit-value text-5xl m-0 p-0">7</span>
+        <div className="app-pin-digit focused items-center h-20 w-14 inline-flex relative border-white/50 border-2 bg-white-600 rounded justify-center after:content-[''] after:shadow-md after:z-20 after:absolute before:content-[''] before:shadow-md before:z-20 before:absolute">
+          <span className="app-pin-digit-value text-5xl m-0 p-0">7</span>
         </div>
       </div>
       <h1>

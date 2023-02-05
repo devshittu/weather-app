@@ -6,6 +6,7 @@ import Loader from "./components/Loader";
 import LogInButton from "./components/LogInButton";
 import LogInPin from "./components/LogInPin";
 import Menu from "./components/Menu";
+import InfoFixedWrapper from "./components/InfoFixedWrapper";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,7 +15,9 @@ function App() {
     <>
       {/* user status */}
       <div className="App bg-gray-800">
-        <Info />
+        <InfoFixedWrapper>
+          <Info />
+        </InfoFixedWrapper>
         <LogInPin />
         {/* Menu */}
         <Menu />
