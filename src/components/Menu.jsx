@@ -1,5 +1,6 @@
 import React from "react";
 import AppSection from "./AppSection";
+import CityItem from "./CityItem";
 import Info from "./Info";
 import InfoFixedWrapper from "./InfoFixedWrapper";
 
@@ -38,70 +39,10 @@ function Menu() {
 
           <AppSection title={`New City`}>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-              <div className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-                <div className="z-20  bg-gray-300 h-56 rounded-lg shadow-lg w-72 bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500')]"></div>
+              <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
+              <CityItem photo="https://images.unsplash.com/photo-1543966888-7c1dc482a810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80" />
+              <CityItem photo="https://images.unsplash.com/photo-1590608897129-79da98d15969?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80" />
 
-                <div className="w-full bg-white/30  backdrop-blur -mt-36 pt-40 shadow-lg rounded-lg overflow-hidden p-5">
-                  <div className="header-content inline-flex ">
-                    <div className="category-badge flex-1  h-8 w-8 m rounded-full m-2 bg-purple-100">
-                      <div className="h-3 w-3 rounded-full m-2 bg-purple-500 "></div>
-                    </div>
-                    <h4 className="category-title flex-1 text-2xl"> PHP</h4>
-                  </div>
-                  <div className="title-post font-medium">Mon titre</div>
-
-                  <div className="summary-post text-base text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Perspiciatis veritatis vel suscipit ex dolore possimus iure.
-                    <button className="bg-blue-100 text-blue-500 mt-4 block rounded p-2 text-sm ">
-                      <span className="">Lire plus</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-                <div className="bg-gray-300 h-56 w-full rounded-lg shadow-md bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1543966888-7c1dc482a810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80')]"></div>
-
-                <div className=" w-70 bg-white -mt-10 shadow-lg rounded-lg overflow-hidden p-5">
-                  <div className="header-content inline-flex ">
-                    <div className="category-badge flex-1  h-4 w-4 m rounded-full m-1 bg-yellow-100">
-                      <div className="h-2 w-2 rounded-full m-1 bg-yellow-500 "></div>
-                    </div>
-                    <div className="category-title flex-1 text-sm"> JS</div>
-                  </div>
-                  <div className="title-post font-medium">Mon titre</div>
-
-                  <div className="summary-post text-base text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Perspiciatis veritatis vel suscipit ex dolore possimus iure.
-                    <button className="bg-blue-100 text-blue-500 px-2 mt-4 block rounded p-2 text-sm">
-                      <span className="">Lire plus</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-                <div className="bg-gray-300 h-56 w-full rounded-lg shadow-md bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1590608897129-79da98d15969?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80')]"></div>
-
-                <div className=" w-70 bg-white -mt-10 shadow-lg rounded-lg overflow-hidden p-5">
-                  <div className="header-content inline-flex ">
-                    <div className="category-badge flex-1  h-4 w-4 m rounded-full m-1 bg-green-100">
-                      <div className="h-2 w-2 rounded-full m-1 bg-green-500 "></div>
-                    </div>
-                    <div className="category-title flex-1 text-sm"> Vue</div>
-                  </div>
-                  <div className="title-post font-medium">Mon titre</div>
-
-                  <div className="summary-post text-base text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Perspiciatis veritatis vel suscipit ex dolore possimus iure.
-                    <button className="bg-blue-100 text-blue-500 px-2 mt-4 block rounded p-2 text-sm">
-                      <span className="">Lire plus</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </AppSection>
 
