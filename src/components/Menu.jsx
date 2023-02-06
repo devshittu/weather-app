@@ -1,8 +1,8 @@
 import React from "react";
+import AppButton from "./AppButton";
 import AppSection from "./AppSection";
 import CityItem from "./CityItem";
-import Info from "./Info";
-import InfoFixedWrapper from "./InfoFixedWrapper";
+import TimeWeatherInfo from "./TimeWeatherInfo";
 
 function Menu() {
   return (
@@ -10,8 +10,7 @@ function Menu() {
       <div className="wrapper mt-[30vh] min-h-[80vh] md:p-20 p-3 pt-0 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
-            <Info />
-            Menu
+            <TimeWeatherInfo />
             <div>
               <button
                 type="button"
@@ -29,20 +28,16 @@ function Menu() {
           </section>
           <section className="nav flex gap-3 overflow-auto pb-2 w-full menu-app-section-bound">
             <h1 className="text-2xl leading-5">Categories: </h1>
-            <button className="inline-block px-6 py-2 text-2xl backdrop-blur bg-white/10 border-4 border-white/20 text-white rounded-lg shadow-md hover:bg-white/30 hover:shadow-lg focus:bg-white/30 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white/50 active:shadow-lg transition duration-150 ease-in-out">
-              Save changes
-            </button>
-            <button className="inline-block px-6 py-2 text-2xl backdrop-blur bg-white/10 border-4 border-white/20 text-white rounded-lg shadow-md hover:bg-white/30 hover:shadow-lg focus:bg-white/30 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white/50 active:shadow-lg transition duration-150 ease-in-out">
-              Cat two
-            </button>
+            <AppButton>Save changes</AppButton>
+            <AppButton>Cat two</AppButton>
           </section>
 
           <AppSection title={`New City`}>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
+
               <CityItem photo="https://images.unsplash.com/photo-1543966888-7c1dc482a810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80" />
               <CityItem photo="https://images.unsplash.com/photo-1590608897129-79da98d15969?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80" />
-
             </div>
           </AppSection>
 

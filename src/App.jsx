@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import AppBG from "./components/AppBG";
-import Info from "./components/Info";
+import TimeWeatherInfo from "./components/TimeWeatherInfo";
 import Loader from "./components/Loader";
 import LogInButton from "./components/LogInButton";
 import LogInPin from "./components/LogInPin";
@@ -16,7 +16,7 @@ function App() {
       {/* user status */}
       <div className="App bg-gray-800">
         <InfoFixedWrapper>
-          <Info />
+          <TimeWeatherInfo />
         </InfoFixedWrapper>
         <LogInPin />
         {/* Menu */}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Info() {
+function TimeWeatherInfo() {
   return (
     <div>
       <span className="text-8xl h-24">7:38</span>
@@ -15,4 +15,4 @@ function Info() {
   );
 }
 
-export default Info;
+export default TimeWeatherInfo;
