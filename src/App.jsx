@@ -11,7 +11,9 @@ import LogInButtonWrapper from "./components/LogInButtonWrapper";
 
 function App() {
   const [userLogInState, setUserLogInState] = useState("logged-out");
-
+  const setUserStatus = (status) => {
+    setUserLogInState(status);
+  };
   return (
     <>
       {/* user status */}
@@ -24,7 +26,7 @@ function App() {
         <Menu />
         <AppBG />
         <LogInButtonWrapper>
-          <LogInButton />
+          <LogInButton setUserStatus={setUserStatus} />
         </LogInButtonWrapper>
         <Loader />
       </div>
