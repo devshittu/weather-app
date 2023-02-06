@@ -34,3 +34,56 @@
     fill: white;
   }
 }
+
+@layer utilities {
+  .bounce {
+    animation: bounce 2s ease infinite;
+  }
+  @keyframes bounce {
+    70% {
+      transform: translateY(0%);
+    }
+    80% {
+      transform: translateY(-15%);
+    }
+    90% {
+      transform: translateY(0%);
+    }
+    95% {
+      transform: translateY(-7%);
+    }
+    97% {
+      transform: translateY(0%);
+    }
+    99% {
+      transform: translateY(-3%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+.logged-out > .login-button-wrapper {
+  @apply opacity-100 pointer-events-auto;
+  transform: translate(-50%, -40px);
+}
+.logged-out > .app-background {
+  @apply cursor-pointer;
+}
+.logged-out > .app-info-wrapper {
+  @apply opacity-100 ml-10;
+  transform: translateX(0%);
+}
+
+.login-button-wrapper {
+  /* @apply bottom-10 left-auto right-0; */
+
+  transform: translate(40px, 0px);
+}
+
+@layer utilities {
+  .sky {
+    @apply from-sky-700/40;
+  }
+}

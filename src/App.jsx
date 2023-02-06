@@ -7,6 +7,7 @@ import LogInButton from "./components/LogInButton";
 import LogInPin from "./components/LogInPin";
 import Menu from "./components/Menu";
 import InfoFixedWrapper from "./components/InfoFixedWrapper";
+import LogInButtonWrapper from "./components/LogInButtonWrapper";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       {/* user status */}
-      <div className="App bg-gray-800">
+      <div className="App bg-gray-800 logged-out">
         <InfoFixedWrapper>
           <TimeWeatherInfo />
         </InfoFixedWrapper>
@@ -22,7 +23,9 @@ function App() {
         {/* Menu */}
         <Menu />
         <AppBG />
-        <LogInButton />
+        <LogInButtonWrapper>
+          <LogInButton />
+        </LogInButtonWrapper>
         <Loader />
       </div>
     </>
