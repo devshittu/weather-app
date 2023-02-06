@@ -3,7 +3,8 @@ import React from "react";
 function LogInPin() {
   const handleOnChange = () => {};
   return (
-    <div className="LoginPin absolute z-20 left-[50%] top-[50%] pointer-events-auto text-white">
+
+    <div className=" absolute z-20 opacity-0 left-[50%] top-[50%] pointer-events-auto text-white app-pin-wrapper">
       <input
         onChange={handleOnChange}
         className="bg-transparent border-none ring-0 h-0 absolute w-0"

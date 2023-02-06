@@ -10,12 +10,12 @@ import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [userLogInState, setUserLogInState] = useState("logged-out");
 
   return (
     <>
       {/* user status */}
-      <div className="App bg-gray-800 logged-out">
+      <div className={`App bg-gray-800 ${userLogInState}`}>
         <InfoFixedWrapper>
           <TimeWeatherInfo />
         </InfoFixedWrapper>

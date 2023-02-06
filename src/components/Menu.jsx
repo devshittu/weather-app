@@ -7,7 +7,19 @@ import TimeWeatherInfo from "./TimeWeatherInfo";
 
 function Menu() {
   return (
-    <div className="app-menu relative overflow-auto h-auto pointer-events-auto z-20">
+
+
+    // height: 100vh;
+    // overflow: hidden;
+    // opacity: 0;
+    // pointer-events: none;
+    // position: relative;
+    // transform: translateY(-10%);
+    // transition: opacity 250ms, transform 250ms;
+    // z-index: 2;
+    // relative overflow-hidden h-screen pointer-events-none
+
+    <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
       <div className="wrapper mt-[30vh] min-h-[80vh] md:p-20 p-3 pt-0 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
