@@ -10,7 +10,7 @@ function CompareCityWrapper() {
         <div className="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-teal-300 rounded-full"></div>
       </div> */}
       <div className="container mx-auto h-screen relative text-gray-700" >
-        <div className="flex w-full rounded-lg h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl backdrop-blur bg-white/40">
+        <div className="flex w-full rounded-lg md:rounded-xl h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl backdrop-blur bg-white/80">
           <div className="lg:w-1/2  text-gray-800 flex flex-col">
             <div className="p-8 shadow-md relative ">
               <div className="flex items-center">
@@ -39,7 +39,7 @@ function CompareCityWrapper() {
               <p className="text-gray-600 text-sm">
                 Fingerstache godard blog, cornhole meh hoodie
               </p>
-              <div className="mt-6 flex">
+              {/* <div className="mt-6 flex">
                 <button className="bg-teal-500 text-white py-2 text-sm px-3 rounded focus:outline-none">
                   New Contact
                 </button>
@@ -65,10 +65,10 @@ function CompareCityWrapper() {
                     <path d="M21 21l-4.35-4.35"></path>
                   </svg>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="overflow-auto flex-grow">
-              <div className="bg-gray-100 px-8 py-6 flex items-center border-b border-gray-300">
+              {/* <div className="bg-gray-100 px-8 py-6 flex items-center border-b border-gray-300">
                 <input type="checkbox" />
                 <div className="flex ml-4">
                   <img
@@ -181,11 +181,11 @@ function CompareCityWrapper() {
                   </svg>
                   Edit
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className="lg:w-1/2 backdrop-blur bg-white/40x bg-teal-600/40  text-white flex flex-col">
-            <div className="p-8 bg-teal-700 flex items-center">
+          <div className="lg:w-1/2 text-white flex flex-col">
+            <div className="p-8 bg-teal-700x flex items-center">
               <img
                 src="https://pbs.twimg.com/profile_images/1000050491970260993/FJkauyEa.jpg"
                 className="w-16 h-16 mr-4 object-top object-cover rounded"
@@ -200,260 +200,8 @@ function CompareCityWrapper() {
             </div>
             <div className="p-8 flex flex-1 items-start overflow-auto">
               <div className="flex-shrink-0 text-sm sticky top-0">
-                <div className="flex items-center text-white mb-3">
-                  Open{" "}
-                  <span className="italic text-sm ml-1 text-teal-300">
-                    (10)
-                  </span>
-                </div>
-                <div className="flex items-center text-teal-300 mb-3">
-                  In Progress <span className="italic text-sm ml-1">(8)</span>
-                </div>
-                <div className="flex items-center text-teal-300">
-                  Closed <span className="italic text-sm ml-1">(4)</span>
-                </div>
               </div>
               <div className="flex-1 pl-10">
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Cronut distillery selfies, hella shabby chic
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">10 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Tumeric slow-carb polaroid pork
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">21 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Actually tbh godard try-hard jianbing vape
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">24 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Forage hell of knausgaard distillery everyday
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">38 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      DIY copper mug thundercats literally
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">38 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Cronut distillery selfies, hella shabby chic
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">10 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Tumeric slow-carb polaroid pork
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">21 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Actually tbh godard try-hard jianbing vape
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">24 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex mb-8">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      Forage hell of knausgaard distillery everyday
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">38 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex">
-                  <div className="w-4 h-4 flex-shrink-0 rounded-full border-teal-400 border-2 mt-1 mr-2"></div>
-                  <div className="flex-grow">
-                    <h3 className="text-sm mb-1">
-                      DIY copper mug thundercats literally
-                    </h3>
-                    <h4 className="text-xs text-teal-300 italic">38 min ago</h4>
-                  </div>
-                  <button className="text-teal-300 flex-shrink-0 ml-2">
-                    <svg
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="w-6 h-6"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="1"></circle>
-                      <circle cx="19" cy="12" r="1"></circle>
-                      <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                  </button>
-                </div>
               </div>
             </div>
           </div>
