@@ -34,6 +34,35 @@ function Menu() {
             <AppButton>Cities</AppButton>
           </section>
 
+          <AppSection title={`How it looks & feel out there?`}>
+            <article className="flex flex-col md:flex-row md:max-w-full rounded-lg backdrop-blur bg-white/10 shadow-lg ">
+              <div className="h-auto w-full">
+                <img
+                  className="w-full h-40 md:h-auto object-cover md:w-48x rounded-t-lg md:rounded-none md:rounded-l-lg "
+                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                  alt=""
+                />
+              </div>
+              <div className="p-6 flex flex-col justify-start">
+                <h5 className="text-gray-900 text-3xl mb-2">Foggy</h5>
+                <p className="text-gray-700 text-base mb-4">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+                <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
+              </div>
+            </article>
+          </AppSection>
+          <AppSection title={`This week in West London`}>
+            {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
+            <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
+              <AppDailyCard className="from-sky-700/40" />
+              <AppDailyCard className="from-emerald-700/40" />
+              <AppDailyCard className="from-amber-700/40" />
+              <AppDailyCard className="from-violet-700/40" />
+            </div>
+          </AppSection>
           <AppSection title={`Nearby Cities`}>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4  space-x-4 md:space-x-8">
               <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
@@ -43,16 +72,11 @@ function Menu() {
             </div>
           </AppSection>
 
-          <AppSection title={`Current City's Week`}>
-            {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
-            <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              <AppDailyCard className="from-sky-700/40" />
-              <AppDailyCard className="from-emerald-700/40" />
-              <AppDailyCard className="from-amber-700/40" />
-              <AppDailyCard className="from-violet-700/40" />
-            </div>
+          <AppSection title={`Cities Comparism`}>
+            <CompareCityWrapper />
           </AppSection>
-          <AppSection title={`Cities Elements`}>
+
+          {/* <AppSection title={`Cities Elements`}>
             <article className="flex flex-col md:flex-row md:max-w-xl rounded-lg backdrop-blur bg-white/40 shadow-lg ">
               <div className="h-auto w-full">
                 <img
@@ -83,7 +107,8 @@ function Menu() {
                 </div>
               </div>
             </div>
-          </AppSection>
+            </AppSection>
+            
 
           <AppSection title={`Meta Data`}>
             <div className="flex gap-4">
@@ -114,10 +139,7 @@ function Menu() {
                 </div>
               </div>
             </div>
-          </AppSection>
-          <AppSection title={`Cities Comparism`}>
-            <CompareCityWrapper />
-          </AppSection>
+          </AppSection> */}
         </div>
       </div>
     </div>
