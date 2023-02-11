@@ -3,7 +3,7 @@ import React from "react";
 function TimeWeatherInfo() {
   return (
     <div>
-      <span className="text-8xl h-24">7:38</span>
+      <span className="text-6xl md:text-8xl md:h-24">7:38</span>
       <span className="mb-3 ml-4 inline-flex self-end">
         <i className="fa-duotone fa-sun "></i>
         {/* weather-temperature */}

@@ -5,7 +5,7 @@ function CityItem({ photo }) {
     <div className="p-4z md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
       <div
         className={
-          `z-20 bg-gray-300 h-56 rounded-lg shadow-lg w-72 bg-cover bg-center bg-[url('` +
+          `z-20 bg-gray-300 h-56 rounded-lg shadow-lg w-[88%] md:w-80 bg-cover bg-center bg-[url('` +
           photo +
           `')]`
         }
