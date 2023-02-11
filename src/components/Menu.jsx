@@ -35,22 +35,17 @@ function Menu() {
           </section>
 
           <AppSection title={`How it looks & feel out there?`}>
-            <article className="flex flex-col md:flex-row md:max-w-full rounded-lg backdrop-blur bg-white/10 shadow-lg ">
-              <div className="h-auto w-full">
-                <img
-                  className="w-full h-40 md:h-auto object-cover md:w-48x rounded-t-lg md:rounded-none md:rounded-l-lg "
-                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="p-6 flex flex-col justify-start">
-                <h5 className="text-gray-900 text-3xl mb-2">Foggy</h5>
-                <p className="text-gray-700 text-base mb-4">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
+            <article class="bg-white/70 rounded-lg shadow-2xl md:flex  md:h-40">
+              <img
+                src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8"
+                alt="Laptop on Desk"
+                class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
+              />
+              <div class="p-6 text-slate-700">
+                <h2 class="font-bold text-xl md:text-3xl mb-2 ">
+                  Horizontal Card
+                </h2>
+                <p class="text-slate-700">Look at me go sideways!</p>
               </div>
             </article>
           </AppSection>

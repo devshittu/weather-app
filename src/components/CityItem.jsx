@@ -3,68 +3,6 @@ import React from "react";
 function CityItem({ photo }) {
   return (
     <>
-      {/* <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div
-          className="bg-cover bg-center h-16 p-4 flex justify-end items-center"
-          style="background-image: url(https://mosscm.com/wp-content/uploads/2017/11/news-dallas-skyline.jpg)"
-        >
-          <p className="uppercase tracking-widest text-sm text-white bg-black py-1 px-2 rounded opacity-75 shadow-lg">
-            Dallas, TX
-          </p>
-        </div>
-        <div className="p-4 text-gray-700 flex justify-between">
-          <div>
-            <p className="text-3xl text-gray-900">
-              <i className="wi wi-day-sunny text-yellow-500"></i> 84°
-              <span className="text-lg text-gray-500">/ 67°</span>
-            </p>
-            <p className="text-sm w-56">
-              Mostly sunny throughout the day.
-              <br />
-              4-8 MPH winds.
-            </p>
-          </div>
-          <div className="leading-loose text-sm">
-            <div className="flex items-center">
-              <i className="mr-2 wi wi-horizon-alt text-yellow-500"></i>
-              <p>
-                <span className="font-bold">6:57</span>{" "}
-                <span className="text-xs text-gray-600">AM</span>
-              </p>
-            </div>
-            <div className="flex items-center">
-              <i className="mr-2 wi wi-horizon text-purple-400"></i>
-              <p>
-                <span className="font-bold">5:42</span>{" "}
-                <span className="text-xs text-gray-600">PM</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-600">
-          <div className="flex items-center">
-            <i className="mr-2 wi wi-hot"></i>
-            <p>
-              <span className="text-gray-900 font-bold">7</span>{" "}
-              <span className="text-sm">UV</span>
-            </p>
-          </div>
-          <div className="flex items-center">
-            <i className="mr-2 wi wi-rain"></i>
-            <p>
-              <span className="text-gray-900 font-bold">8%</span>{" "}
-              <span className="text-sm">Precip</span>
-            </p>
-          </div>
-          <div className="flex items-center">
-            <i className="mr-2 wi wi-thermometer"></i>
-            <p>
-              <span className="text-gray-900 font-bold">59°</span>{" "}
-              <span className="text-sm">Dew Point</span>
-            </p>
-          </div>
-        </div>
-      </div> */}
 
       <div className="md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
         <div
@@ -79,7 +17,7 @@ function CityItem({ photo }) {
           </p>
         </div>
 
-        <div className="w-full bg-white/30  backdrop-blur -mt-36 pt-40 shadow-lg rounded-lg overflow-hidden p-5">
+        <div className="w-full bg-white/50  backdrop-blur -mt-36 pt-40 shadow-lg rounded-lg overflow-hidden p-5">
           <div className="header-content inline-flex ">
             <div className="category-badge flex-1  h-6 w-6 m rounded-full m-[6px] bg-purple-100">
               <div className="h-3 w-3 rounded-full m-[6px] bg-purple-500 "></div>
