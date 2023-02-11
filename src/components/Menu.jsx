@@ -38,7 +38,7 @@ function Menu() {
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4  space-x-4 md:space-x-8">
               <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
 
-              <CityItem photo="https://images.unsplash.com/photo-1543966888-7c1dc482a810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" />
+              <CityItem photo="https://images.unsplash.com/photo-1506501139174-099022df5260?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NjA4NjI3MQ&ixlib=rb-4.0.3&q=80&w=500" />
               <CityItem photo="https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500" />
             </div>
           </AppSection>
