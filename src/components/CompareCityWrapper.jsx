@@ -9,7 +9,7 @@ function CompareCityWrapper() {
         <div className="w-64 h-64 ml-auto relative opacity-50 -mr-32 bg-teal-300 rounded-full"></div>
         <div className="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-teal-300 rounded-full"></div>
       </div> */}
-      <div className="container mx-auto h-screen relative text-gray-700" >
+      <div className="container mx-auto h-screen relative text-gray-700">
         <div className="flex w-full rounded-lg md:rounded-xl h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl backdrop-blur bg-white/80">
           <div className="lg:w-1/2  text-gray-800 flex flex-col">
             <div className="p-8 shadow-md relative ">
@@ -26,10 +26,10 @@ function CompareCityWrapper() {
                     stroke="currentColor"
                     className="w-4 h-4"
                     viewBox="0 0 24 24"
-                    stroke-width="2.2"
+                    strokeWidth="2.2"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"></path>
                   </svg>
@@ -55,10 +55,10 @@ function CompareCityWrapper() {
                   <svg
                     stroke="currentColor"
                     className="w-4 h-4 absolute right-0 top-0 mt-3 mr-2 text-gray-500"
-                    stroke-width="2"
+                    strokeWidth="2"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     viewBox="0 0 24 24"
                   >
                     <circle cx="11" cy="11" r="8"></circle>
@@ -85,10 +85,10 @@ function CompareCityWrapper() {
                 <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
                   <svg
                     stroke="currentColor"
-                    stroke-width="2"
+                    strokeWidth="2"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="w-4 h-4 mr-2"
                     viewBox="0 0 24 24"
                   >
@@ -113,10 +113,10 @@ function CompareCityWrapper() {
                 <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
                   <svg
                     stroke="currentColor"
-                    stroke-width="2"
+                    strokeWidth="2"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="w-4 h-4 mr-2"
                     viewBox="0 0 24 24"
                   >
@@ -141,10 +141,10 @@ function CompareCityWrapper() {
                 <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
                   <svg
                     stroke="currentColor"
-                    stroke-width="2"
+                    strokeWidth="2"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="w-4 h-4 mr-2"
                     viewBox="0 0 24 24"
                   >
@@ -169,10 +169,10 @@ function CompareCityWrapper() {
                 <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
                   <svg
                     stroke="currentColor"
-                    stroke-width="2"
+                    strokeWidth="2"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="w-4 h-4 mr-2"
                     viewBox="0 0 24 24"
                   >
@@ -199,10 +199,8 @@ function CompareCityWrapper() {
               </button>
             </div>
             <div className="p-8 flex flex-1 items-start overflow-auto">
-              <div className="flex-shrink-0 text-sm sticky top-0">
-              </div>
-              <div className="flex-1 pl-10">
-              </div>
+              <div className="flex-shrink-0 text-sm sticky top-0"></div>
+              <div className="flex-1 pl-10"></div>
             </div>
           </div>
         </div>

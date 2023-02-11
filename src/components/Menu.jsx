@@ -35,16 +35,16 @@ function Menu() {
           </section>
 
           <AppSection title={`How it looks & feel out there?`}>
-            <article class="bg-white/70 rounded-lg shadow-2xl md:flex  md:h-40">
+            <article className="bg-white/70 rounded-lg shadow-2xl md:flex  md:h-40">
               <img
                 src="https://images.unsplash.com/photo-1457269449834-928af64c684d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkwOTI0MA&ixlib=rb-4.0.3&q=80&w=500"
                 alt="Laptop on Desk"
-                class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
+                className="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
               />
-              <div class="p-6 text-slate-700">
-                <h2 class="font-bold text-xl md:text-3xl mb-2 ">Snowy</h2>
-                <p class="text-slate-700">It currently feels like -2</p>
-                <p class="text-slate-700">It currently feels like -2</p>
+              <div className="p-6 text-slate-700">
+                <h2 className="font-bold text-xl md:text-3xl mb-2 ">Snowy</h2>
+                <p className="text-slate-700">It currently feels like -2</p>
+                <p className="text-slate-700">It currently feels like -2</p>
               </div>
             </article>
           </AppSection>
@@ -61,7 +61,7 @@ function Menu() {
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4  space-x-4 md:space-x-8">
               <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
               <CityItem photo="https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500" />
-              <CityItem photo="https://images.unsplash.com/photo-1594302125119-396a15c3cae0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkxOTM5MA&ixlib=rb-4.0.3&q=80&w=500" />
+              <CityItem photo="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkyMDc3OQ&ixlib=rb-4.0.3&q=80&w=1080" />
             </div>
           </AppSection>
 
