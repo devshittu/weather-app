@@ -35,7 +35,7 @@ function AppDailyCard({ className }) {
         <div className="flex flex-row ">
           <div className="grow font-normal">
             <ul className="">
-              <li className="flex-inline content-baseline">
+              <li className="flex-inline content-baseline space-y-1 md:space-x-3">
                 <svg
                   className="inline-block w-3 md:w-6 h-auto fill-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ function AppDailyCard({ className }) {
                   11 km/h
                 </span>
               </li>
-              <li className="flex-inline content-baseline">
+              <li className="flex-inline content-baseline  space-y-3">
                 <svg
                   className="inline-block w-3 md:w-6 h-auto fill-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ function AppDailyCard({ className }) {
                   5%
                 </span>
               </li>
-              <li className="flex-inline content-baseline">
+              <li className="flex-inline content-baseline space-y-3">
                 <svg
                   className="inline-block w-3 md:w-6 h-auto fill-white"
                   xmlns="http://www.w3.org/2000/svg"
