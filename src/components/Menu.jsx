@@ -61,7 +61,7 @@ function Menu() {
             </div>
           </AppSection>
           <AppSection title={`Nearby Cities`}>
-            <div className="flex flex-wrap md:flex-nowrap sm:-m-4 -mx-4 -mb-10 -mt-4  space-x-4 md:space-x-8">
+            <div className="flex flex-wrap sm:flex-nowrap sm:-m-4 -mx-4 -mb-10 -mt-4  space-x-4 md:space-x-8">
               <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
               <CityItem photo="https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500" />
               <CityItem photo="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkyMDc3OQ&ixlib=rb-4.0.3&q=80&w=1080" />

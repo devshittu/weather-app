@@ -2,17 +2,18 @@ import React from "react";
 
 function AppSearch() {
   return (
-    <div className="w-4/6 z-50 relative">
-      <div className="pt-2 relative text-gray-600 h-16 ">
+    <div className="md:w-4/6 z-20 relative">
+      <div className="pt-2 relative   h-16 ">
         <input
-          className="border-2 border-gray-300 bg-white  w-full h-full h-10x px-5 pr-16 rounded-xl text-2xl focus:outline-none"
+          className="  placeholder:text-slate-500 w-full h-full h-10x px-5 pr-16  text-2xl text-slate-700
+          backdrop-blur bg-white/10 border-2 md:border-4 border-white/80  rounded-xl md:rounded-lg shadow-md hover:bg-white/30 hover:shadow-lg focus:bg-white/30 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white/50 active:shadow-lg transition duration-150 ease-in-out"
           type="search"
           name="search"
-          placeholder="Search"
+          placeholder="Search a city..."
         />
         <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
           <svg
-            className="text-gray-600 h-8 w-8 fill-current"
+            className="text-gray-600 h-8 w-8 fill-white"
             version="1.1"
             id="Capa_1"
             x="0px"
@@ -35,9 +36,9 @@ function AppSearch() {
         />
       </div> */}
 
-      <div className="bg-white w-full rounded-xl shadow-xl overflow-hidden p-1">
+      <div className="bg-white w-full rounded-xl shadow-xl overflow-hidden  text-gray-600">
         {/* <!-- items --> */}
-        <div className="w-full flex p-3 pl-4 items-center hover:bg-gray-300 rounded-lg cursor-pointer">
+        <div className="w-full flex p-3 pl-4 items-center hover:bg-gray-300 cursor-pointer">
           <div className="mr-4">
             <div className="h-9 w-9 rounded-sm flex items-center justify-center text-3xl">
               <svg
