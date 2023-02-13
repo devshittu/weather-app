@@ -3,7 +3,7 @@ import React from "react";
 function CityItem({ photo }) {
   return (
     <>
-      <div className="md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
+      <div className="md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center min-w-fit max-w-sm mx-auto">
         <div
           className={
             `bg-[url('` +
