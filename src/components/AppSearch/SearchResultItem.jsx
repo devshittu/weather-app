@@ -115,9 +115,9 @@ function SearchResultItem() {
       <div>
         <div className="font-bold text-lg md:text-2xl">Name: Tom</div>
         <div className="text-xs text-slate-500">
-          <span className="mr-2">No: 007886</span>
-          <span className="mr-2">gender: man</span>
-          <span className="mr-2">hobby: skiing</span>
+          <span className="mr-2">Lon: 007886</span>
+          <span className="mr-2">Lat: +32135432.454</span>
+          <span className="mr-2">Landmass: 7984km/sq</span>
         </div>
       </div>
     </div>
