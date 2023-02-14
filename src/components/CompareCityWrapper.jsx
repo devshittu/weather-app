@@ -9,9 +9,9 @@ function CompareCityWrapper() {
         <div className="w-64 h-64 ml-auto relative opacity-50 -mr-32 bg-teal-300 rounded-full"></div>
         <div className="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-teal-300 rounded-full"></div>
       </div> */}
-      <div className="container mx-auto h-screen relative text-gray-700">
-        <div className="flex w-full rounded-lg md:rounded-xl h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl backdrop-blur bg-white/80">
-          <div className="lg:w-1/2  text-gray-800 flex flex-col">
+      <div className="container mx-auto h-screen relative text-slate-700">
+        <div className="flex w-full rounded-lg md:rounded-xl h-full lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl backdrop-blur-md bg-white/50">
+          <div className="lg:w-1/2  text-slate-800 flex flex-col">
             <div className="p-8 shadow-md relative ">
               <div className="flex items-center">
                 <img

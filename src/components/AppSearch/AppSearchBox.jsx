@@ -1,4 +1,5 @@
 import React from "react";
+import SearchNoResultItem from "./SearchNoResultItem";
 import SearchResultItem from "./SearchResultItem";
 
 function AppSearchBox() {
@@ -36,6 +37,7 @@ function AppSearchBox() {
         <SearchResultItem />
         <SearchResultItem />
         <SearchResultItem />
+        <SearchNoResultItem />
       </div>
     </div>
   );
