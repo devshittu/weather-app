@@ -9,199 +9,315 @@ function CompareCityWrapper() {
         <div className="w-64 h-64 ml-auto relative opacity-50 -mr-32 bg-teal-300 rounded-full"></div>
         <div className="w-screen h-64 absolute opacity-50 bottom-0 right-0 -my-40 -mx-64 bg-teal-300 rounded-full"></div>
       </div> */}
-      
-      <div className="container mx-auto relative text-slate-700">
-        <div className="flex w-full rounded-lg md:rounded-xl  lg:overflow-hidden overflow-auto lg:flex-row flex-col shadow-2xl backdrop-blur-md bg-white/50">
-          <div className="lg:w-1/2  text-slate-800 flex flex-col">
-            <div className="p-8 shadow-md relative ">
-              <div className="flex items-center">
-                <img
-                  src="https://randomuser.me/api/portraits/men/1.jpg"
-                  className="w-10 h-10 block rounded object-cover object-top"
-                />
-                <div className="text-teal-600 font-medium ml-3">
-                  Holden Caulfield
+
+      <div className="container mx-auto relative text-slate-800  dark:text-slate-200">
+        <div className="flex flex-col">
+          <div className="flex w-full rounded-lg md:rounded-xl  lg:overflow-hidden overflow-auto flex-col shadow-2xl backdrop-blur-md bg-white/50 dark:bg-slate-900/50">
+            <div className="header">
+              <div className="grid grid-cols-1 gap-8 mt-6 mx-6 lg:grid-cols-3 xl:mt-12 xl:mx-12">
+                <div className="flex items-center justify-between px-8 py-4 border cursor-pointer rounded-xl dark:border-gray-700">
+                  <div className="flex flex-col items-center space-y-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-gray-400 sm:h-7 sm:w-7"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+
+                    <h2 className="text-lg font-medium text-gray-700 sm:text-xl dark:text-gray-200">
+                      Basic
+                    </h2>
+                  </div>
+
+                  <h2 className="text-2xl font-semibold text-gray-500 sm:text-3xl dark:text-gray-300">
+                    Free
+                  </h2>
                 </div>
-                <button className="bg-teal-100 text-teal-400 ml-auto w-8 h-8 flex items-center justify-center rounded">
-                  <svg
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2.2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"></path>
-                  </svg>
-                </button>
+
+                <div className="flex items-center justify-between px-8 py-4 border border-blue-500 cursor-pointer rounded-xl">
+                  <div className="flex flex-col items-center space-y-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-blue-600 dark:text-blue-500 sm:h-7 sm:w-7"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+
+                    <h2 className="text-lg font-medium text-gray-700 sm:text-xl dark:text-gray-200">
+                      Standard
+                    </h2>
+                  </div>
+
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="px-2 text-xs text-blue-500 bg-gray-100 rounded-full dark:text-blue-400 sm:px-4 sm:py-1 dark:bg-gray-700 ">
+                      Save 30%
+                    </div>
+
+                    <h2 className="text-2xl font-semibold text-blue-600 dark:text-blue-500 sm:text-3xl">
+                      $99 <span className="text-base font-medium">/Yearly</span>
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between px-8 py-4 border cursor-pointer rounded-xl dark:border-gray-700">
+                  <div className="flex flex-col items-center space-y-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-gray-400 sm:h-7 sm:w-7"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+
+                    <h2 className="text-lg font-medium text-gray-700 sm:text-xl dark:text-gray-200">
+                      Pro
+                    </h2>
+                  </div>
+
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="px-2 text-xs text-blue-500 bg-gray-100 rounded-full dark:text-blue-400 sm:px-4 sm:py-1 dark:bg-gray-700 ">
+                      Save 20%
+                    </div>
+
+                    <h2 className="text-2xl font-semibold text-gray-500 sm:text-3xl dark:text-gray-300">
+                      $149 <span className="text-base font-medium">/Month</span>
+                    </h2>
+                  </div>
+                </div>
               </div>
-              <h1 className="font-medium text-lg mt-6">Contact List</h1>
-              <p className="text-gray-600 text-sm">
-                Fingerstache godard blog, cornhole meh hoodie
-              </p>
-              {/* <div className="mt-6 flex">
-                <button className="bg-teal-500 text-white py-2 text-sm px-3 rounded focus:outline-none">
-                  New Contact
-                </button>
-                <button className="ml-4 text-gray-600 py-2 text-sm px-3 rounded focus:outline-none border border-gray-400">
-                  New Task
-                </button>
-                <div className="relative ml-auto flex-1 pl-8 sm:block hidden">
-                  <input
-                    placeholder="Search"
-                    type="text"
-                    className="w-full border rounded border-gray-400 h-full focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
-                  />
-                  <svg
-                    stroke="currentColor"
-                    className="w-4 h-4 absolute right-0 top-0 mt-3 mr-2 text-gray-500"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="M21 21l-4.35-4.35"></path>
-                  </svg>
-                </div>
-              </div> */}
             </div>
-            <div className="overflow-auto flex-grow">
-              {/* <div className="bg-gray-100 px-8 py-6 flex items-center border-b border-gray-300">
-                <input type="checkbox" />
-                <div className="flex ml-4">
-                  <img
-                    src="https://randomuser.me/api/portraits/women/44.jpg"
-                    className="w-10 h-10 object-cover rounded object-top"
-                  />
-                  <div className="flex flex-col pl-4">
-                    <h2 className="font-medium text-sm">Lucinda Massey</h2>
-                    <h3 className="text-gray-500 text-sm">
-                      Management Consultant
-                    </h3>
+
+            <div className="body flex lg:flex-row flex-col">
+              <div className="lg:w-1/2  text-slate-800 flex flex-col">
+                {/* <div className="p-8 shadow-md relative "></div> */}
+                <div className="overflow-auto flex-grow">
+                  <div className="p-8 mt-8 space-y-8 ">
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">Unlimited Links</p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">
+                        Own analytics platfrom
+                      </p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">
+                        Full Support with discussion
+                      </p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">Optimize hashtags</p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-red-400 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">Mobile app</p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">Unlimited users</p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-red-400 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-                <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
-                  <svg
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-4 h-4 mr-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
-                  </svg>
-                  Edit
-                </button>
               </div>
-              <div className="bg-gray-200 px-8 py-6 flex items-center border-b border-gray-300">
-                <input type="checkbox" checked="" />
-                <div className="flex ml-4">
-                  <img
-                    src="https://pbs.twimg.com/profile_images/1000050491970260993/FJkauyEa.jpg"
-                    className="w-10 h-10 object-cover rounded object-top"
-                  />
-                  <div className="flex flex-col pl-4">
-                    <h2 className="font-medium text-sm">Willie Becker</h2>
-                    <h3 className="text-gray-500 text-sm">Business Manager</h3>
+              <div className="lg:w-1/2 text-white flex flex-col">
+                <div className="overflow-auto flex-grow">
+                  <div className="p-8 mt-8 space-y-8">
+                    <div className="flex items-center justify-between">
+                      <p className="textlg sm:text-xl">Unlimited Links</p>
+                      <span className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7">
+                        50%
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <p className="textlg sm:text-xl">
+                        Own analytics platfrom
+                      </p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">
+                        Full Support with discussion
+                      </p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">Optimize hashtags</p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-red-400 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">Mobile app</p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-blue-500 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
+                      <p className="textlg sm:text-xl">Unlimited users</p>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-red-400 sm:h-7 sm:w-7"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-                <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
-                  <svg
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-4 h-4 mr-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
-                  </svg>
-                  Edit
-                </button>
               </div>
-              <div className="bg-gray-100 px-8 py-6 flex items-center border-b border-gray-300">
-                <input type="checkbox" />
-                <div className="flex ml-4">
-                  <img
-                    src="https://randomuser.me/api/portraits/women/63.jpg"
-                    className="w-10 h-10 object-cover rounded object-top"
-                  />
-                  <div className="flex flex-col pl-4">
-                    <h2 className="font-medium text-sm">Sadie McDaniel</h2>
-                    <h3 className="text-gray-500 text-sm">Product Manager</h3>
-                  </div>
-                </div>
-                <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
-                  <svg
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-4 h-4 mr-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
-                  </svg>
-                  Edit
-                </button>
-              </div>
-              <div className="bg-gray-100 px-8 py-6 flex items-center border-b border-gray-300">
-                <input type="checkbox" />
-                <div className="flex ml-4">
-                  <img
-                    src="https://pbs.twimg.com/profile_images/1157046181698011136/xZ4wg2Xj.jpg"
-                    className="w-10 h-10 object-cover rounded object-top"
-                  />
-                  <div className="flex flex-col pl-4">
-                    <h2 className="font-medium text-sm">Maggie White</h2>
-                    <h3 className="text-gray-500 text-sm">Financial Analyst</h3>
-                  </div>
-                </div>
-                <button className="text-gray-500 flex items-center text-sm focus:outline-none rounded ml-auto py-2 leading-none">
-                  <svg
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-4 h-4 mr-2"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
-                  </svg>
-                  Edit
-                </button>
-              </div> */}
-            </div>
-          </div>
-          <div className="lg:w-1/2 text-white flex flex-col">
-            <div className="p-8 bg-teal-700x flex items-center">
-              <img
-                src="https://pbs.twimg.com/profile_images/1000050491970260993/FJkauyEa.jpg"
-                className="w-16 h-16 mr-4 object-top object-cover rounded"
-              />
-              <div className="mr-auto">
-                <h1 className="text-xl leading-none mb-1">Willie Becker</h1>
-                <h2 className="text-teal-400 text-sm">Business Manager</h2>
-              </div>
-              <button className="bg-teal-600 text-white py-2 text-sm px-3 rounded focus:outline-none">
-                New Task
-              </button>
-            </div>
-            <div className="p-8 flex flex-1 items-start overflow-auto">
-              <div className="flex-shrink-0 text-sm sticky top-0"></div>
-              <div className="flex-1 pl-10"></div>
             </div>
           </div>
         </div>
