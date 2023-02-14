@@ -99,7 +99,7 @@ function CityItem({ photo }) {
             <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="mr-2 w-4 fill-none stroke-2 stroke-gray-600"
+                className="mr-2 w-4 fill-none stroke-2 stroke-slate-600 dark:stroke-slate-400 "
                 viewBox="0 0 24 24"
                 fill="none"
               >
@@ -118,7 +118,7 @@ function CityItem({ photo }) {
             </div>
             <div className="flex items-center">
               <svg
-                className="mr-2 w-4 fill-none stroke-2 stroke-gray-600"
+                className="mr-2 w-4 fill-none stroke-2  stroke-slate-600 dark:stroke-slate-400 "
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ function CityItem({ photo }) {
             </div>
             <div className="flex items-center">
               <svg
-                className="mr-2 w-4 fill-none stroke-2 stroke-gray-600"
+                className="mr-2 w-4 fill-none stroke-2  stroke-slate-600 dark:stroke-slate-400 "
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
