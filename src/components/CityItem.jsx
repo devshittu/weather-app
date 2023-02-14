@@ -68,7 +68,9 @@ function CityItem({ photo }) {
                 </svg>
                 <p>
                   <span className="font-bold">6:57</span>{" "}
-                  <span className="text-xs  text-slate-600 dark:text-slate-400 ">AM</span>
+                  <span className="text-xs  text-slate-600 dark:text-slate-400 ">
+                    AM
+                  </span>
                 </p>
               </div>
               <div className="flex items-center">
@@ -86,7 +88,9 @@ function CityItem({ photo }) {
                 </svg>
                 <p>
                   <span className="font-bold">5:42</span>{" "}
-                  <span className="text-xs  text-slate-600 dark:text-slate-400">PM</span>
+                  <span className="text-xs  text-slate-600 dark:text-slate-400">
+                    PM
+                  </span>
                 </p>
               </div>
             </div>
@@ -106,7 +110,9 @@ function CityItem({ photo }) {
                 />
               </svg>
               <p>
-                <span className="text-slate-900 dark:text-slate-100 font-bold font-bold">1</span>{" "}
+                <span className="text-slate-900 dark:text-slate-100 font-bold">
+                  1
+                </span>{" "}
                 <span className="text-sm">UV</span>
               </p>
             </div>
@@ -129,7 +135,9 @@ function CityItem({ photo }) {
                 />
               </svg>
               <p>
-                <span className="text-slate-900 dark:text-slate-100 font-bold">29%</span>{" "}
+                <span className="text-slate-900 dark:text-slate-100 font-bold">
+                  29%
+                </span>{" "}
                 <span className="text-sm">Precip</span>
               </p>
             </div>
@@ -152,7 +160,9 @@ function CityItem({ photo }) {
                 />
               </svg>
               <p>
-                <span className="text-slate-900 dark:text-slate-100 font-bold">46°</span>{" "}
+                <span className="text-slate-900 dark:text-slate-100 font-bold">
+                  46°
+                </span>{" "}
                 <span className="text-sm">Dew Point</span>
               </p>
             </div>

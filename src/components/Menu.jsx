@@ -38,16 +38,16 @@ function Menu() {
             <AppSearch />
           </AppSection>
           <AppSection title={`How it looks & feel out there?`}>
-            <article className="bg-white/70 rounded-lg shadow-2xl md:flex md:h-40">
+            <article className="bg-white/70 dark:bg-slate-900/70 rounded-lg shadow-2xl md:flex md:h-40">
               <img
                 src="https://images.unsplash.com/photo-1457269449834-928af64c684d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkwOTI0MA&ixlib=rb-4.0.3&q=80&w=500"
                 alt="Laptop on Desk"
                 className="w-full md:w-1/3 h-20 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
               />
-              <div className="p-6 text-slate-700">
+              <div className="p-6 text-slate-700 dark:text-white/70">
                 <h2 className="font-bold text-xl md:text-3xl mb-2 ">Snowy</h2>
-                <p className="text-slate-700">It currently feels like -2</p>
-                <p className="text-slate-700">It currently feels like -2</p>
+                <p className="">It currently feels like -2</p>
+                <p className="">It currently feels like -2</p>
               </div>
             </article>
           </AppSection>
