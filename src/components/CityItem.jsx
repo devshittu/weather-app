@@ -16,7 +16,7 @@ function CityItem({ photo }) {
           </p>
         </div>
 
-        <div className="w-full bg-white/50  backdrop-blur -mt-36 pt-40 shadow-lg rounded-lg overflow-hidden p-5">
+        <div className="w-full  text-slate-800  dark:text-slate-200 bg-white/50 dark:bg-slate-900/50 backdrop-blur -mt-36 pt-40 shadow-lg rounded-lg overflow-hidden p-5">
           <div className="header-content inline-flex ">
             <div className="category-badge flex-1  h-6 w-6 m rounded-full m-[6px] bg-purple-100">
               <div className="h-3 w-3 rounded-full m-[6px] bg-purple-500 "></div>
@@ -25,9 +25,9 @@ function CityItem({ photo }) {
           </div>
           <div className="title-post font-medium">Mon titre</div>
 
-          <div className="py-4 text-gray-700 flex justify-between">
+          <div className="py-4 text-slate-700 dark:text-slate-300 flex justify-between">
             <div>
-              <div className="text-5xl text-gray-900 flex">
+              <div className="text-5xl text-slate-900 dark:text-slate-100 flex">
                 <svg
                   className="inline-flex fill-none stroke-2 w-12 stroke-yellow-500"
                   viewBox="0 0 24 24"
@@ -42,7 +42,7 @@ function CityItem({ photo }) {
                 </svg>
                 <span>
                   52°
-                  <span className="inline-flex text-3xl text-gray-500">
+                  <span className="inline-flex text-3xl text-slate-500 dark:text-slate-400">
                     / 39°
                   </span>
                 </span>
@@ -68,7 +68,7 @@ function CityItem({ photo }) {
                 </svg>
                 <p>
                   <span className="font-bold">6:57</span>{" "}
-                  <span className="text-xs text-gray-600">AM</span>
+                  <span className="text-xs  text-slate-600 dark:text-slate-400 ">AM</span>
                 </p>
               </div>
               <div className="flex items-center">
@@ -86,12 +86,12 @@ function CityItem({ photo }) {
                 </svg>
                 <p>
                   <span className="font-bold">5:42</span>{" "}
-                  <span className="text-xs text-gray-600">PM</span>
+                  <span className="text-xs  text-slate-600 dark:text-slate-400">PM</span>
                 </p>
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-600">
+          <div className="flex justify-between items-center p-4 border-t border-gray-300 text-slate-600 dark:text-slate-400">
             <div className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +106,7 @@ function CityItem({ photo }) {
                 />
               </svg>
               <p>
-                <span className="text-gray-900 font-bold">1</span>{" "}
+                <span className="text-slate-900 dark:text-slate-100 font-bold font-bold">1</span>{" "}
                 <span className="text-sm">UV</span>
               </p>
             </div>
@@ -129,7 +129,7 @@ function CityItem({ photo }) {
                 />
               </svg>
               <p>
-                <span className="text-gray-900 font-bold">29%</span>{" "}
+                <span className="text-slate-900 dark:text-slate-100 font-bold">29%</span>{" "}
                 <span className="text-sm">Precip</span>
               </p>
             </div>
@@ -152,7 +152,7 @@ function CityItem({ photo }) {
                 />
               </svg>
               <p>
-                <span className="text-gray-900 font-bold">46°</span>{" "}
+                <span className="text-slate-900 dark:text-slate-100 font-bold">46°</span>{" "}
                 <span className="text-sm">Dew Point</span>
               </p>
             </div>
