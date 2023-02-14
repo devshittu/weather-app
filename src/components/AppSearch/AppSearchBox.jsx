@@ -8,15 +8,15 @@ function AppSearchBox() {
       <div className="md:w-4/6 z-20 relative">
         <div className="pt-2 relative   h-16 ">
           <input
-            className="  placeholder:text-slate-500 w-full h-full h-10x px-5 pr-16  text-lg md:text-2xl text-slate-700
-          backdrop-blur bg-white/30 border-2 md:border-4 border-white/80  rounded-xl md:rounded-lg shadow-md hover:bg-white/60 hover:shadow-lg focus:bg-white/60 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white/80 active:shadow-lg transition duration-150 ease-in-out"
+            className="  placeholder:text-slate-500 w-full h-full h-10x px-5 pr-16  text-lg md:text-2xl text-slate-700 dark:text-white/70
+          backdrop-blur bg-white/30 dark:bg-slate-900/30 border-2 md:border-4 border-white/80 dark:border-slate-900/80  rounded-xl md:rounded-lg shadow-md hover:bg-white/60 hover:shadow-lg focus:bg-white/60 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white/80 active:shadow-lg transition duration-150 ease-in-out"
             type="search"
             name="search"
             placeholder="Search a city..."
           />
           <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
             <svg
-              className="text-gray-600 h-8 w-8 fill-white"
+              className="h-8 w-8 fill-white dark:fill-slate-800"
               version="1.1"
               id="Capa_1"
               x="0px"
@@ -32,8 +32,7 @@ function AppSearchBox() {
         </div>
       </div>
       <h1>Break</h1>
-      <div className="bg-white/40 backdrop-blur-md  w-full rounded-xl shadow-xl overflow-hidden  text-slate-700">
-        
+      <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md  w-full rounded-xl shadow-xl overflow-hidden  text-slate-700 dark:text-white/70">
         <SearchResultItem />
         <SearchResultItem />
         <SearchResultItem />
