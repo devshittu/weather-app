@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-function SearchResultItem() {
+function SearchResultItem({ data }) {
   return (
     <div className="w-full flex p-3 pl-4 items-center  hover:bg-slate-500/40 dark:hover:bg-white/40 cursor-pointer">
       {/* <div className="mr-4">
@@ -113,15 +113,16 @@ function SearchResultItem() {
         </div>
       </div> */}
       <div>
-        <div className="font-bold text-lg md:text-2xl">Name: Tom</div>
+        <div className="font-bold text-lg md:text-2xl">{`${data.name}, ${data.country}`}</div>
         <div className="text-xs text-slate-500 dark:text-white/50">
-          <span className="mr-2">Lon: 007886</span>
-          <span className="mr-2">Lat: +32135432.454</span>
-          <span className="mr-2">Landmass: 7984km/sq</span>
+          <span className="mr-2">Longitude: {data.longitude || ""}</span>
+          {/* ,"latitude":44.766666666,"longitude":12.133333333,"population":4844 */}
+          <span className="mr-2">Latitude: {data.latitude || "0"}</span>
+          <span className="mr-2">Population: {data.population || "0"}</span>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SearchResultItem
+export default SearchResultItem;

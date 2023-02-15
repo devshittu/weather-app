@@ -1,8 +1,24 @@
 import React from "react";
 import SearchNoResultItem from "./SearchNoResultItem";
 import SearchResultItem from "./SearchResultItem";
+import { useState, useEffect } from "react";
+import ApiService from "../../api/api-services";
 
 function AppSearchBox() {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await ApiService.get("cities?limit=10", {
+        namePrefix: "lagos",
+        minPopulation: 1000000,
+      });
+      setData(response.data);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div className="md:w-4/6 z-20 relative">
@@ -33,9 +49,10 @@ function AppSearchBox() {
       </div>
       <h1>Break</h1>
       <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md  w-full rounded-xl shadow-xl overflow-hidden  text-slate-700 dark:text-white/70">
-        <SearchResultItem />
-        <SearchResultItem />
-        <SearchResultItem />
+        {" "}
+        {data.data.map(item => (
+        <SearchResultItem key={item.id} data={item}  />
+          ))}
         <SearchNoResultItem />
       </div>
     </div>
