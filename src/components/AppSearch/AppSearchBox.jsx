@@ -64,13 +64,12 @@ function AppSearchBox() {
           </button>
         </div>
       </div>
-      <h1>Break</h1>
+      <br/>
       <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md  w-full rounded-xl shadow-xl overflow-hidden  text-slate-700 dark:text-white/70">
         {searchResult?.map((item) => {
           return <SearchResultItem key={item.id} data={item} />;
         })}
-
-        <SearchNoResultItem />
+        {searchResult?.length === 0 && keyword !== "" && <SearchNoResultItem keyword={keyword} />}
       </div>
     </div>
   );
