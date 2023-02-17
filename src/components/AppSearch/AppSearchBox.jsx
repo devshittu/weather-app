@@ -25,6 +25,24 @@ function AppSearchBox() {
     }
   };
 
+  const getWeatherInfo = async (locationData, event) => {
+    console.log(`locationData: `, locationData, event.text);
+    alert(JSON.stringify(locationData));
+    try {
+      const response = await ApiService.get("cities?limit=10", {
+        namePrefix: searchTerm, //"lagos"
+        minPopulation: 500000,
+      });
+      const jsonData = response.data;
+
+      if (jsonData) {
+        setSearchResult(jsonData.data);
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
   useEffect(() => {
     // doSearch();
   }, []);
@@ -64,12 +82,20 @@ function AppSearchBox() {
           </button>
         </div>
       </div>
-      <br/>
+      <br />
       <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md  w-full rounded-xl shadow-xl overflow-hidden  text-slate-700 dark:text-white/70">
         {searchResult?.map((item) => {
-          return <SearchResultItem key={item.id} data={item} />;
+          return (
+            <SearchResultItem
+              key={item.id}
+              data={item}
+              onClick={(e) => getWeatherInfo(item, e)}
+            />
+          );
         })}
-        {searchResult?.length === 0 && keyword !== "" && <SearchNoResultItem keyword={keyword} />}
+        {searchResult?.length === 0 && keyword !== "" && (
+          <SearchNoResultItem keyword={keyword} />
+        )}
       </div>
     </div>
   );
