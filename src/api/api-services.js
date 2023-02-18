@@ -1,6 +1,6 @@
-import {geoDBApi} from "./api";
+import {geoDBApi, weatherApi} from "./api";
 
-const ApiService = {
+export const GeoDBApiService = {
 
   get: (endpoint, params) => {
     const defaultConfig = {
@@ -13,11 +13,21 @@ const ApiService = {
     });
   },
 
+};
+export const weatherApiService = {
 
-  // post(resource, params) {
-  //   return weatherApi.post(`${resource}`, params);
-  // },
+  get: (endpoint, params) => {
+    const defaultConfig = {
+      params: {
+        ...params,
+      },
+    }
+    return weatherApi.request(`/${endpoint}`, defaultConfig).catch(error => {
+      throw new Error(`weatherApiService ${error}`);
+    });
+  },
 
 };
 
-export default ApiService;
+
+// export default ApiService;

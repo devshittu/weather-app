@@ -6,8 +6,6 @@ import AppSection from "./AppWidgets/AppSection";
 import CityItem from "./CityItem";
 import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
-import ApiService from "../api/api-services";
-import { useState, useEffect } from "react";
 
 function Menu() {
   return (

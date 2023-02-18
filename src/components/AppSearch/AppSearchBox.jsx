@@ -2,16 +2,19 @@ import React, { useMemo } from "react";
 import SearchNoResultItem from "./SearchNoResultItem";
 import SearchResultItem from "./SearchResultItem";
 import { useState, useEffect, useCallback } from "react";
-import ApiService from "../../api/api-services";
+import { GeoDBApiService } from "../../api/api-services";
 import debounce from "lodash.debounce";
 
 function AppSearchBox() {
   const [searchResult, setSearchResult] = useState();
   const [keyword, setKeyword] = useState("");
+  const [citiesNearby, setCitiesNearby] = useState(null);
+  const [currentCityInfo, setCurrentCityInfo] = useState(null);
+  const [currentCityDateTime, setCurrentCityDateTime] = useState(null);
 
   const doSearch = async (searchTerm) => {
     try {
-      const response = await ApiService.get("cities?limit=10", {
+      const response = await GeoDBApiService.get("cities?limit=10", {
         namePrefix: searchTerm, //"lagos"
         minPopulation: 500000,
       });
@@ -29,17 +32,53 @@ function AppSearchBox() {
     console.log(`locationData: `, locationData, event.text);
     alert(JSON.stringify(locationData));
     try {
-      const response = await ApiService.get("cities?limit=10", {
-        namePrefix: searchTerm, //"lagos"
-        minPopulation: 500000,
-      });
-      const jsonData = response.data;
+      //  https://wft-geo-db.p.rapidapi.com/v1/geo/cities/Q84/nearbyCities?radius=100&limit=10&minPopulation=1000000
+      //   const [citiesNearby, setCitiesNearby] = useState(null);
+      //   const [currentCityInfo, setCurrentCityInfo] = useState(null)
+      //   const [currentCityDateTime, setCurrentCityDateTime] = useState(null)
+      let uniqueCityID = locationData?.wikiDataId;
+      let endpoints = [
+        { url: `cities/${uniqueCityID}`, params: {} },
+        { url: `cities/${uniqueCityID}/dateTime`, params: {} },
+        {
+          url: `cities/${uniqueCityID}/nearbyCities`,
+          params: { radius: 1000, limit: 3, minPopulation: 1000000 },
+        },
+      ];
 
-      if (jsonData) {
-        setSearchResult(jsonData.data);
-      }
+      alert(JSON.stringify(endpoints));
+      Promise.all(
+        endpoints.map((endpoint) => {
+          setTimeout(() => {
+            return 1;
+          }, 1500);
+          // return setTimeout(() => {
+          return GeoDBApiService.get(endpoint.url, endpoint.params);
+          // }, 1500);
+        })
+      ).then(
+        ([
+          { data: cityInfo },
+          { data: localDateTime },
+          { data: nearbyCities },
+        ]) => {
+          setCurrentCityInfo(cityInfo);
+          setCurrentCityDateTime(localDateTime);
+          setCitiesNearby(nearbyCities);
+        }
+      );
+
+      // const response = await ApiService.get("cities?limit=10", {
+      //   namePrefix: searchTerm, //"lagos"
+      //   minPopulation: 500000,
+      // });
+      // const jsonData = response.data;
+
+      // if (jsonData) {
+      //   setSearchResult(jsonData.data);
+      // }
     } catch (error) {
-      throw error;
+      throw new Error();
     }
   };
 
