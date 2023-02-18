@@ -28,45 +28,69 @@ function AppSearchBox() {
     }
   };
 
-  const getWeatherInfo = async (locationData, event) => {
-    console.log(`locationData: `, locationData, event.text);
-    alert(JSON.stringify(locationData));
+  const getLocationInfo = async (locationData, event) => {
+    console.log(`getLocationInfo:// locationData:// `, locationData);
     try {
-      //  https://wft-geo-db.p.rapidapi.com/v1/geo/cities/Q84/nearbyCities?radius=100&limit=10&minPopulation=1000000
-      //   const [citiesNearby, setCitiesNearby] = useState(null);
-      //   const [currentCityInfo, setCurrentCityInfo] = useState(null)
-      //   const [currentCityDateTime, setCurrentCityDateTime] = useState(null)
       let uniqueCityID = locationData?.wikiDataId;
       let endpoints = [
         { url: `cities/${uniqueCityID}`, params: {} },
         { url: `cities/${uniqueCityID}/dateTime`, params: {} },
         {
           url: `cities/${uniqueCityID}/nearbyCities`,
-          params: { radius: 1000, limit: 3, minPopulation: 1000000 },
+          params: { radius: 100, limit: 3, minPopulation: 1000000 },
         },
       ];
 
-      alert(JSON.stringify(endpoints));
-      Promise.all(
-        endpoints.map((endpoint) => {
-          setTimeout(() => {
-            return 1;
-          }, 1500);
-          // return setTimeout(() => {
-          return GeoDBApiService.get(endpoint.url, endpoint.params);
-          // }, 1500);
-        })
-      ).then(
-        ([
-          { data: cityInfo },
-          { data: localDateTime },
-          { data: nearbyCities },
-        ]) => {
-          setCurrentCityInfo(cityInfo);
-          setCurrentCityDateTime(localDateTime);
-          setCitiesNearby(nearbyCities);
-        }
-      );
+      //TODO
+
+      // Promise.all() with delays for each promise
+      let tasks = [];
+      for (let i = 1; i < endpoints.length + 1; i++) {
+        const delay = 1501 * i;
+        // const delay = 500 * i;
+        tasks.push(
+          new Promise(async function (resolve) {
+            // the timer/delay
+            await new Promise((res) => setTimeout(res, delay));
+
+            // the promise you want delayed
+            // (for example):
+            // let result = await axios.get(...);
+            let result = await new Promise((r) => {
+              console.log("I'm the delayed promise...maybe an API call!");
+              GeoDBApiService.get(
+                endpoints[i - 1].url,
+                endpoints[i - 1].params
+              );
+              r(delay); //result is delay ms for demo purposes
+            });
+
+            //resolve outer/original promise with result
+            resolve(result);
+          })
+        );
+      }
+
+      let results = Promise.all(tasks).then((results) => {
+        console.log("results: " + results);
+      });
+      //TODO
+
+      // Promise.all(
+      //   endpoints.map((endpoint) =>
+      //     GeoDBApiService.get(endpoint.url, endpoint.params)
+      //   )
+      // ).then(
+      //   ([
+      //     { data: cityInfo },
+      //     { data: localDateTime },
+      //     { data: nearbyCities },
+      //   ]) => {
+      //     setCurrentCityInfo(cityInfo);
+      //     setCurrentCityDateTime(localDateTime);
+      //     setCitiesNearby(nearbyCities);
+      //   }
+      // );
 
       // const response = await ApiService.get("cities?limit=10", {
       //   namePrefix: searchTerm, //"lagos"
@@ -128,7 +152,7 @@ function AppSearchBox() {
             <SearchResultItem
               key={item.id}
               data={item}
-              onClick={(e) => getWeatherInfo(item, e)}
+              onClick={(e) => getLocationInfo(item, e)}
             />
           );
         })}
