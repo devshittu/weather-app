@@ -10,7 +10,7 @@ import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
 
 function App() {
-  const [userLogInState, setUserLogInState] = useState("logged-in");
+  const [userLogInState, setUserLogInState] = useState("logged-out");
   const setUserStatus = (status) => {
     setUserLogInState(status);
   };
