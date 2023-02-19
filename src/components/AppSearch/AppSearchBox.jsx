@@ -41,27 +41,6 @@ function AppSearchBox() {
         },
       ];
 
-      // TODO
-      // let delay = 0;
-      // const delayIncrement = 1501;
-
-      // const promises = endpoints.map((item) => {
-      //   delay += delayIncrement;
-      //   return new Promise((resolve) => setTimeout(resolve, delay, endpoints)).then(
-      //     (endpoints) => {
-      //       // fetch(...);
-      //       console.log(endpoints);
-
-      //       GeoDBApiService.get(endpoints[item].url, endpoints[item].params);
-      //     }
-      //   );
-      // });
-
-      // let endResults = Promise.all(promises);
-      // console.log(endResults)
-      // TODO
-      //TODO
-
       // Promise.all() with delays for each promise
       // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
       let tasks = [];
@@ -72,29 +51,17 @@ function AppSearchBox() {
           new Promise(async function (resolve) {
             // the timer/delay
             await new Promise((res) => setTimeout(res, delay));
-
-            // the promise you want delayed
-            // (for example):
-            // let result = await axios.get(...);
-            // let result = await new Promise((r) => {
-            console.log("I'm the delayed promise...maybe an API call!");
             let result = GeoDBApiService.get(
               endpoints[i - 1].url,
               endpoints[i - 1].params
             );
-            // r(delay); //result is delay ms for demo purposes
-            // });
 
             //resolve outer/original promise with result
             resolve(result);
           })
         );
       }
-      console.log(tasks);
       let results = Promise.all(tasks)
-      // .then((results) => {
-      //   console.log("results: " + results);
-      // })
       .then(
           ([
             { data: cityInfo },
@@ -107,33 +74,6 @@ function AppSearchBox() {
             console.log(`cityInfo: `, cityInfo, `localDateTime: `, localDateTime, `nearbyCities: `, nearbyCities)
           }
         );
-      //TODO
-
-      // Promise.all(
-      //   endpoints.map((endpoint) =>
-      //     GeoDBApiService.get(endpoint.url, endpoint.params)
-      //   )
-      // ).then(
-      //   ([
-      //     { data: cityInfo },
-      //     { data: localDateTime },
-      //     { data: nearbyCities },
-      //   ]) => {
-      //     setCurrentCityInfo(cityInfo);
-      //     setCurrentCityDateTime(localDateTime);
-      //     setCitiesNearby(nearbyCities);
-      //   }
-      // );
-
-      // const response = await ApiService.get("cities?limit=10", {
-      //   namePrefix: searchTerm, //"lagos"
-      //   minPopulation: 500000,
-      // });
-      // const jsonData = response.data;
-
-      // if (jsonData) {
-      //   setSearchResult(jsonData.data);
-      // }
     } catch (error) {
       throw new Error();
     }
