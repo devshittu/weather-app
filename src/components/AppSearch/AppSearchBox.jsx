@@ -2,15 +2,15 @@ import React, { useMemo } from "react";
 import SearchNoResultItem from "./SearchNoResultItem";
 import SearchResultItem from "./SearchResultItem";
 import { useState, useEffect, useCallback, useContext } from "react";
-import { AppDataContext } from "../../App";
 import { GeoDBApiService } from "../../api/api-services";
 import debounce from "lodash.debounce";
+import { useGlobalState } from "../../GlobalState";
 
 function AppSearchBox() {
   const [searchResult, setSearchResult] = useState();
   const [keyword, setKeyword] = useState("");
 
-  const [appData, updateAppData] = useContext(AppDataContext);
+  const [globalState, updateGlobalState] = useGlobalState();
 
   const doSearch = async (searchTerm) => {
     try {
@@ -71,7 +71,11 @@ function AppSearchBox() {
             data: { data: citiesNearbySearched },
           },
         ]) => {
-          updateAppData({ searchedCityInfo, searchedCityDateTime, citiesNearbySearched });
+          updateGlobalState({
+            searchedCityInfo,
+            searchedCityDateTime,
+            citiesNearbySearched,
+          });
         }
       );
     } catch (error) {

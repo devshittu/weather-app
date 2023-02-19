@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const initState = {
   isLoading: true,
@@ -16,7 +16,7 @@ const initState = {
     weather: { forecast: [], today: null, daily: null, thirdHourly: [] },
   },
 };
-export const GlobalContext = createContext(initState);
+const GlobalContext = createContext(initState);
 
 function GlobalState({ children }) {
   const [globalState, setGlobalState] = useState(null);
@@ -37,5 +37,5 @@ function GlobalState({ children }) {
     </GlobalContext.Provider>
   );
 }
-
+export const useGlobalState = () => useContext(GlobalContext);
 export default GlobalState;

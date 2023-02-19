@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AppDataContext } from "../App";
 import AppButton from "./AppWidgets/AppButton";
 import AppDailyCard from "./AppDailyCard";
 import AppSearch from "./AppSearch/AppSearchBox";
@@ -8,9 +7,10 @@ import CityItem from "./CityItem";
 import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
 import { autoLocationApiService, weatherApiService } from "../api/api-services";
+import { useGlobalState } from "../GlobalState";
 
 function Menu() {
-  const [appData, setAppData] = useContext(AppDataContext);
+  const [globalState, updateGlobalState] = useGlobalState();
   const [defaultLocation, setDefaultLocation] = useState();
 
   const loadLocation = async () => {
@@ -30,7 +30,7 @@ function Menu() {
   });
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
-      {JSON.stringify(appData)}
+      {JSON.stringify(globalState)}
       {"defaultLocation:// " + JSON.stringify(defaultLocation)}
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
@@ -84,11 +84,11 @@ function Menu() {
           </AppSection>
           <AppSection title={`Nearby Cities`}>
             <div className="flex sm:-m-4 -mx-4 -mb-10 -mt-4 flex-wrap gap-4">
-              {appData?.citiesNearby?.map((item) => {
+              {globalState?.citiesNearby?.map((item) => {
                 return <CityItem key={item.id} data={item} />;
               })}
 
-              {appData?.citiesNearby?.length === 0 && (
+              {globalState?.citiesNearby?.length === 0 && (
                 <SearchNoResultItem keyword={keyword} />
               )}
               {/* <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
