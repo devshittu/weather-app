@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppDataContext } from "../App";
 import AppButton from "./AppWidgets/AppButton";
 import AppDailyCard from "./AppDailyCard";
 import AppSearch from "./AppSearch/AppSearchBox";
@@ -8,8 +9,10 @@ import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
 
 function Menu() {
+  const [appData, setAppData] = useContext(AppDataContext);
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
+      {JSON.stringify(appData)}
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
@@ -62,9 +65,16 @@ function Menu() {
           </AppSection>
           <AppSection title={`Nearby Cities`}>
             <div className="flex sm:-m-4 -mx-4 -mb-10 -mt-4 flex-wrap gap-4">
-              <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
+              {appData?.citiesNearby?.map((item) => {
+                return <CityItem key={item.id} data={item} />;
+              })}
+
+              {appData?.citiesNearby?.length === 0  && (
+                <SearchNoResultItem keyword={keyword} />
+              )}
+              {/* <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
               <CityItem photo="https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500" />
-              <CityItem photo="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkyMDc3OQ&ixlib=rb-4.0.3&q=80&w=1080" />
+              <CityItem photo="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkyMDc3OQ&ixlib=rb-4.0.3&q=80&w=1080" /> */}
             </div>
           </AppSection>
 

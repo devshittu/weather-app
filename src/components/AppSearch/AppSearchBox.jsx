@@ -1,16 +1,16 @@
 import React, { useMemo } from "react";
 import SearchNoResultItem from "./SearchNoResultItem";
 import SearchResultItem from "./SearchResultItem";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
+import { AppDataContext } from "../../App";
 import { GeoDBApiService } from "../../api/api-services";
 import debounce from "lodash.debounce";
 
 function AppSearchBox() {
   const [searchResult, setSearchResult] = useState();
   const [keyword, setKeyword] = useState("");
-  const [citiesNearby, setCitiesNearby] = useState(null);
-  const [currentCityInfo, setCurrentCityInfo] = useState(null);
-  const [currentCityDateTime, setCurrentCityDateTime] = useState(null);
+
+  const [appData, updateAppData] = useContext(AppDataContext);
 
   const doSearch = async (searchTerm) => {
     try {
@@ -61,19 +61,21 @@ function AppSearchBox() {
           })
         );
       }
-      let results = Promise.all(tasks)
-      .then(
-          ([
-            { data: cityInfo },
-            { data: localDateTime },
-            { data: nearbyCities },
-          ]) => {
-            setCurrentCityInfo(cityInfo);
-            setCurrentCityDateTime(localDateTime);
-            setCitiesNearby(nearbyCities);
-            console.log(`cityInfo: `, cityInfo, `localDateTime: `, localDateTime, `nearbyCities: `, nearbyCities)
-          }
-        );
+      let results = Promise.all(tasks).then(
+        ([
+          {
+            data: { data: currentCityInfo },
+          },
+          {
+            data: { data: currentCityDateTime },
+          },
+          {
+            data: { data: citiesNearby },
+          },
+        ]) => {
+          updateAppData({ currentCityInfo, currentCityDateTime, citiesNearby });
+        }
+      );
     } catch (error) {
       throw new Error();
     }

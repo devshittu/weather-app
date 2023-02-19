@@ -15,3 +15,4 @@ console.log(`
 Default time zone: ${format(today, 'yyyy-MM-dd HH:mm:ss')}
 Time for someone in UTC when datetime for Paris (default): ${format(timeInBrisbane, 'yyyy-MM-dd HH:mm:ss')}
 Time for someone in Paris when datetime for UTC (default): ${format(timeInBrisbane2, 'yyyy-MM-dd HH:mm:ss')}`);
+//https://www.section.io/engineering-education/javascript-dates-manipulation-with-date-fns/

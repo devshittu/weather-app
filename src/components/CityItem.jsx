@@ -1,8 +1,9 @@
 import React from "react";
 
-function CityItem({ photo }) {
+function CityItem({ data, photo }) {
   return (
     <>
+    {/* {"id":3206811,"wikiDataId":"Q7106648","type":"ADM2","city":"Oshodi-Isolo","name":"Oshodi-Isolo","country":"Nigeria","countryCode":"NG","region":"Lagos","regionCode":"LA","latitude":6.56068,"longitude":3.33531,"population":1621789,"distance":8.84}, */}
       <div className="md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center min-w-fit max-w-sm mx-auto">
         <div
           className={
@@ -12,7 +13,8 @@ function CityItem({ photo }) {
           }
         >
           <p className="uppercase tracking-widest text-sm text-white bg-black py-1 px-2  mr-4 mb-4 rounded opacity-75 shadow-lg">
-            Dallas, TX
+          {data?.name || 'Dallas'},  {data?.countryCode || 'TX'}
+            {(`${data?.name}, ${data?.countryCode}`) || 'Dallas, TX'}
           </p>
         </div>
 
@@ -21,7 +23,7 @@ function CityItem({ photo }) {
             <div className="category-badge flex-1  h-6 w-6 m rounded-full m-[6px] bg-purple-100">
               <div className="h-3 w-3 rounded-full m-[6px] bg-purple-500 "></div>
             </div>
-            <h4 className="category-title flex-1 text-2xl"> Nigeria</h4>
+            <h4 className="category-title flex-1 text-2xl"> {data?.country || 'UK'}</h4>
           </div>
           <div className="title-post font-medium">Mon titre</div>
 

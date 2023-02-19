@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import "./App.css";
 import AppBG from "./components/AppBG";
 import TimeWeatherInfo from "./components/TimeWeatherInfo";
@@ -9,8 +9,16 @@ import Menu from "./components/Menu";
 import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
 
+export const AppDataContext = createContext(null);
+
 function App() {
-  const [userLogInState, setUserLogInState] = useState("logged-out");
+  const [userLogInState, setUserLogInState] = useState("logged-in");
+  const [appData, setAppData] = useState(null);
+  const updateAppData = (data) => {
+    console.log('updating AppData...', data)
+    setAppData(data);
+  }
+
   const setUserStatus = (status) => {
     setUserLogInState(status);
   };
@@ -23,7 +31,9 @@ function App() {
         </InfoFixedWrapper>
         <LogInPin />
         {/* Menu */}
-        <Menu />
+        <AppDataContext.Provider value={[appData, updateAppData]}>
+          <Menu />
+        </AppDataContext.Provider>
         <AppBG />
         <LogInButtonWrapper>
           <LogInButton setUserStatus={setUserStatus} />
