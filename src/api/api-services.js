@@ -1,4 +1,4 @@
-import {geoDBApi, weatherApi} from "./api";
+import {geoDBApi, weatherApi, autoLocationApi} from "./api";
 
 export const GeoDBApiService = {
 
@@ -14,6 +14,16 @@ export const GeoDBApiService = {
   },
 
 };
+
+export const autoLocationApiService = {
+  get: () => {
+    return autoLocationApi.request(``).catch(error => {
+      throw new Error(`autoLocationApiService ${error}`);
+    });
+  },
+
+};
+
 export const weatherApiService = {
 
   get: (endpoint, params) => {

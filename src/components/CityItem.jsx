@@ -13,8 +13,7 @@ function CityItem({ data, photo }) {
           }
         >
           <p className="uppercase tracking-widest text-sm text-white bg-black py-1 px-2  mr-4 mb-4 rounded opacity-75 shadow-lg">
-          {data?.name || 'Dallas'},  {data?.countryCode || 'TX'}
-            {(`${data?.name}, ${data?.countryCode}`) || 'Dallas, TX'}
+          {(data?.name || 'Dallas') + ", " + (data?.countryCode || 'TX')}
           </p>
         </div>
 
@@ -70,7 +69,7 @@ function CityItem({ data, photo }) {
                 </svg>
                 <p>
                   <span className="font-bold">6:57</span>{" "}
-                  <span className="text-xs  text-slate-600 dark:text-slate-400 ">
+                  <span className="text-xs text-slate-600 dark:text-slate-400 ">
                     AM
                   </span>
                 </p>

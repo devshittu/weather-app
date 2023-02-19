@@ -1,7 +1,7 @@
 import React from "react";
 import AppButton from "../AppWidgets/AppButton"
 
-function SearchResultItem({ data, onClick }) {
+function SearchResultItem({ data, onClickView, onClickMakeDefault }) {
   return (
     <div className="w-full flex p-3 pl-4 items-center justify-between hover:bg-slate-500/40 dark:hover:bg-white/40 cursor-pointer">
       <div className="flex-nowrap flex">
@@ -124,7 +124,8 @@ function SearchResultItem({ data, onClick }) {
         </div>
       </div>
       <div className="justify-end mr-1">
-        <AppButton onClick={onClick}>View Weather</AppButton>
+        <AppButton onClick={onClickMakeDefault}>Make Current Location</AppButton>
+        <AppButton onClick={onClickView}>View Weather</AppButton>
       </div>
     </div>
   );

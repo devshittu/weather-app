@@ -29,7 +29,6 @@ function AppSearchBox() {
   };
 
   const getLocationInfo = async (locationData, event) => {
-    console.log(`getLocationInfo:// locationData:// `, locationData);
     try {
       let uniqueCityID = locationData?.wikiDataId;
       let endpoints = [
@@ -40,7 +39,6 @@ function AppSearchBox() {
           params: { radius: 100, limit: 3, minPopulation: 1000000 },
         },
       ];
-
       // Promise.all() with delays for each promise
       // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
       let tasks = [];
@@ -64,20 +62,27 @@ function AppSearchBox() {
       let results = Promise.all(tasks).then(
         ([
           {
-            data: { data: currentCityInfo },
+            data: { data: searchedCityInfo },
           },
           {
-            data: { data: currentCityDateTime },
+            data: { data: searchedCityDateTime },
           },
           {
-            data: { data: citiesNearby },
+            data: { data: citiesNearbySearched },
           },
         ]) => {
-          updateAppData({ currentCityInfo, currentCityDateTime, citiesNearby });
+          updateAppData({ searchedCityInfo, searchedCityDateTime, citiesNearbySearched });
         }
       );
     } catch (error) {
-      throw new Error();
+      throw new Error(error);
+    }
+  };
+
+  const getWeatherInfo = async (locationData) => {
+    try {
+    } catch (error) {
+      throw new Error(error);
     }
   };
 
@@ -94,7 +99,7 @@ function AppSearchBox() {
   return (
     <div>
       <div className="md:w-4/6 z-20 relative">
-        <div className="pt-2 relative   h-16 ">
+        <div className="pt-2 relative h-16">
           <input
             onChange={debouncedChangeHandler}
             className="  placeholder:text-slate-500 dark:placeholder:text-white w-full h-full h-10x px-5 pr-16  text-lg md:text-2xl text-slate-700 dark:text-white/70
@@ -107,7 +112,6 @@ function AppSearchBox() {
             <svg
               className="h-8 w-8 fill-white dark:fill-slate-400"
               version="1.1"
-              id="Capa_1"
               x="0px"
               y="0px"
               viewBox="0 0 56.966 56.966"
@@ -127,7 +131,8 @@ function AppSearchBox() {
             <SearchResultItem
               key={item.id}
               data={item}
-              onClick={(e) => getLocationInfo(item, e)}
+              onClickView={(e) => getLocationInfo(item, e)}
+              onClickMakeDefault={(e) => getWeatherInfo(item, e)}
             />
           );
         })}
