@@ -10,11 +10,14 @@ import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
 import GlobalState from "./GlobalState";
 function App() {
-  const [userLogInState, setUserLogInState] = useState("logged-out");
+  const [userLogInState, setUserLogInState] = useState("logged-in");
 
   const setUserStatus = (status) => {
     setUserLogInState(status);
   };
+  // const [globalState] = useGlobalState();
+  // if (globalState?.isLoading) return <Loader />;
+  
   return (
     <>
       {/* user status */}

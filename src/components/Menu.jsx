@@ -12,6 +12,7 @@ import { APP_LOADER } from "../helpers/constants";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
+  const [ipLocation, setIpLocation] = useState();
 
   const loadLocation = async () => {
     try {
@@ -19,7 +20,8 @@ function Menu() {
       const response = await autoLocationApiService.get();
       console.log("autoLocationApiService://", response.data);
       if (response.data) {
-        updateGlobalState("ipLocation", response.data);
+        // updateGlobalState("ipLocation", response.data);
+        setIpLocation( response.data);
         updateGlobalState(APP_LOADER, false);
       }
     } catch (error) {
@@ -34,6 +36,8 @@ function Menu() {
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
       {JSON.stringify(globalState)}
+      <br/>
+      {JSON.stringify(ipLocation)}
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
