@@ -84,12 +84,6 @@ function AppSearchBox() {
                 thirdHourly: [],
               },
             }
-            // ,
-            // {
-            //   searchedCityInfo,
-            //   searchedCityDateTime,
-            //   citiesNearbySearched,
-            // }
           );
         }
       );

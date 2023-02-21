@@ -9,31 +9,8 @@ import Menu from "./components/Menu";
 import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
 import GlobalState from "./GlobalState";
-// const initData = {
-//   isLoading: false,
-//   loggedInStatus: false,
-//   currentCity: {
-//     cityInfo: null,
-//     cityDateTime: null,
-//     citiesNearby: null,
-//     weather: { forecast: null, today: null, daily: null },
-//   },
-//   searchedCity: {
-//     cityInfo: null,
-//     cityDateTime: null,
-//     citiesNearby: null,
-//     weather: { forecast: [], today: null, daily: null, thirdHourly: []  },
-//   },
-// };
-// export const AppDataContext = createContext(initData);
-
 function App() {
-  const [userLogInState, setUserLogInState] = useState("logged-in");
-  // const [appData, setAppData] = useState(null);
-  // const updateAppData = (data) => {
-  //   console.log("updating AppData...", data);
-  //   setAppData(data);
-  // };
+  const [userLogInState, setUserLogInState] = useState("logged-out");
 
   const setUserStatus = (status) => {
     setUserLogInState(status);
@@ -41,21 +18,21 @@ function App() {
   return (
     <>
       {/* user status */}
-      <div className={`App bg-gray-800 ${userLogInState}`}>
-        <InfoFixedWrapper>
-          <TimeWeatherInfo />
-        </InfoFixedWrapper>
-        <LogInPin />
-        {/* Menu */}
-        <GlobalState>
+      <GlobalState>
+        <div className={`App bg-gray-800 ${userLogInState}`}>
+          <InfoFixedWrapper>
+            <TimeWeatherInfo />
+          </InfoFixedWrapper>
+          <LogInPin />
+          {/* Menu */}
           <Menu />
-        </GlobalState>
-        <AppBG />
-        <LogInButtonWrapper>
-          <LogInButton setUserStatus={setUserStatus} />
-        </LogInButtonWrapper>
-        <Loader />
-      </div>
+          <AppBG />
+          <LogInButtonWrapper>
+            <LogInButton setUserStatus={setUserStatus} />
+          </LogInButtonWrapper>
+          <Loader />
+        </div>
+      </GlobalState>
     </>
   );
 }

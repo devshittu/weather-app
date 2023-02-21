@@ -20,49 +20,11 @@
   .btn-blue {
     @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
   }
-  .menu-app-section-bound {
-    @apply mt-16;
-  }
-  .scrollable-menu {
-    cursor: grab;
-    overflow: auto;
-    user-select: none;
-    width: 100%;
-  }
-
   svg {
     fill: white;
   }
 }
 
-@layer utilities {
-  .bounce {
-    animation: bounce 2s ease infinite;
-  }
-  @keyframes bounce {
-    70% {
-      transform: translateY(0%);
-    }
-    80% {
-      transform: translateY(-15%);
-    }
-    90% {
-      transform: translateY(0%);
-    }
-    95% {
-      transform: translateY(-7%);
-    }
-    97% {
-      transform: translateY(0%);
-    }
-    99% {
-      transform: translateY(-3%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-}
 
 .logged-out > .login-button-wrapper {
   @apply opacity-100 pointer-events-auto;
