@@ -1,30 +1,36 @@
 import { createContext, useContext, useState } from "react";
+import { APP_LOADER } from "./helpers/constants";
 
 const initState = {
-  isLoading: true,
+  [APP_LOADER]: true,
   loggedInStatus: false,
-  currentCity: {
-    cityInfo: null,
-    cityDateTime: null,
-    citiesNearby: null,
-    weather: { forecast: null, today: null, daily: null },
-  },
-  searchedCity: {
-    cityInfo: null,
-    cityDateTime: null,
-    citiesNearby: null,
-    weather: { forecast: [], today: null, daily: null, thirdHourly: [] },
-  },
+//   currentCity: {
+//     cityInfo: null,
+//     cityDateTime: null,
+//     citiesNearby: null,
+//     weather: { forecast: null, today: null, daily: null },
+//   },
+//   searchedCity: {
+//     cityInfo: null,
+//     cityDateTime: null,
+//     citiesNearby: null,
+//     weather: { forecast: [], today: null, daily: null, thirdHourly: [] },
+//   },
 };
-const GlobalContext = createContext(initState);
+const GlobalContext = createContext(null);
 
 function GlobalState({ children }) {
-  const [globalState, setGlobalState] = useState(null);
+  const [globalState, setGlobalState] = useState(initState);
   const updateGlobalState = (key, value) => {
     setGlobalState((oldState) => {
+      console.log("oldState", oldState);
+      if (!oldState) {
+        return { [key]: value };
+      }
       if (oldState[key] !== value) {
-        const newState = { ...oldState };
-        newState[key] = value;
+        const newState = { ...oldState, [key]: value };
+        // newState[key] = value;
+        return newState;
       } else {
         return oldState;
       }

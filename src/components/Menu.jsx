@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppButton from "./AppWidgets/AppButton";
 import AppDailyCard from "./AppDailyCard";
 import AppSearch from "./AppSearch/AppSearchBox";
@@ -6,32 +6,34 @@ import AppSection from "./AppWidgets/AppSection";
 import CityItem from "./CityItem";
 import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
-import { autoLocationApiService, weatherApiService } from "../api/api-services";
+import { autoLocationApiService } from "../api/api-services";
 import { useGlobalState } from "../GlobalState";
+import { APP_LOADER } from "../helpers/constants";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
-  const [defaultLocation, setDefaultLocation] = useState();
 
   const loadLocation = async () => {
     try {
+      updateGlobalState(APP_LOADER, true);
       const response = await autoLocationApiService.get();
-      console.log(response.data);
-      if (response.data) setDefaultLocation(response.data);
+      console.log("autoLocationApiService://", response.data);
+      if (response.data) {
+        updateGlobalState("ipLocation", response.data);
+        updateGlobalState(APP_LOADER, false);
+      }
     } catch (error) {
       throw new Error(error);
     }
   };
   useEffect(() => {
-    if (typeof defaultLocation === "undefined") {
-      console.log("defaultLocation:// ", defaultLocation);
+    if (!globalState?.ipLocation) {
       loadLocation();
     }
-  });
+  }, []);
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
       {JSON.stringify(globalState)}
-      {"defaultLocation:// " + JSON.stringify(defaultLocation)}
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">

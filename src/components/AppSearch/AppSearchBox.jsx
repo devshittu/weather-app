@@ -71,11 +71,26 @@ function AppSearchBox() {
             data: { data: citiesNearbySearched },
           },
         ]) => {
-          updateGlobalState({
-            searchedCityInfo,
-            searchedCityDateTime,
-            citiesNearbySearched,
-          });
+          updateGlobalState(
+            "searchedCity",
+            {
+              cityInfo: searchedCityInfo,
+              cityDateTime: searchedCityDateTime,
+              citiesNearby: citiesNearbySearched,
+              weather: {
+                forecast: [],
+                today: null,
+                daily: null,
+                thirdHourly: [],
+              },
+            }
+            // ,
+            // {
+            //   searchedCityInfo,
+            //   searchedCityDateTime,
+            //   citiesNearbySearched,
+            // }
+          );
         }
       );
     } catch (error) {
