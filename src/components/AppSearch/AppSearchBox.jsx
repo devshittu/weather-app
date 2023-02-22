@@ -54,7 +54,6 @@ function AppSearchBox() {
               endpoints[i - 1].params
             );
 
-
             //resolve outer/original promise with result
             resolve(result);
           })
@@ -76,12 +75,12 @@ function AppSearchBox() {
             cityInfo: searchedCityInfo,
             cityDateTime: searchedCityDateTime,
             citiesNearby: citiesNearbySearched,
-            weather: {
-              forecast: [],
-              today: null,
-              daily: null,
-              thirdHourly: [],
-            },
+            // weather: {
+            //   forecast: [],
+            //   today: null,
+            //   daily: null,
+            //   thirdHourly: [],
+            // },
           });
         }
       );
