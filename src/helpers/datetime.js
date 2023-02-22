@@ -11,7 +11,6 @@ export const unixToUTC = (unixTimestamp) => {
 export const getSuntimes = (timestamp, show) => {
   if(!timestamp) return null
   const now = new Date(unixToUTC(timestamp));
-  console.log(now);
   const timeString = format(now, 'HH:mm a');
   if (show =='time') return format(now, 'hh:mm');
   if (show =='a') return format(now, 'a');

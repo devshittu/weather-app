@@ -17,5 +17,6 @@ export const fToC = (fahrenheit) =>
 
 export const capitalizeSentence = (sentence) => 
 {
-    return sentence.chatAt(0).toUpperCase() + sentence.slice(1);
+    if (!sentence) return null 
+    return sentence.charAt(0).toUpperCase() + sentence.slice(1);
 }

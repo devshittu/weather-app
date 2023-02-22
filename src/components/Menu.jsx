@@ -12,7 +12,7 @@ import {
   APP_LOADER,
   REAL_TIME_LOCATION_WEATHER_INFO,
 } from "../helpers/constants";
-import { farenheitToCelcius } from "../helpers/utils";
+import { capitalizeSentence, farenheitToCelcius } from "../helpers/utils";
 import { getSuntimes } from "../helpers/datetime";
 
 function Menu() {
@@ -29,7 +29,6 @@ function Menu() {
         lat: location?.latitude,
         lon: location?.longitude,
       });
-      console.log("weatherApiService://", response.data);
       if (response.data) {
         updateGlobalState(REAL_TIME_LOCATION_WEATHER_INFO, response.data);
       }
@@ -121,7 +120,9 @@ function Menu() {
                 className="w-full md:w-1/3 h-20 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
               />
               <div className="p-6 text-slate-700 dark:text-white/70">
-                <h2 className="font-bold text-xl md:text-3xl mb-2 ">{ globalState?.realTimeLocationWeather?.weather[0].main}</h2>
+                <h2 className="font-bold text-xl md:text-3xl mb-2 ">
+                  {globalState?.realTimeLocationWeather?.weather[0].main}
+                </h2>
                 {/* <p className="">It currently feels like -2</p>
                 <p className="">It currently feels like -2</p> */}
 
@@ -141,16 +142,28 @@ function Menu() {
                         />
                       </svg>
                       <span>
-                        { Math.round(globalState?.realTimeLocationWeather?.main?.temp_max)}°
+                        {Math.round(
+                          globalState?.realTimeLocationWeather?.main?.temp_max
+                        )}
+                        °
                         <span className="inline-flex text-3xl text-slate-500 dark:text-slate-400">
-                          / { Math.round(globalState?.realTimeLocationWeather?.main?.temp_min) }°
+                          /{" "}
+                          {Math.round(
+                            globalState?.realTimeLocationWeather?.main?.temp_min
+                          )}
+                          °
                         </span>
                       </span>
                     </div>
                     <p className=" leading-loose mt-2">
-                      { globalState?.realTimeLocationWeather?.weather[0].description}.
+                      {capitalizeSentence(
+                        globalState?.realTimeLocationWeather?.weather[0]
+                          .description
+                      )}
+                      .
                       <br />
-                      { globalState?.realTimeLocationWeather?.wind.speed} MPH winds.
+                      {globalState?.realTimeLocationWeather?.wind.speed} MPH
+                      winds.
                     </p>
                   </div>
                   <div className="leading-loose text-sm ">
@@ -167,9 +180,17 @@ function Menu() {
                         />
                       </svg>
                       <p>
-                        <span className="font-bold">{getSuntimes(globalState?.realTimeLocationWeather?.sys.sunrise, 'time')}</span>{" "}
+                        <span className="font-bold">
+                          {getSuntimes(
+                            globalState?.realTimeLocationWeather?.sys.sunrise,
+                            "time"
+                          )}
+                        </span>{" "}
                         <span className="text-xs text-slate-600 dark:text-slate-400 ">
-                          {getSuntimes(globalState?.realTimeLocationWeather?.sys.sunrise, 'a')}
+                          {getSuntimes(
+                            globalState?.realTimeLocationWeather?.sys.sunrise,
+                            "a"
+                          )}
                         </span>
                       </p>
                     </div>
@@ -187,9 +208,17 @@ function Menu() {
                         />
                       </svg>
                       <p>
-                        <span className="font-bold">{getSuntimes(globalState?.realTimeLocationWeather?.sys.sunset, 'time')}</span>{" "}
+                        <span className="font-bold">
+                          {getSuntimes(
+                            globalState?.realTimeLocationWeather?.sys.sunset,
+                            "time"
+                          )}
+                        </span>{" "}
                         <span className="text-xs  text-slate-600 dark:text-slate-400">
-                        {getSuntimes(globalState?.realTimeLocationWeather?.sys.sunset, 'a')}
+                          {getSuntimes(
+                            globalState?.realTimeLocationWeather?.sys.sunset,
+                            "a"
+                          )}
                         </span>
                       </p>
                     </div>
