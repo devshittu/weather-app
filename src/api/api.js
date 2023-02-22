@@ -30,7 +30,7 @@ geoDBApi.interceptors.response.use(
 export const weatherApi = axios.create({
   baseURL: import.meta.env.VITE_OPEN_WEATHER_API_URL,
 
-  params: {'appid': import.meta.env.VITE_OPEN_WEATHER_API_KEY},
+  params: {'appid': import.meta.env.VITE_OPEN_WEATHER_API_KEY, 'units': 'metric'},
 })
 
 export const autoLocationApi = axios.create({
