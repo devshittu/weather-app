@@ -38,29 +38,92 @@ function Menu() {
       updateGlobalState(APP_LOADER, false);
     }
   };
+
+  const getWeatherForecastInfo = async (location) => {
+    try {
+      let endpoints = [
+        {
+          url: `weather`,
+          params: {
+            lat: location?.latitude,
+            lon: location?.longitude,
+          },
+        },
+        {
+          url: `forecast`,
+          params: {
+            lat: location?.latitude,
+            lon: location?.longitude,
+            cnt: 40,
+          },
+        },
+      ];
+      // Promise.all() with delays for each promise
+      // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
+      let tasks = [];
+      for (let i = 1; i < endpoints.length + 1; i++) {
+        const delay = 1501 * i;
+        // const delay = 500 * i;
+        tasks.push(
+          new Promise(async function (resolve) {
+            // the timer/delay
+            await new Promise((res) => setTimeout(res, delay));
+            let result = weatherApiService.get(
+              endpoints[i - 1].url,
+              endpoints[i - 1].params
+            );
+
+            //resolve outer/original promise with result
+            resolve(result);
+          })
+        );
+      }
+      let results = Promise.all(tasks).then(
+        // (response) => {
+        ([{ data: currentWeatherCondition }, { data: forecastWeather }]) => {
+          console.log("currentWeatherCondition:// ", currentWeatherCondition);
+          updateGlobalState("city", {
+            currentWeather: currentWeatherCondition,
+            forecast: forecastWeather,
+          });
+        }
+      );
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
   const loadLocation = async () => {
     try {
       updateGlobalState(APP_LOADER, true);
-      const response = await autoLocationApiService.get();
-      console.log("autoLocationApiService://", response.data);
-      if (response.data) {
-        console.log("response.data", response.data?.locationData);
-        // updateGlobalState("ipLocation", response.data);
-        updateGlobalState(
-          "realtimeLocation",
-          getRealtimeLocation(response.data?.locationData)
-        );
+      // const response = await autoLocationApiService.get();
+      // console.log("autoLocationApiService://", response.data);
+      // if (response.data) {
+      //   console.log("response.data", response.data?.locationData);
+      //   // updateGlobalState("ipLocation", response.data);
+      //   updateGlobalState(
+      //     "realtimeLocation",
+      //     getRealtimeLocation(response.data?.locationData)
+      //   );
 
-        setIpLocation(response.data);
-        setTimeout(() => {
-          if (!globalState?.realtimeLocation) {
-            fetchWeather({
-              latitude: response.data?.locationData.lat,
-              longitude: response.data?.locationData.lng,
-            });
-          }
-        }, 1500);
-      }
+      //   setIpLocation(response.data);
+      //   setTimeout(() => {
+      //     if (!globalState?.realtimeLocation) {
+      //       fetchWeather({
+      //         latitude: response.data?.locationData.lat,
+      //         longitude: response.data?.locationData.lng,
+      //       });
+      //     }
+      //   }, 1500);
+      // }
+
+      // fetchWeather({
+      //   latitude: 51.5072,
+      //   longitude: -0.1275,
+      // });
+      getWeatherForecastInfo({
+        latitude: 51.5072,
+        longitude: -0.1275,
+      });
     } catch (error) {
       throw new Error(error);
     } finally {
@@ -72,12 +135,6 @@ function Menu() {
       loadLocation();
     }
   }, []);
-
-  // useEffect(() => {
-  //   if (!globalState?.realtimeLocation) {
-  //     fetchWeather();
-  //   }
-  // }, [ipLocation]);
 
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">

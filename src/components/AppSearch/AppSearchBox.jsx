@@ -54,6 +54,7 @@ function AppSearchBox() {
               endpoints[i - 1].params
             );
 
+
             //resolve outer/original promise with result
             resolve(result);
           })
@@ -71,20 +72,17 @@ function AppSearchBox() {
             data: { data: citiesNearbySearched },
           },
         ]) => {
-          updateGlobalState(
-            "searchedCity",
-            {
-              cityInfo: searchedCityInfo,
-              cityDateTime: searchedCityDateTime,
-              citiesNearby: citiesNearbySearched,
-              weather: {
-                forecast: [],
-                today: null,
-                daily: null,
-                thirdHourly: [],
-              },
-            }
-          );
+          updateGlobalState("searchedCity", {
+            cityInfo: searchedCityInfo,
+            cityDateTime: searchedCityDateTime,
+            citiesNearby: citiesNearbySearched,
+            weather: {
+              forecast: [],
+              today: null,
+              daily: null,
+              thirdHourly: [],
+            },
+          });
         }
       );
     } catch (error) {
