@@ -11,7 +11,7 @@ function AppToday({ data }) {
         alt="Laptop on Desk"
         className="w-full md:w-1/3 h-20 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
       />
-      <div className="p-6 text-slate-700 dark:text-white/70 pb-0 md:pb-6">
+      <div className="p-6 text-slate-700 dark:text-white/70 grow md:pb-6">
         <h2 className="font-bold text-xl md:text-3xl mb-2 ">
           {data?.weather[0].main}
         </h2>
@@ -95,7 +95,7 @@ function AppToday({ data }) {
         </div>
       </div>
 
-      <div className="p-6 text-slate-600 dark:text-white/70 grow md:mt-12 pt-2">
+      <div className="p-6 text-slate-600 dark:text-white/70 grow md:mt-12">
         <div className="overflow-auto flex-grow">
           {/* text-sm sm:text-xl */}
           <div className="space-y-4">

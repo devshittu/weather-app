@@ -22,6 +22,7 @@ function Menu() {
   const [ipLocation, setIpLocation] = useState();
   const [todayForecast, setTodayForecast] = useState();
   const [twentyFourHoursForecast, setTwentyFourHoursForecast] = useState();
+  const [dailyForecast, setDailyForecast] = useState();
   const getRealtimeLocation = (locationData) => {
     return { latitude: locationData?.lat, longitude: locationData?.lng };
   };
@@ -61,6 +62,15 @@ function Menu() {
             cnt: 40,
           },
         },
+        {
+          url: `onecall`,
+          params: {
+            lat: location?.latitude,
+            lon: location?.longitude,
+            cnt: 40,
+            exclude: "current,hourly,minutely,alerts",
+          },
+        },
       ];
       // Promise.all() with delays for each promise
       // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
@@ -84,14 +94,22 @@ function Menu() {
       }
       let results = Promise.all(tasks).then(
         // (response) => {
-        ([{ data: currentWeatherCondition }, { data: forecastWeather }]) => {
+        ([
+          { data: currentWeatherCondition },
+          { data: forecastWeather },
+          { data: dailyForecast },
+        ]) => {
           updateGlobalState("city", {
             currentWeather: currentWeatherCondition,
             forecast: forecastWeather,
+            dailyForecast: dailyForecast,
           });
 
           setTodayForecast(filterTodayForecast(forecastWeather?.list));
-          setTwentyFourHoursForecast((forecastWeather?.list).slice(0, TWENTY_FOUR_HOUR_LIMIT));
+          setTwentyFourHoursForecast(
+            (forecastWeather?.list).slice(0, TWENTY_FOUR_HOUR_LIMIT)
+          );
+          setDailyForecast(dailyForecast?.daily);
 
           console.log(
             "isThisWeek ",
@@ -99,7 +117,9 @@ function Menu() {
             "forecastWeather:// ",
             filterThisWeekForecastByDate(forecastWeather?.list),
             "forecastWeather Length:// ",
-            filterThisWeekForecastByDate(forecastWeather?.list).length
+            filterThisWeekForecastByDate(forecastWeather?.list).length,
+            "dailyForecast Length:// ",
+            dailyForecast?.daily.length
           );
         }
       );
@@ -162,9 +182,7 @@ function Menu() {
 
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
-      {/* {JSON.stringify(globalState)}
-      <br />
-      {JSON.stringify(ipLocation)} */}
+      {JSON.stringify(dailyForecast)}
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
