@@ -3,7 +3,7 @@ import React from "react";
 import { capitalizeSentence, farenheitToCelcius } from "../../helpers/utils";
 import { getSunTimes } from "../../helpers/datetime";
 
-function AppToday({ today }) {
+function AppToday({ data }) {
   return (
     <article className="bg-white/70 dark:bg-slate-900/70 rounded-lg shadow-2xl md:flex md:h-72">
       <img
@@ -11,9 +11,9 @@ function AppToday({ today }) {
         alt="Laptop on Desk"
         className="w-full md:w-1/3 h-20 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
       />
-      <div className="p-6 text-slate-700 dark:text-white/70">
+      <div className="p-6 text-slate-700 dark:text-white/70 pb-0 md:pb-6">
         <h2 className="font-bold text-xl md:text-3xl mb-2 ">
-          {today?.weather[0].main}
+          {data?.weather[0].main}
         </h2>
         {/* <p className="">It currently feels like -2</p>
       <p className="">It currently feels like -2</p> */}
@@ -34,17 +34,17 @@ function AppToday({ today }) {
                 />
               </svg>
               <span>
-                {Math.round(today?.main?.temp_max)}°
+                {Math.round(data?.main?.temp_max)}°
                 <span className="inline-flex text-3xl text-slate-500 dark:text-slate-400">
-                  / {Math.round(today?.main?.temp_min)}°
+                  / {Math.round(data?.main?.temp_min)}°
                 </span>
               </span>
             </div>
             <p className=" leading-loose mt-2">
-              {capitalizeSentence(today?.weather[0].description)}
+              {capitalizeSentence(data?.weather[0].description)}
               .
               <br />
-              {today?.wind.speed} MPH winds.
+              {data?.wind.speed} MPH winds.
             </p>
           </div>
           <div className="leading-loose text-sm ">
@@ -62,10 +62,10 @@ function AppToday({ today }) {
               </svg>
               <p>
                 <span className="font-bold">
-                  {getSunTimes(today?.sys.sunrise, "time")}
+                  {getSunTimes(data?.sys.sunrise, "time")}
                 </span>{" "}
                 <span className="text-xs text-slate-600 dark:text-slate-400 ">
-                  {getSunTimes(today?.sys.sunrise, "a")}
+                  {getSunTimes(data?.sys.sunrise, "a")}
                 </span>
               </p>
             </div>
@@ -84,13 +84,51 @@ function AppToday({ today }) {
               </svg>
               <p>
                 <span className="font-bold">
-                  {getSunTimes(today?.sys.sunset, "time")}
+                  {getSunTimes(data?.sys.sunset, "time")}
                 </span>{" "}
                 <span className="text-xs  text-slate-600 dark:text-slate-400">
-                  {getSunTimes(today?.sys.sunset, "a")}
+                  {getSunTimes(data?.sys.sunset, "a")}
                 </span>
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="p-6 text-slate-600 dark:text-white/70 grow md:mt-12 pt-2">
+        <div className="overflow-auto flex-grow">
+          {/* text-sm sm:text-xl */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <p>Feels like</p>
+              <span className="text-gray-800 dark:text-gray-200">{`${Math.round(data?.main?.feels_like)}°C`}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <p>Wind</p>
+              <span className="text-gray-800 dark:text-gray-200">{`${data?.wind?.speed} km/h`}</span>
+            </div>
+
+            <div className="flex items-center justify-between ">
+              <p>Humidity</p>
+              <span className="text-gray-800 dark:text-gray-200">
+                {" "}
+                {`${Math.round(data?.main?.humidity)} %`}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <p>Visibility</p>
+              <span className="text-gray-800 dark:text-gray-200">
+                {`${Math.round(data?.visibility) / 1000} km`}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <p>Pressure</p>
+              <span className="text-gray-800 dark:text-gray-200">
+                  {`${Math.round(data?.main?.pressure)} mbar`}</span>
+            </div>
+
           </div>
         </div>
       </div>

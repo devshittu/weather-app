@@ -20,9 +20,14 @@ export const getSunTimes = (timestamp, show) => {
 }
 
 
-export const formatDayTime = (datestamp, show) => {
-  if (!datestamp) return null  
-  return format(new Date(datestamp), 'HH:mm a');
+export const formatDayTime = (dateStamp, twelveHourFormat = false) => {
+  if (!dateStamp) return null  
+  return format(new Date(dateStamp), (twelveHourFormat)? 'h:mm a': 'HH:mm');
+}
+
+export const getDayOfWeek = (dateStamp,) => {
+  if (!dateStamp) return null  
+  return format(new Date(dateStamp), 'EEEE');
 }
 
 export const addDay = (date, days) => addDays(unixToUTC(date), days);

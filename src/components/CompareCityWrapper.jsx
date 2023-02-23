@@ -110,7 +110,7 @@ function CompareCityWrapper() {
                 <div className="overflow-auto flex-grow">
                   <div className="p-8 mt-8 space-y-8 ">
                     <div className="flex items-center justify-between text-gray-800 dark:text-gray-200">
-                      <p className="textlg sm:text-xl">Unlimited Links</p>
+                      <p className="text-lg sm:text-xl">Unlimited Links</p>
 
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

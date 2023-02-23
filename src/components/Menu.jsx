@@ -193,7 +193,7 @@ function Menu() {
             <AppSearch />
           </AppSection>
           <AppSection title={`How it looks & feel out there?`}>
-            <AppToday today={globalState?.city?.currentWeather}></AppToday>
+            <AppToday data={globalState?.city?.currentWeather}></AppToday>
           </AppSection>
           <AppSection title={`Today in West London`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
@@ -207,10 +207,10 @@ function Menu() {
                   />
                 );
               })}
-              <AppDailyCard className="from-sky-700/40" />
+              {/* <AppDailyCard className="from-sky-700/40" />
               <AppDailyCard className="from-emerald-700/40" />
               <AppDailyCard className="from-amber-700/40" />
-              <AppDailyCard className="from-violet-700/40" />
+              <AppDailyCard className="from-violet-700/40" /> */}
             </div>
           </AppSection>
           <AppSection title={`This week in West London`}>
@@ -225,10 +225,10 @@ function Menu() {
                   />
                 );
               })}
-              <AppDailyCard className="from-sky-700/40" />
+              {/* <AppDailyCard className="from-sky-700/40" />
               <AppDailyCard className="from-emerald-700/40" />
               <AppDailyCard className="from-amber-700/40" />
-              <AppDailyCard className="from-violet-700/40" />
+              <AppDailyCard className="from-violet-700/40" /> */}
             </div>
           </AppSection>
           <AppSection title={`Nearby Cities`}>
