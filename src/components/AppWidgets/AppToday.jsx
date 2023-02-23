@@ -1,7 +1,7 @@
 import React from "react";
 
 import { capitalizeSentence, farenheitToCelcius } from "../../helpers/utils";
-import { getSuntimes } from "../../helpers/datetime";
+import { getSunTimes } from "../../helpers/datetime";
 
 function AppToday({ today }) {
   return (
@@ -62,10 +62,10 @@ function AppToday({ today }) {
               </svg>
               <p>
                 <span className="font-bold">
-                  {getSuntimes(today?.sys.sunrise, "time")}
+                  {getSunTimes(today?.sys.sunrise, "time")}
                 </span>{" "}
                 <span className="text-xs text-slate-600 dark:text-slate-400 ">
-                  {getSuntimes(today?.sys.sunrise, "a")}
+                  {getSunTimes(today?.sys.sunrise, "a")}
                 </span>
               </p>
             </div>
@@ -84,10 +84,10 @@ function AppToday({ today }) {
               </svg>
               <p>
                 <span className="font-bold">
-                  {getSuntimes(today?.sys.sunset, "time")}
+                  {getSunTimes(today?.sys.sunset, "time")}
                 </span>{" "}
                 <span className="text-xs  text-slate-600 dark:text-slate-400">
-                  {getSuntimes(today?.sys.sunset, "a")}
+                  {getSunTimes(today?.sys.sunset, "a")}
                 </span>
               </p>
             </div>

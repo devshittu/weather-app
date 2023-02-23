@@ -13,10 +13,13 @@ import {
   REAL_TIME_LOCATION_WEATHER_INFO,
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
+import { isDateToday } from "../helpers/datetime";
+import { isThisWeek, isToday, parseISO } from "date-fns";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
   const [ipLocation, setIpLocation] = useState();
+  const [todayForecast, setTodayForecast] = useState();
   const getRealtimeLocation = (locationData) => {
     return { latitude: locationData?.lat, longitude: locationData?.lng };
   };
@@ -80,17 +83,36 @@ function Menu() {
       let results = Promise.all(tasks).then(
         // (response) => {
         ([{ data: currentWeatherCondition }, { data: forecastWeather }]) => {
-          console.log("currentWeatherCondition:// ", currentWeatherCondition);
           updateGlobalState("city", {
             currentWeather: currentWeatherCondition,
             forecast: forecastWeather,
           });
+
+          setTodayForecast(filterTodayForecast(forecastWeather?.list));
+
+          console.log(
+            "isThisWeek ",
+            isThisWeek(parseISO(forecastWeather?.list[0].dt_txt)),
+            "forecastWeather:// ",
+            filterThisWeekForecastByDate(forecastWeather?.list),
+            "forecastWeather Length:// ",
+            filterThisWeekForecastByDate(forecastWeather?.list).length
+          );
         }
       );
     } catch (error) {
       throw new Error(error);
+    } finally {
+      updateGlobalState(APP_LOADER, false);
     }
   };
+  const filterThisWeekForecastByDate = (forecastItems, todayDate) => {
+    return forecastItems.filter((item) => isThisWeek(parseISO(item.dt_txt)));
+  };
+  const filterTodayForecast = (forecastItems) => {
+    return forecastItems.filter((item) => isToday(parseISO(item.dt_txt)));
+  };
+
   const loadLocation = async () => {
     try {
       updateGlobalState(APP_LOADER, true);
@@ -137,9 +159,9 @@ function Menu() {
 
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
-      {JSON.stringify(globalState)}
+      {/* {JSON.stringify(globalState)}
       <br />
-      {JSON.stringify(ipLocation)}
+      {JSON.stringify(ipLocation)} */}
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
@@ -170,9 +192,36 @@ function Menu() {
           <AppSection title={`How it looks & feel out there?`}>
             <AppToday today={globalState?.city?.currentWeather}></AppToday>
           </AppSection>
+          <AppSection title={`Today in West London`}>
+            {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
+            <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
+              {todayForecast?.map((item, i) => {
+                return (
+                  <AppDailyCard
+                    key={i}
+                    data={item}
+                    className="from-sky-700/40"
+                  />
+                );
+              })}
+              <AppDailyCard className="from-sky-700/40" />
+              <AppDailyCard className="from-emerald-700/40" />
+              <AppDailyCard className="from-amber-700/40" />
+              <AppDailyCard className="from-violet-700/40" />
+            </div>
+          </AppSection>
           <AppSection title={`This week in West London`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
+              {todayForecast?.map((item, i) => {
+                return (
+                  <AppDailyCard
+                    key={i}
+                    data={item}
+                    className="from-sky-700/40"
+                  />
+                );
+              })}
               <AppDailyCard className="from-sky-700/40" />
               <AppDailyCard className="from-emerald-700/40" />
               <AppDailyCard className="from-amber-700/40" />
