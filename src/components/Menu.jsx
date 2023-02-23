@@ -11,6 +11,7 @@ import { useGlobalState } from "../GlobalState";
 import {
   APP_LOADER,
   REAL_TIME_LOCATION_WEATHER_INFO,
+  TWENTY_FOUR_HOUR_LIMIT,
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
 import { isDateToday } from "../helpers/datetime";
@@ -20,6 +21,7 @@ function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
   const [ipLocation, setIpLocation] = useState();
   const [todayForecast, setTodayForecast] = useState();
+  const [twentyFourHoursForecast, setTwentyFourHoursForecast] = useState();
   const getRealtimeLocation = (locationData) => {
     return { latitude: locationData?.lat, longitude: locationData?.lng };
   };
@@ -89,6 +91,7 @@ function Menu() {
           });
 
           setTodayForecast(filterTodayForecast(forecastWeather?.list));
+          setTwentyFourHoursForecast((forecastWeather?.list).slice(0, TWENTY_FOUR_HOUR_LIMIT));
 
           console.log(
             "isThisWeek ",
@@ -213,7 +216,7 @@ function Menu() {
           <AppSection title={`This week in West London`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              {todayForecast?.map((item, i) => {
+              {twentyFourHoursForecast?.map((item, i) => {
                 return (
                   <AppDailyCard
                     key={i}

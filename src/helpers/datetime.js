@@ -1,5 +1,5 @@
 import format from "date-fns/format";
-import { addDays, isEqual, isToday } from 'date-fns';
+import { addDays, isEqual, isToday, parseISO } from 'date-fns';
 
 function convertTimezone(timezone) {
     return timezone.replace(/__/g, '/');
@@ -17,6 +17,12 @@ export const getSunTimes = (timestamp, show) => {
   if (show =='time') return format(now, 'hh:mm');
   if (show =='a') return format(now, 'a');
   else return timeString;
+}
+
+
+export const formatDayTime = (datestamp, show) => {
+  if (!datestamp) return null  
+  return format(new Date(datestamp), 'HH:mm a');
 }
 
 export const addDay = (date, days) => addDays(unixToUTC(date), days);
