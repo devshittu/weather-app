@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppButton from "./AppWidgets/AppButton";
-import AppDailyCard from "./AppDailyCard";
+import AppDailyCard from "./AppWidgets/AppDailyCard";
+import AppHourlyCard from "./AppWidgets/AppHourlyCard";
 import AppSearch from "./AppSearch/AppSearchBox";
 import AppSection from "./AppWidgets/AppSection";
 import CityItem from "./CityItem";
@@ -216,9 +217,10 @@ function Menu() {
           <AppSection title={`Today in West London`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              {todayForecast?.map((item, i) => {
+              {/* {todayForecast?.map((item, i) => { */}
+              {twentyFourHoursForecast?.map((item, i) => {
                 return (
-                  <AppDailyCard
+                  <AppHourlyCard
                     key={i}
                     data={item}
                     className="from-sky-700/40"
@@ -234,7 +236,7 @@ function Menu() {
           <AppSection title={`This week in West London`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              {twentyFourHoursForecast?.map((item, i) => {
+              {dailyForecast?.map((item, i) => {
                 return (
                   <AppDailyCard
                     key={i}

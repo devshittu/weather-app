@@ -1,6 +1,8 @@
-import { parseISO, format } from "date-fns";
 import React from "react";
-import { formatDayTime, getDayOfWeek, getSunTimes } from "../helpers/datetime";
+import {
+  formatDayTime,
+  getDayOfWeek,
+} from "../../helpers/datetime";
 
 function AppDailyCard({ className, data }) {
   //   const makeTint = () => (tint ? ` from-${tint}-700/40` : ` from-white/20`);
@@ -50,7 +52,7 @@ function AppDailyCard({ className, data }) {
                   <path d="M288 32c0 17.7 14.3 32 32 32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H352c53 0 96-43 96-96s-43-96-96-96H320c-17.7 0-32 14.3-32 32zm64 352c0 17.7 14.3 32 32 32h32c53 0 96-43 96-96s-43-96-96-96H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H384c-17.7 0-32 14.3-32 32zM128 512h32c53 0 96-43 96-96s-43-96-96-96H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H160c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32z" />
                 </svg>
                 <span className="inline-block text-sm md:text-xl ml-1 md:ml-2 leading-loose">
-                {`${data?.wind?.speed} km/h`}
+                  {`${data?.wind?.speed} km/h`}
                 </span>
               </li>
               <li className="flex-inline content-baseline  space-y-3">

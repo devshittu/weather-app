@@ -9,7 +9,7 @@ function AppToday({ data }) {
       <img
         src="https://images.unsplash.com/photo-1457269449834-928af64c684d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkwOTI0MA&ixlib=rb-4.0.3&q=80&w=500"
         alt="Laptop on Desk"
-        className="w-full md:w-1/3 h-20 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none object-cover"
+        className="w-full md:w-1/3 h-20 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-tr-none object-cover"
       />
       <div className="p-6 text-slate-700 dark:text-white/70 grow md:pb-6">
         <h2 className="font-bold text-xl md:text-3xl mb-2 ">
@@ -33,10 +33,13 @@ function AppToday({ data }) {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>
-                {Math.round(data?.main?.temp_max)}°
+              <span className="ml-4">
+                {`${Math.round(data?.main?.temp)}°C`}
+              </span>
+              <span className="ml-4">
+                {`${Math.round(data?.main?.temp_max)}°`}
                 <span className="inline-flex text-3xl text-slate-500 dark:text-slate-400">
-                  / {Math.round(data?.main?.temp_min)}°
+                  / {`${Math.round(data?.main?.temp_min)}°`}
                 </span>
               </span>
             </div>
@@ -101,7 +104,9 @@ function AppToday({ data }) {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <p>Feels like</p>
-              <span className="text-gray-800 dark:text-gray-200">{`${Math.round(data?.main?.feels_like)}°C`}</span>
+              <span className="text-gray-800 dark:text-gray-200">{`${Math.round(
+                data?.main?.feels_like
+              )}°C`}</span>
             </div>
             <div className="flex items-center justify-between">
               <p>Wind</p>
@@ -126,9 +131,9 @@ function AppToday({ data }) {
             <div className="flex items-center justify-between">
               <p>Pressure</p>
               <span className="text-gray-800 dark:text-gray-200">
-                  {`${Math.round(data?.main?.pressure)} mbar`}</span>
+                {`${Math.round(data?.main?.pressure)} mbar`}
+              </span>
             </div>
-
           </div>
         </div>
       </div>
