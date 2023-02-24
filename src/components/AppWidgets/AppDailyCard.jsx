@@ -52,10 +52,10 @@ function AppDailyCard({ className, data }) {
               {/* text-sm sm:text-xl */}
               <div className="space-y-4">
                 <dl>
-                  <dt className="text-md border-b font-bold text-white">
+                  <dt className="text-md border-b font-bold text-white  hidden md:block">
                     Temperature
                   </dt>
-                  <dd className="md:flex md:flex-wrap md:justify-around mt-2">
+                  <dd className="md:flex md:flex-wrap md:justify-around mt-2 hidden">
                     <div className="flex items-center justify-between md:w-[45%]">
                       <p>Day</p>
                       <span className="text-white dark:text-slate-200">{`${Math.round(
@@ -94,10 +94,10 @@ function AppDailyCard({ className, data }) {
                     </div>
                   </dd>
 
-                  <dt className="text-md border-b font-bold text-white mt-4">
+                  <dt className="text-md border-b font-bold text-white mt-4 hidden md:block">
                     Sun Times
                   </dt>
-                  <dd className="md:flex md:flex-wrap md:justify-around mt-2">
+                  <dd className="md:flex md:flex-wrap md:justify-around mt-2  hidden">
                     <div className="flex items-center justify-between md:w-[45%]">
                       <label>Sunrise</label>
                       <span className="text-white dark:text-slate-200">{`${formatDayTime(
@@ -118,6 +118,12 @@ function AppDailyCard({ className, data }) {
                     Details
                   </dt>
                   <dd className="md:flex md:flex-wrap md:justify-around mt-2">
+                    <div className="flex items-center justify-between md:w-[100%]">
+                      <label>Rain Chance</label>
+                      <span className="text-white dark:text-slate-200">{`${Math.round(
+                        data?.rain
+                      )} %`}</span>
+                    </div>
                     <div className="flex items-center justify-between md:w-[100%]">
                       <label>Pressure</label>
                       <span className="text-white dark:text-slate-200">{`${Math.round(
@@ -142,7 +148,7 @@ function AppDailyCard({ className, data }) {
                         data?.wind_speed
                       )} km/h`}</span>
                     </div>
-                    <div className="flex items-center justify-between md:w-[98%]">
+                    <div className="flex items-center justify-between md:w-[100%]">
                       <label>Wind Degree</label>
                       <span className="text-white dark:text-slate-200">{`${Math.round(
                         data?.wind_deg

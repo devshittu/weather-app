@@ -1,6 +1,6 @@
 import React from "react";
 
-import { capitalizeSentence, farenheitToCelcius } from "../../helpers/utils";
+import { capitalizeSentence } from "../../helpers/utils";
 import { getSunTimes } from "../../helpers/datetime";
 
 function AppToday({ data }) {
@@ -11,7 +11,7 @@ function AppToday({ data }) {
         alt="Laptop on Desk"
         className="w-full md:w-1/3 h-20 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-tr-none object-cover"
       />
-      <div className="p-6 text-slate-700 dark:text-white/70 grow md:pb-6">
+      <div className="p-6 pb-0 text-slate-700 dark:text-white/70 grow md:pb-6">
         <h2 className="font-bold text-xl md:text-3xl mb-2 ">
           {data?.weather[0].main}
         </h2>
@@ -104,7 +104,7 @@ function AppToday({ data }) {
         </div>
       </div>
 
-      <div className="p-6 text-slate-600 dark:text-white/70 grow md:mt-12">
+      <div className="p-6 pt-0 md:pt-0 text-slate-600 dark:text-white/70 grow md:mt-12">
         <div className="overflow-auto flex-grow">
           {/* text-sm sm:text-xl */}
           <div className=" divide-y divide-white-700 leading-loose">
