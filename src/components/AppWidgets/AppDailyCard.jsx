@@ -6,7 +6,7 @@ function AppDailyCard({ className, data }) {
   //   const makeTint = () => (tint ? ` from-${tint}-700/40` : ` from-white/20`);
   return (
     <article
-      className={`max-w-md md:max-w-xl min-w-[45%] md:min-w-[28%] rounded-lg md:rounded-2xl backdrop-blur mb-8 bg-white/30 shadow-lg bg-gradient-to-tr  ${className}`}
+      className={`max-w-md md:max-w-xl min-w-[200px] md:min-w-[28%] rounded-lg md:rounded-2xl backdrop-blur mb-8 bg-white/30 shadow-lg bg-gradient-to-tr  ${className}`}
     >
       <div className="p-3 md:p-6 flex flex-col justify-start space-y-4">
         <div className="flex justify-center md:justify-between items-center">

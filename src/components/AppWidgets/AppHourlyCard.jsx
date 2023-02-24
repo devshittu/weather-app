@@ -1,24 +1,21 @@
-import React from 'react'
-import {
-    formatDayTime,
-    getDayOfWeek,
-  } from "../../helpers/datetime";
-  
+import React from "react";
+import { formatDayTime, getDayOfWeek } from "../../helpers/datetime";
 
-function AppHourlyCard({className, data}) {
-  return (    
+function AppHourlyCard({ className, data }) {
+  return (
     <article
-      className={`max-w-md md:max-w-xl min-w-[45%] md:min-w-[28%] rounded-lg md:rounded-2xl backdrop-blur mb-8 bg-white/30 shadow-lg bg-gradient-to-tr  ${className}`}
+      className={`max-w-md md:max-w-xl min-w-[170px] md:min-w-min rounded-lg md:rounded-2xl backdrop-blur mb-8 bg-white/30 shadow-lg bg-gradient-to-tr  ${className}`}
     >
-        
+      {/* min-w-[170px] md:min-w-[265px] */}
       <div className="p-3 md:p-6 flex flex-col justify-start space-y-4">
         <div className="flex justify-center md:justify-between items-center">
           <h5 className="text-lg leading-tight md:text-2xl md:self-auto">
-            {getDayOfWeek(data?.dt_txt)}
-          </h5>
-          <span className="px-4 py-1 border-2 hidden md:block border-white/20 text-emerald-500x text-l leading-tight rounded bg-white bg-opacity-5 hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
             {formatDayTime(data?.dt_txt)}
-          </span>
+          </h5>
+          {/* <span className="px-4 py-1 border-2 hidden md:block border-white/20 text-emerald-500x text-l leading-tight rounded bg-white bg-opacity-5 hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+           
+          {getDayOfWeek(data?.dt_txt)}
+          </span> */}
         </div>
         <div className="w-full flex flex-col md:flex-row">
           {/* <img
@@ -39,7 +36,7 @@ function AppHourlyCard({className, data}) {
         <div className="flex flex-row ">
           <div className="grow font-normal">
             <ul className="">
-              <li className="flex-inline content-baseline space-y-1 md:space-x-3">
+              <li className="flex-inline content-baseline md:space-y-1 md:space-x-3">
                 <svg
                   className="inline-block w-3 md:w-6 h-auto fill-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +48,7 @@ function AppHourlyCard({className, data}) {
                   {`${data?.wind?.speed} km/h`}
                 </span>
               </li>
-              <li className="flex-inline content-baseline  space-y-3">
+              <li className="flex-inline content-baseline md:space-y-3">
                 <svg
                   className="inline-block w-3 md:w-6 h-auto fill-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -64,20 +61,7 @@ function AppHourlyCard({className, data}) {
                   {`${Math.round(data?.main?.humidity)} %`}
                 </span>
               </li>
-              <li className="flex-inline content-baseline space-y-3 hidden md:block">
-                <svg
-                  className="inline-block w-3 md:w-6 h-auto fill-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 384 512"
-                >
-                  <path d="M192 512C86 512 0 426 0 320C0 228.8 130.2 57.7 166.6 11.7C172.6 4.2 181.5 0 191.1 0h1.8c9.6 0 18.5 4.2 24.5 11.7C253.8 57.7 384 228.8 384 320c0 106-86 192-192 192zM96 336c0-8.8-7.2-16-16-16s-16 7.2-16 16c0 61.9 50.1 112 112 112c8.8 0 16-7.2 16-16s-7.2-16-16-16c-44.2 0-80-35.8-80-80z" />
-                </svg>
-                <span className="inline-block text-sm md:text-xl ml-1 md:ml-2 leading-loose">
-                  {/* Visibility:  */}
-                  {`${Math.round(data?.visibility) / 1000} km`}
-                </span>
-              </li>
-              <li className="flex-inline content-baseline space-y-3">
+              <li className="flex-inline content-baseline md:space-y-3">
                 <svg
                   className="inline-block w-3 md:w-6 h-auto fill-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +72,19 @@ function AppHourlyCard({className, data}) {
                 <span className="inline-block text-sm md:text-xl ml-1 md:ml-2 leading-loose">
                   {/* Pressure: */}
                   {`${Math.round(data?.main?.pressure)} mbar`}
+                </span>
+              </li>
+              <li className="flex-inline content-baseline md:space-y-3 hidden md:block">
+                <svg
+                  className="inline-block w-3 md:w-6 h-auto fill-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512"
+                >
+                  <path d="M192 512C86 512 0 426 0 320C0 228.8 130.2 57.7 166.6 11.7C172.6 4.2 181.5 0 191.1 0h1.8c9.6 0 18.5 4.2 24.5 11.7C253.8 57.7 384 228.8 384 320c0 106-86 192-192 192zM96 336c0-8.8-7.2-16-16-16s-16 7.2-16 16c0 61.9 50.1 112 112 112c8.8 0 16-7.2 16-16s-7.2-16-16-16c-44.2 0-80-35.8-80-80z" />
+                </svg>
+                <span className="inline-block text-sm md:text-xl ml-1 md:ml-2 leading-loose">
+                  {/* Visibility:  */}
+                  {`${Math.round(data?.visibility) / 1000} km`}
                 </span>
               </li>
             </ul>
@@ -107,7 +104,7 @@ function AppHourlyCard({className, data}) {
         </div>
       </div>
     </article>
-  )
+  );
 }
 
-export default AppHourlyCard
+export default AppHourlyCard;
