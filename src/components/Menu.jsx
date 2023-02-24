@@ -183,11 +183,10 @@ function Menu() {
 
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
-      {JSON.stringify(dailyForecast)}
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
-            <TimeWeatherInfo />
+            <TimeWeatherInfo temperature={Math.round(globalState?.city?.currentWeather?.main?.temp)} />
             <div>
               <button
                 type="button"
