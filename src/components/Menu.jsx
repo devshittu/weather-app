@@ -252,7 +252,6 @@ function Menu() {
             </div>
           </AppSection>
           <AppSection title={`Nearby Cities`}>
-            {JSON.stringify(nearbyCities)}
             <div className="flex sm:-m-4 -mx-4 -mb-10 -mt-4 flex-wrap gap-4">
               {nearbyCities?.map((item) => {
                 return <CityItem key={item.id} data={item} />;
