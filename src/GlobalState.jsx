@@ -23,7 +23,6 @@ function GlobalState({ children }) {
   const [globalState, setGlobalState] = useState(initState);
   const updateGlobalState = (key, value) => {
     setGlobalState((oldState) => {
-      console.log("oldState", oldState);
       if (!oldState) {
         return { [key]: value };
       }

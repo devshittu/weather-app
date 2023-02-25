@@ -89,13 +89,6 @@ function AppSearchBox() {
     }
   };
 
-  const getWeatherInfo = async (locationData) => {
-    try {
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
   useEffect(() => {
     // doSearch();
   }, []);

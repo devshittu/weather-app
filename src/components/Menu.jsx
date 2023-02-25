@@ -7,15 +7,18 @@ import AppSection from "./AppWidgets/AppSection";
 import CityItem from "./CityItem";
 import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
-import { autoLocationApiService, weatherApiService } from "../api/api-services";
+import {
+  autoLocationApiService,
+  GeoDBApiService,
+  weatherApiService,
+} from "../api/api-services";
 import { useGlobalState } from "../GlobalState";
 import {
   APP_LOADER,
   REAL_TIME_LOCATION_WEATHER_INFO,
-  TWENTY_FOUR_HOUR_LIMIT,
+  API_CALL_LIMIT_TWENTY_FOUR_HOUR,
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
-import { isDateToday } from "../helpers/datetime";
 import { isThisWeek, isToday, parseISO } from "date-fns";
 
 function Menu() {
@@ -24,19 +27,19 @@ function Menu() {
   const [todayForecast, setTodayForecast] = useState();
   const [twentyFourHoursForecast, setTwentyFourHoursForecast] = useState();
   const [dailyForecast, setDailyForecast] = useState();
+  const [nearbyCities, setNearbyCities] = useState();
   const getRealtimeLocation = (locationData) => {
     return { latitude: locationData?.lat, longitude: locationData?.lng };
   };
 
-  const fetchWeather = async (location) => {
+  const fetchNearbyCities = async (cityId) => {
     try {
       updateGlobalState(APP_LOADER, true);
-      const response = await weatherApiService.get("weather", {
-        lat: location?.latitude,
-        lon: location?.longitude,
-      });
+      const response = await GeoDBApiService.getNearbyCities(cityId);
+      console.log(response.data);
       if (response.data) {
-        updateGlobalState(REAL_TIME_LOCATION_WEATHER_INFO, response.data);
+        updateGlobalState("citiesNearby", response.data.data);
+        setNearbyCities(response.data.data);
       }
     } catch (error) {
       throw new Error(error);
@@ -108,20 +111,9 @@ function Menu() {
 
           setTodayForecast(filterTodayForecast(forecastWeather?.list));
           setTwentyFourHoursForecast(
-            (forecastWeather?.list).slice(0, TWENTY_FOUR_HOUR_LIMIT)
+            (forecastWeather?.list).slice(0, API_CALL_LIMIT_TWENTY_FOUR_HOUR)
           );
           setDailyForecast(dailyForecast?.daily);
-
-          console.log(
-            "isThisWeek ",
-            isThisWeek(parseISO(forecastWeather?.list[0].dt_txt)),
-            "forecastWeather:// ",
-            filterThisWeekForecastByDate(forecastWeather?.list),
-            "forecastWeather Length:// ",
-            filterThisWeekForecastByDate(forecastWeather?.list).length,
-            "dailyForecast Length:// ",
-            dailyForecast?.daily.length
-          );
         }
       );
     } catch (error) {
@@ -169,6 +161,11 @@ function Menu() {
         latitude: 51.5072,
         longitude: -0.1275,
       });
+      // {
+      //   url: `cities/${uniqueCityID}/nearbyCities`,
+      //   params: { radius: 100, limit: 3, minPopulation: 1000000 },
+      // },
+      fetchNearbyCities("Q84");
     } catch (error) {
       throw new Error(error);
     } finally {
@@ -186,7 +183,11 @@ function Menu() {
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
           <section className="app-header flex justify-between">
-            <TimeWeatherInfo temperature={Math.round(globalState?.city?.currentWeather?.main?.temp)} />
+            <TimeWeatherInfo
+              temperature={Math.round(
+                globalState?.city?.currentWeather?.main?.temp
+              )}
+            />
             <div>
               <button
                 type="button"
@@ -251,12 +252,13 @@ function Menu() {
             </div>
           </AppSection>
           <AppSection title={`Nearby Cities`}>
+            {JSON.stringify(nearbyCities)}
             <div className="flex sm:-m-4 -mx-4 -mb-10 -mt-4 flex-wrap gap-4">
-              {globalState?.citiesNearby?.map((item) => {
+              {nearbyCities?.map((item) => {
                 return <CityItem key={item.id} data={item} />;
               })}
 
-              {globalState?.citiesNearby?.length === 0 && (
+              {globalState?.searchedCity?.citiesNearby?.length === 0 && (
                 <SearchNoResultItem keyword={keyword} />
               )}
               {/* <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />

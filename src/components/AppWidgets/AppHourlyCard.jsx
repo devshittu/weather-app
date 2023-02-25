@@ -4,7 +4,7 @@ import { formatDayTime, getDayOfWeek } from "../../helpers/datetime";
 function AppHourlyCard({ className, data }) {
   return (
     <article
-      className={`max-w-md md:max-w-xl min-w-[170px] md:min-w-min rounded-lg md:rounded-2xl backdrop-blur mb-8 bg-white/30 shadow-lg bg-gradient-to-tr  ${className}`}
+      className={`max-w-md md:max-w-xl min-w-[170px] md:min-w-[360px] rounded-lg md:rounded-2xl backdrop-blur mb-8 bg-white/30 shadow-lg bg-gradient-to-tr  ${className}`}
     >
       {/* min-w-[170px] md:min-w-[265px] */}
       <div className="p-3 md:p-6 flex flex-col justify-start space-y-4">
@@ -92,12 +92,12 @@ function AppHourlyCard({ className, data }) {
           <div className="self-end shrink-0">
             <span className="font-heading inline-flex font-black ">
               {/* weather-temperature */}
-              <span className="text-4xl md:text-8xl inline-flex items-center leading-3 ">
-                {Math.round(data?.main?.temp)}
+              <span className="text-6xl md:text-8xl inline-flex items-center leading-3 ">
+                {`${Math.round(data?.main?.temp)}`}
               </span>
               {/* weather-temperature-unit */}
-              <span className="text-md md:text-2xl inline-flex  items-start h-10 md:h-20 ">
-                °C
+              <span className="text-xl md:text-2xl inline-flex  items-start h-14 md:h-20 ">
+              °C
               </span>
             </span>
           </div>

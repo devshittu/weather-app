@@ -118,12 +118,13 @@ function AppDailyCard({ className, data }) {
                     Details
                   </dt>
                   <dd className="md:flex md:flex-wrap md:justify-around mt-2">
-                    <div className="flex items-center justify-between md:w-[100%]">
+                    { (data?.rain) && <div className="flex items-center justify-between md:w-[100%]">
                       <label>Rain Chance</label>
                       <span className="text-white dark:text-slate-200">{`${Math.round(
                         data?.rain
-                      )} %`}</span>
-                    </div>
+                      )} mm`}</span>
+                    </div> }
+                    
                     <div className="flex items-center justify-between md:w-[100%]">
                       <label>Pressure</label>
                       <span className="text-white dark:text-slate-200">{`${Math.round(
@@ -140,7 +141,7 @@ function AppDailyCard({ className, data }) {
                       <label>Dew Point</label>
                       <span className="text-white dark:text-slate-200">{`${Math.round(
                         data?.dew_point
-                      )} %`}</span>
+                      )} ° C`}</span>
                     </div>
                     <div className="flex items-center justify-between md:w-[100%]">
                       <label>Wind Speed</label>

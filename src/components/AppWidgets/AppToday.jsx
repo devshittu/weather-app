@@ -85,7 +85,7 @@ function AppToday({ data }) {
           </div>
 
           <div className="flex justify-between">
-            <p className=" leading-loose pt-2">
+            <p className="leading-loose">
               {capitalizeSentence(data?.weather[0].description)}
               .
               <br />
