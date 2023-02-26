@@ -51,7 +51,7 @@ function CityItem({ data, photo }) {
               <p className="text-sm w-56 leading-loose mt-2">
                 Cloudy with scattered showers.
                 <br />
-                1-3 MPH winds.
+                1-3 km/h winds.
               </p>
             </div>
             <div className="leading-loose text-sm ">

@@ -89,7 +89,7 @@ function AppToday({ data }) {
               {capitalizeSentence(data?.weather[0].description)}
               .
               <br />
-              {data?.wind.speed} MPH winds.
+              {data?.wind.speed} km/h winds.
             </p>
 
             <div className="text-5xl text-slate-900 dark:text-slate-100 ">

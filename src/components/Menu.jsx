@@ -8,14 +8,12 @@ import CityItem from "./CityItem";
 import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
 import {
-  autoLocationApiService,
   GeoDBApiService,
   weatherApiService,
 } from "../api/api-services";
 import { useGlobalState } from "../GlobalState";
 import {
   APP_LOADER,
-  REAL_TIME_LOCATION_WEATHER_INFO,
   API_CALL_LIMIT_TWENTY_FOUR_HOUR,
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
@@ -161,10 +159,6 @@ function Menu() {
         latitude: 51.5072,
         longitude: -0.1275,
       });
-      // {
-      //   url: `cities/${uniqueCityID}/nearbyCities`,
-      //   params: { radius: 100, limit: 3, minPopulation: 1000000 },
-      // },
       fetchNearbyCities("Q84");
     } catch (error) {
       throw new Error(error);
