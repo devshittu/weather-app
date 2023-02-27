@@ -9,15 +9,18 @@ import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
 import {
   GeoDBApiService,
+  requestSlower,
   weatherApiService,
 } from "../api/api-services";
 import { useGlobalState } from "../GlobalState";
 import {
   APP_LOADER,
   API_CALL_LIMIT_TWENTY_FOUR_HOUR,
+  LS_PARAMS_CURRENT_LOCATION,
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
 import { isThisWeek, isToday, parseISO } from "date-fns";
+import { getLocation, setLocation } from "../hooks/location.action";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
@@ -33,12 +36,41 @@ function Menu() {
   const fetchNearbyCities = async (cityId) => {
     try {
       updateGlobalState(APP_LOADER, true);
-      const response = await GeoDBApiService.getNearbyCities(cityId);
-      console.log(response.data);
-      if (response.data) {
-        updateGlobalState("citiesNearby", response.data.data);
-        setNearbyCities(response.data.data);
-      }
+      let nearbyCitiesLocations = [];
+      const response = await GeoDBApiService.getNearbyCities(cityId)
+        .then((response) => {
+          if (response.data) {
+            const results = response.data.data;
+            const getWeatherRequestParamsByLocation = results.map((item) => {
+              const reqParam = {
+                longitude: item.longitude,
+                latitude: item.latitude,
+              };
+              return reqParam;
+            });
+
+            nearbyCitiesLocations = [...results];
+
+            return requestSlower(
+              getWeatherRequestParamsByLocation,
+              weatherApiService.getWeather
+            );
+          }
+        })
+        .then((response) => {
+          const nearbyCitiesWithWeather = nearbyCitiesLocations.map(
+            (item, i) => {
+              const addWeatherData = {
+                ...item,
+                weather: response[i].data,
+              };
+              return addWeatherData;
+            }
+          );
+          // get weather for each  cities
+          setNearbyCities(nearbyCitiesWithWeather);
+          // updateGlobalState("citiesNearby", response.data.data);
+        });
     } catch (error) {
       throw new Error(error);
     } finally {
@@ -46,68 +78,22 @@ function Menu() {
     }
   };
 
-  const getWeatherForecastInfo = async (location) => {
+  const getWeatherForecastInfo = (location) => {
+    //Current city
     try {
-      let endpoints = [
-        {
-          url: `weather`,
-          params: {
-            lat: location?.latitude,
-            lon: location?.longitude,
-          },
-        },
-        {
-          url: `forecast`,
-          params: {
-            lat: location?.latitude,
-            lon: location?.longitude,
-            cnt: 40,
-          },
-        },
-        {
-          url: `onecall`,
-          params: {
-            lat: location?.latitude,
-            lon: location?.longitude,
-            cnt: 40,
-            exclude: "current,hourly,minutely,alerts",
-          },
-        },
-      ];
-      // Promise.all() with delays for each promise
-      // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
-      let tasks = [];
-      for (let i = 1; i < endpoints.length + 1; i++) {
-        const delay = 1501 * i;
-        // const delay = 500 * i;
-        tasks.push(
-          new Promise(async function (resolve) {
-            // the timer/delay
-            await new Promise((res) => setTimeout(res, delay));
-            let result = weatherApiService.get(
-              endpoints[i - 1].url,
-              endpoints[i - 1].params
-            );
-
-            //resolve outer/original promise with result
-            resolve(result);
-          })
-        );
-      }
-      let results = Promise.all(tasks).then(
+      weatherApiService.getAllWeatherForecastInfo(location).then(
         // (response) => {
         ([
           { data: currentWeatherCondition },
           { data: forecastWeather },
-          { data: dailyForecast },
+          // { data: dailyForecast },
         ]) => {
           updateGlobalState("city", {
             currentWeather: currentWeatherCondition,
             forecast: forecastWeather,
-            dailyForecast: dailyForecast,
+            // dailyForecast: dailyForecast,
           });
-
-          setTodayForecast(filterTodayForecast(forecastWeather?.list));
+          // setTodayForecast(filterTodayForecast(forecastWeather?.list));
           setTwentyFourHoursForecast(
             (forecastWeather?.list).slice(0, API_CALL_LIMIT_TWENTY_FOUR_HOUR)
           );
@@ -151,10 +137,8 @@ function Menu() {
       //   }, 1500);
       // }
 
-      // fetchWeather({
-      //   latitude: 51.5072,
-      //   longitude: -0.1275,
-      // });
+      setLocation();
+
       getWeatherForecastInfo({
         latitude: 51.5072,
         longitude: -0.1275,
@@ -171,6 +155,10 @@ function Menu() {
       loadLocation();
     }
   }, []);
+
+  useEffect(() => {
+    console.log("localStorage changed()", getLocation());
+  }, [nearbyCities]);
 
   return (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">

@@ -73,12 +73,6 @@ export const GeoDBApiService = {
             cityInfo: searchedCityInfo,
             cityDateTime: searchedCityDateTime,
             citiesNearby: citiesNearbySearched,
-            // weather: {
-            //   forecast: [],
-            //   today: null,
-            //   daily: null,
-            //   thirdHourly: [],
-            // },
           });
         }
       );
@@ -99,7 +93,7 @@ export const autoLocationApiService = {
 
 export const weatherApiService = {
 
-  get: (endpoint, params) => {
+  get: function (endpoint, params) {
     const defaultConfig = {
       params: {
         ...params,
@@ -110,7 +104,106 @@ export const weatherApiService = {
     });
   },
 
+  // getWeather: async function (location) {
+  getWeather: async function (location) {
+    return await weatherApiService.get(`weather`,
+    {
+      lat: location?.latitude,
+      lon: location?.longitude,
+    });
+  },
+
+  getThirdHourlyForecast: async function (location) {
+    return await this.get(`forecast`,
+    {
+      lat: location?.latitude,
+      lon: location?.longitude,
+      cnt: 40,
+    });
+  },
+
+
+  getSevenDailyForecast: async function (location) {
+    return await this.get(`onecall`,
+    {
+      lat: location?.latitude,
+      lon: location?.longitude,
+      cnt: 40,
+      exclude: "current,hourly,minutely,alerts",
+    });
+  },
+
+
+  getAllWeatherForecastInfo: async function (location) {
+    // try {
+      let endpoints = [
+        {
+          url: `weather`,
+          params: {
+            lat: location?.latitude,
+            lon: location?.longitude,
+          },
+        },
+        {
+          url: `forecast`,
+          params: {
+            lat: location?.latitude,
+            lon: location?.longitude,
+            cnt: 40,
+          },
+        },
+        // {
+        //   url: `onecall`,
+        //   params: {
+        //     lat: location?.latitude,
+        //     lon: location?.longitude,
+        //     cnt: 40,
+        //     exclude: "current,hourly,minutely,alerts",
+        //   },
+        // },
+      ];
+      // Promise.all() with delays for each promise
+
+      // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
+      let tasks = [];
+      for (let i = 1; i < endpoints.length + 1; i++) {
+        const delay = 1501 * i;
+        // const delay = 500 * i;
+        tasks.push(
+          new Promise(async function (resolve) {
+            // the timer/delay
+            await new Promise((res) => setTimeout(res, delay));
+            let result = this.get(
+              endpoints[i - 1].url,
+              endpoints[i - 1].params
+            );
+            // let result = endpoints[i -1 ](location);
+            //resolve outer/original promise with result
+            resolve(result);
+          }.bind(this) )
+        // } )
+        );
+      }
+      return Promise.all(tasks).then(response => response);
+    // } catch (error) {
+    //   throw new Error(error);
+    // }
+  }
 };
 
+export const requestSlower = async function (locations, getFunc) {
 
+  const promises = locations.map((location, index) => {
+    const delay = 2000 * index; // increase the delay for each endpoint
+    return new Promise(function (resolve) {
+      setTimeout(() => {
+        console.log('location',location)
+        resolve(getFunc(location));
+      }, delay);
+    });
+  });
+
+  const responses = await Promise.all(promises);
+  return responses;
+}
 // export default ApiService;
