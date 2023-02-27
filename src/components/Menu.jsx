@@ -45,6 +45,7 @@ function Menu() {
       const response = await GeoDBApiService.getNearbyCities(cityId)
         .then((response) => {
           if (response.data) {
+            console.log('response.data://', response.data)
             const results = response.data.data;
             const getWeatherRequestParamsByLocation = results.map((item) => {
               const reqParam = {
