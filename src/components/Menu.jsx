@@ -8,6 +8,7 @@ import CityItem from "./CityItem";
 import CompareCityWrapper from "./CompareCityWrapper";
 import TimeWeatherInfo from "./TimeWeatherInfo";
 import {
+  autoLocationApiService,
   GeoDBApiService,
   requestSlower,
   weatherApiService,
@@ -20,7 +21,11 @@ import {
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
 import { isThisWeek, isToday, parseISO } from "date-fns";
-import { getLocation, setLocation } from "../hooks/location.action";
+import {
+  getLocation,
+  removeLocation,
+  setLocation,
+} from "../hooks/location.action";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
@@ -115,8 +120,44 @@ function Menu() {
 
   const loadLocation = async () => {
     try {
+      let autoLocationDetails = {};
       updateGlobalState(APP_LOADER, true);
-      // const response = await autoLocationApiService.get();
+      const response = await autoLocationApiService
+        .get()
+        .then((response) => {
+          const locationData = response.data?.locationData;
+          autoLocationDetails = { ...locationData };
+          const requestParams = {
+            countryIds: locationData?.countryCode,
+            namePrefix: locationData?.cityName,
+          };
+          return GeoDBApiService.getMatchingCities(requestParams);
+        })
+        .then((response) => {
+          // response first data
+          const { wikiDataId, type, region, regionCode, latitude, longitude } =
+            response.data.data[0];
+
+          autoLocationDetails = {
+            ...autoLocationDetails,
+            wikiDataId,
+            type,
+            region,
+            regionCode,
+            latitude,
+            longitude,
+          };
+
+          //   setIpLocation(autoLocationDetails);
+
+          setLocation(autoLocationDetails);
+
+          getWeatherForecastInfo({
+            latitude,
+            longitude,
+          });
+          fetchNearbyCities(wikiDataId);
+        });
       // console.log("autoLocationApiService://", response.data);
       // if (response.data) {
       //   console.log("response.data", response.data?.locationData);
@@ -126,7 +167,6 @@ function Menu() {
       //     getRealtimeLocation(response.data?.locationData)
       //   );
 
-      //   setIpLocation(response.data);
       //   setTimeout(() => {
       //     if (!globalState?.realtimeLocation) {
       //       fetchWeather({
@@ -136,14 +176,6 @@ function Menu() {
       //     }
       //   }, 1500);
       // }
-
-      setLocation();
-
-      getWeatherForecastInfo({
-        latitude: 51.5072,
-        longitude: -0.1275,
-      });
-      fetchNearbyCities("Q84");
     } catch (error) {
       throw new Error(error);
     } finally {
@@ -151,8 +183,21 @@ function Menu() {
     }
   };
   useEffect(() => {
-    if (!globalState?.ipLocation) {
+    // if (!globalState?.ipLocation) {
+    // removeLocation();
+    console.log("getLocation()", getLocation());
+    if (!getLocation()) {
       loadLocation();
+    } else {
+      const { latitude, longitude, wikiDataId } = getLocation();
+
+      // const localData = getLocation(); //[latitude, longitude, wikiDataId]
+      // use the local storage info to load the
+      getWeatherForecastInfo({
+        latitude,
+        longitude,
+      });
+      fetchNearbyCities(wikiDataId);
     }
   }, []);
 
@@ -185,7 +230,7 @@ function Menu() {
               </button>
             </div>
           </section>
-          <section className="nav flex gap-3 overflow-auto pb-2 w-full menu-app-section-bound">
+          <section className="nav flex gap-3 overflow-auto pb-2 w-full menu-app-section-bound mt-16">
             <h1 className="text-2xl leading-5">Categories: </h1>
             <AppButton>Weather</AppButton>
             <AppButton>Cities</AppButton>
@@ -236,7 +281,13 @@ function Menu() {
           <AppSection title={`Nearby Cities`}>
             <div className="flex sm:-m-4 -mx-4 -mb-10 -mt-4 flex-wrap gap-4">
               {nearbyCities?.map((item) => {
-                return <CityItem key={item.id} data={item} />;
+                return (
+                  <CityItem
+                    key={item.id}
+                    data={item}
+                    photo="https://images.unsplash.com/photo-1444084316824-dc26d6657664?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NzUxNjkxMQ&ixlib=rb-4.0.3&q=80&w=500"
+                  />
+                );
               })}
 
               {globalState?.searchedCity?.citiesNearby?.length === 0 && (

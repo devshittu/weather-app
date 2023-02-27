@@ -14,6 +14,11 @@ export const GeoDBApiService = {
     });
   },
 
+  getMatchingCities: async function (params) {
+    const param = { countryIds: '', namePrefix: '', ...params };
+    return await this.get(`cities/`, param);
+  },
+
   getNearbyCities: async function (cityId, params) {
     const param = { radius: 100, limit: 3, minPopulation: API_CALL_LIMIT_MIN_POPULATION, ...params };
     return await this.get(`cities/${cityId}/nearbyCities`, param);
@@ -197,7 +202,6 @@ export const requestSlower = async function (locations, getFunc) {
     const delay = 2000 * index; // increase the delay for each endpoint
     return new Promise(function (resolve) {
       setTimeout(() => {
-        console.log('location',location)
         resolve(getFunc(location));
       }, delay);
     });
