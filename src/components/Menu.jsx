@@ -229,7 +229,12 @@ function Menu() {
             <AppSearch />
           </AppSection>
           <AppSection title={`How it looks & feel out there?`}>
-            <AppToday data={globalState?.city?.currentWeather}></AppToday>
+            {JSON.stringify(globalState?.city?.currentWeather)}
+            {!globalState?.city?.currentWeather ? (
+              "Not Loading"
+            ) : (
+              <AppToday data={globalState?.city?.currentWeather}></AppToday>
+            )}
           </AppSection>
           <AppSection title={`Today in  ${currentLocation?.cityName}`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
