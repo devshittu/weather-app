@@ -158,15 +158,15 @@ export const weatherApiService = {
             cnt: 40,
           },
         },
-        // {
-        //   url: `onecall`,
-        //   params: {
-        //     lat: location?.latitude,
-        //     lon: location?.longitude,
-        //     cnt: 40,
-        //     exclude: "current,hourly,minutely,alerts",
-        //   },
-        // },
+        {
+          url: `onecall`,
+          params: {
+            lat: location?.latitude,
+            lon: location?.longitude,
+            cnt: 40,
+            exclude: "current,hourly,minutely,alerts",
+          },
+        },
       ];
       // Promise.all() with delays for each promise
 

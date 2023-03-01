@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import AppButton from "./AppWidgets/AppButton";
 import AppDailyCard from "./AppWidgets/AppDailyCard";
 import AppHourlyCard from "./AppWidgets/AppHourlyCard";
@@ -26,26 +26,24 @@ import {
   removeLocation,
   setLocation,
 } from "../hooks/location.action";
+import Loader from "./Loader";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
-  const [ipLocation, setIpLocation] = useState();
+
+  const [currentLocation, setCurrentLocation] = useState();
   const [todayForecast, setTodayForecast] = useState();
   const [twentyFourHoursForecast, setTwentyFourHoursForecast] = useState();
   const [dailyForecast, setDailyForecast] = useState();
   const [nearbyCities, setNearbyCities] = useState();
-  const getRealtimeLocation = (locationData) => {
-    return { latitude: locationData?.lat, longitude: locationData?.lng };
-  };
 
   const fetchNearbyCities = async (cityId) => {
     try {
-      updateGlobalState(APP_LOADER, true);
+      // updateGlobalState(APP_LOADER, true);
       let nearbyCitiesLocations = [];
       const response = await GeoDBApiService.getNearbyCities(cityId)
         .then((response) => {
           if (response.data) {
-            console.log('response.data://', response.data)
             const results = response.data.data;
             const getWeatherRequestParamsByLocation = results.map((item) => {
               const reqParam = {
@@ -86,18 +84,19 @@ function Menu() {
 
   const getWeatherForecastInfo = (location) => {
     //Current city
+    // updateGlobalState(APP_LOADER, true);
     try {
       weatherApiService.getAllWeatherForecastInfo(location).then(
         // (response) => {
         ([
           { data: currentWeatherCondition },
           { data: forecastWeather },
-          // { data: dailyForecast },
+          { data: dailyForecast },
         ]) => {
           updateGlobalState("city", {
             currentWeather: currentWeatherCondition,
             forecast: forecastWeather,
-            // dailyForecast: dailyForecast,
+            dailyForecast: dailyForecast,
           });
           // setTodayForecast(filterTodayForecast(forecastWeather?.list));
           setTwentyFourHoursForecast(
@@ -109,7 +108,7 @@ function Menu() {
     } catch (error) {
       throw new Error(error);
     } finally {
-      updateGlobalState(APP_LOADER, false);
+      // updateGlobalState(APP_LOADER, false);
     }
   };
   const filterThisWeekForecastByDate = (forecastItems, todayDate) => {
@@ -149,34 +148,14 @@ function Menu() {
             longitude,
           };
 
-          //   setIpLocation(autoLocationDetails);
-
           setLocation(autoLocationDetails);
-
+          setCurrentLocation(autoLocationDetails);
           getWeatherForecastInfo({
             latitude,
             longitude,
           });
           fetchNearbyCities(wikiDataId);
         });
-      // console.log("autoLocationApiService://", response.data);
-      // if (response.data) {
-      //   console.log("response.data", response.data?.locationData);
-      //   // updateGlobalState("ipLocation", response.data);
-      //   updateGlobalState(
-      //     "realtimeLocation",
-      //     getRealtimeLocation(response.data?.locationData)
-      //   );
-
-      //   setTimeout(() => {
-      //     if (!globalState?.realtimeLocation) {
-      //       fetchWeather({
-      //         latitude: response.data?.locationData.lat,
-      //         longitude: response.data?.locationData.lng,
-      //       });
-      //     }
-      //   }, 1500);
-      // }
     } catch (error) {
       throw new Error(error);
     } finally {
@@ -184,15 +163,13 @@ function Menu() {
     }
   };
   useEffect(() => {
-    // if (!globalState?.ipLocation) {
     // removeLocation();
-    console.log("getLocation()", getLocation());
-    if (!getLocation()) {
+    const locationNow = getLocation();
+    if (!locationNow) {
       loadLocation();
     } else {
-      const { latitude, longitude, wikiDataId } = getLocation();
-
-      // const localData = getLocation(); //[latitude, longitude, wikiDataId]
+      const { latitude, longitude, wikiDataId } = locationNow;
+      setCurrentLocation(locationNow);
       // use the local storage info to load the
       getWeatherForecastInfo({
         latitude,
@@ -202,11 +179,23 @@ function Menu() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("localStorage changed()", getLocation());
-  }, [nearbyCities]);
-
-  return (
+  const memoizedState = useMemo(
+    () => ({
+      currentLocation,
+      todayForecast,
+      twentyFourHoursForecast,
+      dailyForecast,
+      nearbyCities,
+    }),
+    [
+      currentLocation,
+      todayForecast,
+      twentyFourHoursForecast,
+      dailyForecast,
+      nearbyCities,
+    ]
+  );
+  const mainBody = (
     <div className="app-menu relative overflow-hidden h-screen pointer-events-none opacity-0 z-20">
       <div className="wrapper mt-[10vh] min-h-[80vh] md:p-20 p-3 bg-gradient-to-t from-slate-900/70">
         <div className="container max-w-7xl mx-auto relative pointer-events-auto text-white">
@@ -242,9 +231,10 @@ function Menu() {
           <AppSection title={`How it looks & feel out there?`}>
             <AppToday data={globalState?.city?.currentWeather}></AppToday>
           </AppSection>
-          <AppSection title={`Today in West London`}>
+          <AppSection title={`Today in  ${currentLocation?.cityName}`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
+              {/* {JSON.stringify(memoizedState.currentLocation)} */}
               {/* {todayForecast?.map((item, i) => { */}
               {twentyFourHoursForecast?.map((item, i) => {
                 return (
@@ -256,12 +246,12 @@ function Menu() {
                 );
               })}
               {/* <AppDailyCard className="from-sky-700/40" />
-              <AppDailyCard className="from-emerald-700/40" />
-              <AppDailyCard className="from-amber-700/40" />
-              <AppDailyCard className="from-violet-700/40" /> */}
+      <AppDailyCard className="from-emerald-700/40" />
+      <AppDailyCard className="from-amber-700/40" />
+      <AppDailyCard className="from-violet-700/40" /> */}
             </div>
           </AppSection>
-          <AppSection title={`This week in West London`}>
+          <AppSection title={`This week in ${currentLocation?.cityName}`}>
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
               {dailyForecast?.map((item, i) => {
@@ -274,9 +264,9 @@ function Menu() {
                 );
               })}
               {/* <AppDailyCard className="from-sky-700/40" />
-              <AppDailyCard className="from-emerald-700/40" />
-              <AppDailyCard className="from-amber-700/40" />
-              <AppDailyCard className="from-violet-700/40" /> */}
+      <AppDailyCard className="from-emerald-700/40" />
+      <AppDailyCard className="from-amber-700/40" />
+      <AppDailyCard className="from-violet-700/40" /> */}
             </div>
           </AppSection>
           <AppSection title={`Nearby Cities`}>
@@ -291,87 +281,88 @@ function Menu() {
                 );
               })}
 
-              {globalState?.searchedCity?.citiesNearby?.length === 0 && (
+              {nearbyCities?.length === 0 && (
                 <SearchNoResultItem keyword={keyword} />
               )}
               {/* <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
-              <CityItem photo="https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500" />
-              <CityItem photo="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkyMDc3OQ&ixlib=rb-4.0.3&q=80&w=1080" /> */}
+      <CityItem photo="https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500" />
+      <CityItem photo="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkyMDc3OQ&ixlib=rb-4.0.3&q=80&w=1080" /> */}
             </div>
           </AppSection>
 
-          <AppSection title={`Cities Comparism`}>
+          <AppSection title={`Cities Comparison`}>
             <CompareCityWrapper />
           </AppSection>
 
           {/* <AppSection title={`Cities Elements`}>
-            <article className="flex flex-col md:flex-row md:max-w-xl rounded-lg backdrop-blur bg-white/40 shadow-lg ">
-              <div className="h-auto w-full">
-                <img
-                  className="w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg "
-                  src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="p-6 flex flex-col justify-start">
-                <h5 className="text-gray-900 text-xl mb-2">Card title</h5>
-                <p className="text-gray-700 text-base mb-4">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
-              </div>
-            </article>
-          </AppSection>
+    <article className="flex flex-col md:flex-row md:max-w-xl rounded-lg backdrop-blur bg-white/40 shadow-lg ">
+      <div className="h-auto w-full">
+        <img
+          className="w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg "
+          src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+          alt=""
+        />
+      </div>
+      <div className="p-6 flex flex-col justify-start">
+        <h5 className="text-gray-900 text-xl mb-2">Card title</h5>
+        <p className="text-gray-700 text-base mb-4">
+          This is a wider card with supporting text below as a natural
+          lead-in to additional content. This content is a little bit
+          longer.
+        </p>
+        <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
+      </div>
+    </article>
+  </AppSection>
 
-          <AppSection title={`How it looks & feel out there?`}>
-            <div className="flex gap-3">
-              <div className="day-card backdrop-blur bg-white/10 border border-white/20 h-[8vw] w-32 shadow-lg rounded-lg relative">
-                <div className="day-card-content flex flex-col h-full items-center justify-evenly p-3">
-                  <div>32 deg F</div>
-                  <div>Icon</div>
-                  <div>Day of week</div>
-                </div>
-              </div>
-            </div>
-            </AppSection>
-            
+  <AppSection title={`How it looks & feel out there?`}>
+    <div className="flex gap-3">
+      <div className="day-card backdrop-blur bg-white/10 border border-white/20 h-[8vw] w-32 shadow-lg rounded-lg relative">
+        <div className="day-card-content flex flex-col h-full items-center justify-evenly p-3">
+          <div>32 deg F</div>
+          <div>Icon</div>
+          <div>Day of week</div>
+        </div>
+      </div>
+    </div>
+    </AppSection>
+    
 
-          <AppSection title={`Meta Data`}>
-            <div className="flex gap-4">
-              <div className="meta-card h-[7vw] shadow-lg rounded-lg relative w-1/6 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500')] ">
-                <div className="meta-card-content flex flex-col h-full items-end justify-start p-6  bg-gradient-to-b from-slate-900 rounded-lg">
-                  <div>33 Metric</div>
-                  <div>Icon</div>
-                  <div>Humidity</div>
-                </div>
-              </div>
-              <div className="meta-card h-[7vw] shadow-lg rounded-lg relative w-1/6 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500')] ">
-                <div className="meta-card-content flex flex-col h-full items-end justify-start p-6  bg-gradient-to-b from-slate-900 rounded-lg">
-                  <div>33 Metric</div>
-                  <div>Icon</div>
-                  <div>Humidity</div>
-                </div>
-              </div>
-            </div>
-          </AppSection>
+  <AppSection title={`Meta Data`}>
+    <div className="flex gap-4">
+      <div className="meta-card h-[7vw] shadow-lg rounded-lg relative w-1/6 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500')] ">
+        <div className="meta-card-content flex flex-col h-full items-end justify-start p-6  bg-gradient-to-b from-slate-900 rounded-lg">
+          <div>33 Metric</div>
+          <div>Icon</div>
+          <div>Humidity</div>
+        </div>
+      </div>
+      <div className="meta-card h-[7vw] shadow-lg rounded-lg relative w-1/6 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500')] ">
+        <div className="meta-card-content flex flex-col h-full items-end justify-start p-6  bg-gradient-to-b from-slate-900 rounded-lg">
+          <div>33 Metric</div>
+          <div>Icon</div>
+          <div>Humidity</div>
+        </div>
+      </div>
+    </div>
+  </AppSection>
 
-          <AppSection title={`World Forecast`}>
-            <div className="flex gap-4">
-              <div className="city-card h-[24vw] shadow-xl rounded-lg relative w-1/4 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1533929736458-ca588d08c8be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkzNjgzNw&ixlib=rb-4.0.3&q=80&w=500')] ">
-                <div className="city-card-content flex flex-col h-full items-end justify-end p-6  bg-gradient-to-t from-slate-900 rounded-lg">
-                  <div>Hot</div>
-                  <div>32 C</div>
-                  <div>London</div>
-                </div>
-              </div>
-            </div>
-          </AppSection> */}
+  <AppSection title={`World Forecast`}>
+    <div className="flex gap-4">
+      <div className="city-card h-[24vw] shadow-xl rounded-lg relative w-1/4 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1533929736458-ca588d08c8be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkzNjgzNw&ixlib=rb-4.0.3&q=80&w=500')] ">
+        <div className="city-card-content flex flex-col h-full items-end justify-end p-6  bg-gradient-to-t from-slate-900 rounded-lg">
+          <div>Hot</div>
+          <div>32 C</div>
+          <div>London</div>
+        </div>
+      </div>
+    </div>
+  </AppSection> */}
         </div>
       </div>
     </div>
   );
+  return <>{globalState[APP_LOADER] ? <Loader /> : mainBody}</>;
 }
 
 export default Menu;

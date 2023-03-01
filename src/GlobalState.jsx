@@ -4,18 +4,6 @@ import { APP_LOADER } from "./helpers/constants";
 const initState = {
   [APP_LOADER]: true,
   loggedInStatus: false,
-//   currentCity: {
-//     cityInfo: null,
-//     cityDateTime: null,
-//     citiesNearby: null,
-//     weather: { forecast: null, today: null, daily: null },
-//   },
-//   searchedCity: {
-//     cityInfo: null,
-//     cityDateTime: null,
-//     citiesNearby: null,
-//     weather: { forecast: [], today: null, daily: null, thirdHourly: [] },
-//   },
 };
 const GlobalContext = createContext(null);
 
