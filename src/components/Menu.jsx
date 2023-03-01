@@ -27,6 +27,7 @@ import {
   setLocation,
 } from "../hooks/location.action";
 import Loader from "./Loader";
+import AppTodayPlaceHolder from "./AppWidgets/AppTodayPlaceHolder";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
@@ -229,9 +230,8 @@ function Menu() {
             <AppSearch />
           </AppSection>
           <AppSection title={`How it looks & feel out there?`}>
-            {JSON.stringify(globalState?.city?.currentWeather)}
             {!globalState?.city?.currentWeather ? (
-              "Not Loading"
+              <AppTodayPlaceHolder/>
             ) : (
               <AppToday data={globalState?.city?.currentWeather}></AppToday>
             )}
