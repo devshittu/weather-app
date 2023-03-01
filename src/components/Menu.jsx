@@ -28,6 +28,7 @@ import {
 } from "../hooks/location.action";
 import Loader from "./Loader";
 import AppTodayPlaceHolder from "./AppWidgets/AppTodayPlaceHolder";
+import AppDailyCardPlaceHolder from "./AppWidgets/AppDailyCardPlaceHolder";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
@@ -231,16 +232,20 @@ function Menu() {
           </AppSection>
           <AppSection title={`How it looks & feel out there?`}>
             {!globalState?.city?.currentWeather ? (
-              <AppTodayPlaceHolder/>
+              <AppTodayPlaceHolder />
             ) : (
               <AppToday data={globalState?.city?.currentWeather}></AppToday>
             )}
           </AppSection>
-          <AppSection title={`Today in  ${currentLocation?.cityName}`}>
+          <AppSection
+            title={`${
+              currentLocation?.cityName
+                ? "Today in " + currentLocation?.cityName
+                : "Weather Today"
+            }`}
+          >
             {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              {/* {JSON.stringify(memoizedState.currentLocation)} */}
-              {/* {todayForecast?.map((item, i) => { */}
               {twentyFourHoursForecast?.map((item, i) => {
                 return (
                   <AppHourlyCard
@@ -250,24 +255,30 @@ function Menu() {
                   />
                 );
               })}
-              {/* <AppDailyCard className="from-sky-700/40" />
-      <AppDailyCard className="from-emerald-700/40" />
-      <AppDailyCard className="from-amber-700/40" />
-      <AppDailyCard className="from-violet-700/40" /> */}
             </div>
           </AppSection>
           <AppSection title={`This week in ${currentLocation?.cityName}`}>
-            {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              {dailyForecast?.map((item, i) => {
-                return (
-                  <AppDailyCard
-                    key={i}
-                    data={item}
-                    className="from-sky-700/40"
-                  />
-                );
-              })}
+              
+              {!memoizedState.dailyForecast ? (
+                <>
+                  <AppDailyCardPlaceHolder className="from-sky-700/40" />
+                  <AppDailyCardPlaceHolder className="from-sky-700/40" />
+                  <AppDailyCardPlaceHolder className="from-sky-700/40" />
+                  <AppDailyCardPlaceHolder className="from-sky-700/40" />
+                  <AppDailyCardPlaceHolder className="from-sky-700/40" />
+                </>
+              ) : (
+                memoizedState.dailyForecast?.map((item, i) => {
+                  return (
+                    <AppDailyCard
+                      key={i}
+                      data={item}
+                      className="from-sky-700/40"
+                    />
+                  );
+                })
+              )}
               {/* <AppDailyCard className="from-sky-700/40" />
       <AppDailyCard className="from-emerald-700/40" />
       <AppDailyCard className="from-amber-700/40" />
@@ -299,70 +310,6 @@ function Menu() {
             <CompareCityWrapper />
           </AppSection>
 
-          {/* <AppSection title={`Cities Elements`}>
-    <article className="flex flex-col md:flex-row md:max-w-xl rounded-lg backdrop-blur bg-white/40 shadow-lg ">
-      <div className="h-auto w-full">
-        <img
-          className="w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg "
-          src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
-          alt=""
-        />
-      </div>
-      <div className="p-6 flex flex-col justify-start">
-        <h5 className="text-gray-900 text-xl mb-2">Card title</h5>
-        <p className="text-gray-700 text-base mb-4">
-          This is a wider card with supporting text below as a natural
-          lead-in to additional content. This content is a little bit
-          longer.
-        </p>
-        <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
-      </div>
-    </article>
-  </AppSection>
-
-  <AppSection title={`How it looks & feel out there?`}>
-    <div className="flex gap-3">
-      <div className="day-card backdrop-blur bg-white/10 border border-white/20 h-[8vw] w-32 shadow-lg rounded-lg relative">
-        <div className="day-card-content flex flex-col h-full items-center justify-evenly p-3">
-          <div>32 deg F</div>
-          <div>Icon</div>
-          <div>Day of week</div>
-        </div>
-      </div>
-    </div>
-    </AppSection>
-    
-
-  <AppSection title={`Meta Data`}>
-    <div className="flex gap-4">
-      <div className="meta-card h-[7vw] shadow-lg rounded-lg relative w-1/6 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500')] ">
-        <div className="meta-card-content flex flex-col h-full items-end justify-start p-6  bg-gradient-to-b from-slate-900 rounded-lg">
-          <div>33 Metric</div>
-          <div>Icon</div>
-          <div>Humidity</div>
-        </div>
-      </div>
-      <div className="meta-card h-[7vw] shadow-lg rounded-lg relative w-1/6 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500')] ">
-        <div className="meta-card-content flex flex-col h-full items-end justify-start p-6  bg-gradient-to-b from-slate-900 rounded-lg">
-          <div>33 Metric</div>
-          <div>Icon</div>
-          <div>Humidity</div>
-        </div>
-      </div>
-    </div>
-  </AppSection>
-
-  <AppSection title={`World Forecast`}>
-    <div className="flex gap-4">
-      <div className="city-card h-[24vw] shadow-xl rounded-lg relative w-1/4 bg-white/10 bg-no-repeat bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1533929736458-ca588d08c8be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkzNjgzNw&ixlib=rb-4.0.3&q=80&w=500')] ">
-        <div className="city-card-content flex flex-col h-full items-end justify-end p-6  bg-gradient-to-t from-slate-900 rounded-lg">
-          <div>Hot</div>
-          <div>32 C</div>
-          <div>London</div>
-        </div>
-      </div>
-    </div>
-  </AppSection> */}
         </div>
       </div>
     </div>
