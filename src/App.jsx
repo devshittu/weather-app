@@ -10,22 +10,15 @@ import LogInButtonWrapper from "./components/LogInButtonWrapper";
 import GlobalState from "./GlobalState";
 function App() {
   const [userLogInState, setUserLogInState] = useState("logged-in");
-  // // const [globalState] = useGlobalState();
-  // console.log("useGlobalState()", useGlobalState());
 
   const setUserStatus = (status) => {
     setUserLogInState(status);
   };
-  // const [globalState] = useGlobalState();
-  // console.log(globalState)
-  // if (globalState?.isLoading) return <Loader />;
-
   return (
     <>
       {/* user status */}
       <GlobalState>
         <div className={`App bg-gray-800 ${userLogInState}`}>
-          {/* {JSON.stringify(globalState)} */}
           <InfoFixedWrapper>
             <TimeWeatherInfo />
           </InfoFixedWrapper>
