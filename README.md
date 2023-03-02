@@ -38,3 +38,4 @@ Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 1. Load the appropriate icons using [Weather Condition Codes](https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2)
 2. Build the compare city feature
 3. From search functionality make searched city to app default city and reload the entire app, incase the app cannot auto detect from the autoLocator Ip detector.
+4. Default Login using Pin 1234.
