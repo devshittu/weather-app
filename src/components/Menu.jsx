@@ -24,6 +24,7 @@ import { getLocation, setLocation } from "../hooks/location.action";
 import Loader from "./Loader";
 import AppTodayPlaceHolder from "./AppWidgets/AppTodayPlaceHolder";
 import AppDailyCardPlaceHolder from "./AppWidgets/AppDailyCardPlaceHolder";
+import AppHourlyCardPlaceHolder from "./AppWidgets/AppHourlyCardPlaceHolder";
 
 function Menu() {
   const [globalState, updateGlobalState] = useGlobalState();
@@ -240,15 +241,25 @@ function Menu() {
             }`}
           >
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              {twentyFourHoursForecast?.map((item, i) => {
+            {!memoizedState.twentyFourHoursForecast ? (
+                <>
+                  <AppHourlyCardPlaceHolder className="from-sky-700/40" />
+                  <AppHourlyCardPlaceHolder className="from-sky-700/40" />
+                  <AppHourlyCardPlaceHolder className="from-sky-700/40" />
+                  <AppHourlyCardPlaceHolder className="from-sky-700/40" />
+                  <AppHourlyCardPlaceHolder className="from-sky-700/40" />
+                </>
+              ) : (
+                memoizedState.twentyFourHoursForecast?.map((item, i) => {
                 return (
                   <AppHourlyCard
                     key={i}
                     data={item}
                     className="from-sky-700/40"
                   />
-                );
-              })}
+                  );
+                })
+              )}
             </div>
           </AppSection>
           <AppSection title={`This week in ${currentLocation?.cityName}`}>
