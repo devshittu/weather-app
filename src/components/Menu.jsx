@@ -17,15 +17,10 @@ import { useGlobalState } from "../GlobalState";
 import {
   APP_LOADER,
   API_CALL_LIMIT_TWENTY_FOUR_HOUR,
-  LS_PARAMS_CURRENT_LOCATION,
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
 import { isThisWeek, isToday, parseISO } from "date-fns";
-import {
-  getLocation,
-  removeLocation,
-  setLocation,
-} from "../hooks/location.action";
+import { getLocation, setLocation } from "../hooks/location.action";
 import Loader from "./Loader";
 import AppTodayPlaceHolder from "./AppWidgets/AppTodayPlaceHolder";
 import AppDailyCardPlaceHolder from "./AppWidgets/AppDailyCardPlaceHolder";
@@ -244,7 +239,6 @@ function Menu() {
                 : "Weather Today"
             }`}
           >
-            {/* <div className="flex flex-row md:space-x-8 overflow-x-auto gap-4 md:gap-2"> */}
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
               {twentyFourHoursForecast?.map((item, i) => {
                 return (
@@ -259,7 +253,6 @@ function Menu() {
           </AppSection>
           <AppSection title={`This week in ${currentLocation?.cityName}`}>
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              
               {!memoizedState.dailyForecast ? (
                 <>
                   <AppDailyCardPlaceHolder className="from-sky-700/40" />
@@ -279,10 +272,6 @@ function Menu() {
                   );
                 })
               )}
-              {/* <AppDailyCard className="from-sky-700/40" />
-      <AppDailyCard className="from-emerald-700/40" />
-      <AppDailyCard className="from-amber-700/40" />
-      <AppDailyCard className="from-violet-700/40" /> */}
             </div>
           </AppSection>
           <AppSection title={`Nearby Cities`}>
@@ -300,16 +289,12 @@ function Menu() {
               {nearbyCities?.length === 0 && (
                 <SearchNoResultItem keyword={keyword} />
               )}
-              {/* <CityItem photo="https://images.unsplash.com/photo-1614785246748-edc43ab91f76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjMwNg&ixlib=rb-4.0.3&q=80&w=500" />
-      <CityItem photo="https://images.unsplash.com/photo-1559035636-405d0c36d1a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NTI1MjgwOQ&ixlib=rb-4.0.3&q=80&w=500" />
-      <CityItem photo="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3MzkyMDc3OQ&ixlib=rb-4.0.3&q=80&w=1080" /> */}
             </div>
           </AppSection>
 
           <AppSection title={`Cities Comparison`}>
             <CompareCityWrapper />
           </AppSection>
-
         </div>
       </div>
     </div>
