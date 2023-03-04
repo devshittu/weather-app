@@ -7,9 +7,8 @@ import LogInPin from "./components/LogInPin";
 import Menu from "./components/Menu";
 import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
-import GlobalState from "./GlobalState";
 function App() {
-  const [userLogInState, setUserLogInState] = useState("logged-in");
+  const [userLogInState, setUserLogInState] = useState("logged-out");
 
   const setUserStatus = (status) => {
     setUserLogInState(status);
@@ -17,7 +16,7 @@ function App() {
   return (
     <>
       {/* user status */}
-      <GlobalState>
+      {/* <GlobalState> */}
         <div className={`App bg-gray-800 ${userLogInState}`}>
           <InfoFixedWrapper>
             <TimeWeatherInfo />
@@ -30,7 +29,7 @@ function App() {
             <LogInButton setUserStatus={setUserStatus} />
           </LogInButtonWrapper>
         </div>
-      </GlobalState>
+      {/* </GlobalState> */}
     </>
   );
 }
