@@ -137,16 +137,14 @@ function CityItem({ data, photo }) {
               </p>
             </div>
             <div className="flex items-center">
-              
               <p>
                 <span className="text-slate-900 dark:text-slate-100 font-bold">
-                  {`${Math.round(data?.weather?.main?.pressure)} mbar`}
+                  {`${Math.round(data?.weather?.main?.pressure)} hPa`}
                 </span>{" "}
                 <span className="text-sm">Pressure</span>
               </p>
             </div>
             <div className="flex items-center">
-              
               <p>
                 <span className="text-slate-900 dark:text-slate-100 font-bold">
                   {`${Math.round(data?.weather?.main?.humidity)}°`}

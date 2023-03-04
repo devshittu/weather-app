@@ -241,7 +241,6 @@ function Menu() {
             }`}
           >
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
-              <AppHourlyCardPlaceHolder className="from-sky-700/40" />
               {!memoizedState.twentyFourHoursForecast ? (
                 <>
                   <AppHourlyCardPlaceHolder className="from-sky-700/40" />

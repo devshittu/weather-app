@@ -71,7 +71,7 @@ function AppHourlyCard({ className, data }) {
                 </svg>
                 <span className="inline-block text-sm md:text-xl ml-1 md:ml-2 leading-loose">
                   {/* Pressure: */}
-                  {`${Math.round(data?.main?.pressure)} mbar`}
+                  {`${Math.round(data?.main?.pressure)} hPa`}
                 </span>
               </li>
               <li className="flex-inline content-baseline md:space-y-3 hidden md:block">
@@ -97,7 +97,7 @@ function AppHourlyCard({ className, data }) {
               </span>
               {/* weather-temperature-unit */}
               <span className="text-xl md:text-2xl inline-flex  items-start h-14 md:h-20 ">
-              °C
+                °C
               </span>
             </span>
           </div>
