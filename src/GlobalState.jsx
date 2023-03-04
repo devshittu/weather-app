@@ -1,9 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import { APP_LOADER } from "./helpers/constants";
+import { APP_LOADER, USER_LOGIN_STATUS_LOGGED_OUT, USER_LOGIN_STATUS } from "./helpers/constants";
 
 const initState = {
   [APP_LOADER]: true,
   loggedInStatus: false,
+  [USER_LOGIN_STATUS]: USER_LOGIN_STATUS_LOGGED_OUT,
 };
 const GlobalContext = createContext(null);
 

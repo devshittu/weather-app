@@ -17,6 +17,7 @@ import { useGlobalState } from "../GlobalState";
 import {
   APP_LOADER,
   API_CALL_LIMIT_TWENTY_FOUR_HOUR,
+  USER_LOGIN_STATUS_LOGGED_OUT,
 } from "../helpers/constants";
 import AppToday from "./AppWidgets/AppToday";
 import { isThisWeek, isToday, parseISO } from "date-fns";
@@ -26,7 +27,7 @@ import AppTodayPlaceHolder from "./AppWidgets/AppTodayPlaceHolder";
 import AppDailyCardPlaceHolder from "./AppWidgets/AppDailyCardPlaceHolder";
 import AppHourlyCardPlaceHolder from "./AppWidgets/AppHourlyCardPlaceHolder";
 
-function Menu() {
+function Menu({ setUserStatus }) {
   const [globalState, updateGlobalState] = useGlobalState();
 
   const [currentLocation, setCurrentLocation] = useState();
@@ -209,6 +210,7 @@ function Menu() {
               <button
                 type="button"
                 className="inline-block p-2 md:p-6 mt-2 md:mt-0 backdrop-blur bg-white/10 border-2 md:border-4 border-white/20 text-white rounded-lg shadow-md hover:bg-white/30 hover:shadow-lg focus:bg-white/30 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white/50 active:shadow-lg transition duration-150 ease-in-out"
+                onClick={() => setUserStatus(USER_LOGIN_STATUS_LOGGED_OUT)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
