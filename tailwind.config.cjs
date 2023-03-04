@@ -18,8 +18,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Proxima Nova', ...defaultTheme.fontFamily.sans],
-        heading: ['"Source Sans Pro"', 'sans-serif'],
-        'roboto': ['Roboto', 'sans-serif'],
+        heading: ['"Roboto"', 'sans-serif'],
+        // heading: ['"Source Sans Pro"', 'sans-serif'],
+        // 'roboto': ['Roboto', 'sans-serif'],
         serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
         mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
 
