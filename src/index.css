@@ -29,7 +29,8 @@
   @apply opacity-100 pointer-events-auto;
   transform: translate(-50%, -40px);
 }
-.logged-out > .app-bg-image {
+.logged-out > .app-bg-image,
+.logged-in > .app-bg-image {
   @apply cursor-pointer;
   transition: transform 250ms ease-out;
 }
