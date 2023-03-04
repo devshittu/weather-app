@@ -307,9 +307,9 @@ function Menu({ setUserStatus }) {
             </div>
           </AppSection>
 
-          <AppSection title={`Cities Comparison`}>
+          {/* <AppSection title={`Cities Comparison`}>
             <CompareCityWrapper />
-          </AppSection>
+          </AppSection> */}
         </div>
       </div>
     </div>
