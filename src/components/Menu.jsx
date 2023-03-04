@@ -148,6 +148,7 @@ function Menu() {
 
           setLocation(autoLocationDetails);
           setCurrentLocation(autoLocationDetails);
+          updateGlobalState("currentCity", autoLocationDetails);
           getWeatherForecastInfo({
             latitude,
             longitude,
@@ -168,6 +169,7 @@ function Menu() {
     } else {
       const { latitude, longitude, wikiDataId } = locationNow;
       setCurrentLocation(locationNow);
+      updateGlobalState("currentCity", locationNow);
       // use the local storage info to load the
       getWeatherForecastInfo({
         latitude,
