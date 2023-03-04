@@ -37,6 +37,10 @@
   @apply opacity-100 ml-10;
   transform: translateX(0%);
 }
+.logged-out > .welcome-message {
+  @apply opacity-100;
+  transform: translateX(0%);
+}
 
 .logging-in .app-bg-image,
 .verifying-log-in .app-bg-image,
