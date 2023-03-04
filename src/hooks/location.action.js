@@ -12,12 +12,6 @@ export function removeLocation(){
 export function setLocation(data){
 
     const cityData = (data)? {
-        // cityName: data.locationData.cityName,
-        // latitude: data.locationData.lat,
-        // longitude: data.locationData.lng,
-        // countryName: data.locationData.countryName,
-        // countryCode: data.locationData.countryCode,
-        // timezone: data.locationData.tz,
         ...data
       } : {
         cityId: "Q845",

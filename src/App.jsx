@@ -25,7 +25,7 @@ function App() {
     <>
       {/* user status */}
       {/* <GlobalState> */}
-      <div className={`App bg-gray-800 ${userLogInState}`}>
+      <div className={`bg-slate-800 ${userLogInState}`}>
         <InfoFixedWrapper>
           <TimeWeatherInfo
             temperature={Math.round(
