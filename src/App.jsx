@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import "./App.css";
-import AppBG from "./components/AppBG";
+import AppBackgroundImage from "./components/AppBackgroundImage";
 import TimeWeatherInfo from "./components/TimeWeatherInfo";
 import LogInButton from "./components/LogInButton";
 import LogInPin from "./components/LogInPin";
@@ -13,7 +13,6 @@ import AppWelcomeMessage from "./components/AppWidgets/AppWelcomeMessage";
 function App() {
   const [globalState, updateGlobalState] = useGlobalState();
   // const [userLogInState, setUserLogInState] = useState("logged-out");
-  console.log("globalState", globalState);
   // const setUserStatus = (status) => {
   //   setUserLogInState(status);
   // };
@@ -34,11 +33,14 @@ function App() {
             )}
           />
         </InfoFixedWrapper>
-        <LogInPin />
+        <LogInPin setUserStatus={setUserStatus} />
         {/* Menu */}
         <Menu setUserStatus={setUserStatus} />
-        <AppWelcomeMessage countryCode={globalState?.currentCity?.countryCode} cityName={globalState?.currentCity?.cityName} />
-        <AppBG />
+        <AppWelcomeMessage
+          countryCode={globalState?.currentCity?.countryCode}
+          cityName={globalState?.currentCity?.cityName}
+        />
+        <AppBackgroundImage />
         <LogInButtonWrapper>
           <LogInButton setUserStatus={setUserStatus} />
         </LogInButtonWrapper>

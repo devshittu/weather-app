@@ -25,13 +25,13 @@
   }
 }
 
-
 .logged-out > .login-button-wrapper {
   @apply opacity-100 pointer-events-auto;
   transform: translate(-50%, -40px);
 }
-.logged-out > .app-background {
+.logged-out > .app-bg-image {
   @apply cursor-pointer;
+  transition: transform 250ms ease-out;
 }
 .logged-out > .app-info-wrapper {
   @apply opacity-100 ml-10;
@@ -47,6 +47,7 @@
 .log-in-error .app-bg-image {
   @apply blur;
   transform: scale(1.2);
+  transition: all 250ms ease-out;
 }
 
 .logging-in .app-pin-wrapper,
@@ -61,14 +62,12 @@
 }
 
 .login-button-wrapper {
-  /* @apply bottom-10 left-auto right-0; */
-
   transform: translate(40px, 0px);
 }
 
 .app-pin-wrapper {
-        transform: translate(-50%, -30%) scale(0.8);
-        transition: opacity 250ms, transform 250ms;
+  transform: translate(-50%, -30%) scale(0.8);
+  transition: opacity 250ms ease-in, transform 250ms ease-in;
 }
 
 @layer utilities {

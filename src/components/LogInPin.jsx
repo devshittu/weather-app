@@ -1,10 +1,10 @@
 import React from "react";
+import { USER_LOGIN_STATUS_LOGGED_OUT } from "../helpers/constants";
 
-function LogInPin() {
+function LogInPin({ setUserStatus }) {
   const handleOnChange = () => {};
   return (
-
-    <div className=" absolute z-20 opacity-0 left-[50%] top-[50%] pointer-events-auto text-white app-pin-wrapper">
+    <div className=" absolute z-30 opacity-0 left-[50%] top-[50%] pointer-events-auto text-white app-pin-wrapper">
       <input
         onChange={handleOnChange}
         className="bg-transparent border-none ring-0 h-0 absolute w-0"
@@ -24,7 +24,10 @@ function LogInPin() {
         </div>
       </div>
       <h1>
-        Enter the "1245" <span>Cancel</span>
+        Enter the "1245"{" "}
+        <a onClick={() => setUserStatus(USER_LOGIN_STATUS_LOGGED_OUT)}>
+          Cancel
+        </a>
       </h1>
     </div>
   );
