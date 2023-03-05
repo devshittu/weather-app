@@ -14,11 +14,14 @@ import {
   USER_LOGIN_STATUS_LOGGED_OUT,
 } from "./helpers/constants";
 import AppWelcomeMessage from "./components/AppWidgets/AppWelcomeMessage";
-import { getData, setData } from "./hooks/user.action";
+import { getData, removeData, setData } from "./hooks/user.action";
 function App() {
   const [globalState, updateGlobalState] = useGlobalState();
   const userLogInState = globalState[USER_LOGIN_STATUS];
   const setUserStatus = (status) => {
+    if (status == USER_LOGIN_STATUS_LOGGED_OUT) {
+      removeData();
+    }
     updateGlobalState(USER_LOGIN_STATUS, status);
   };
 
@@ -33,27 +36,27 @@ function App() {
   }, []);
 
   return (
-      <div className={`bg-slate-800 ${userLogInState}`}>
+    <div className={`bg-slate-800 ${userLogInState}`}>
       {/* user status */}
-        <InfoFixedWrapper>
-          <TimeWeatherInfo
-            temperature={Math.round(
-              globalState?.city?.currentWeather?.main?.temp
-            )}
-          />
-        </InfoFixedWrapper>
-        <LogInPin setUserStatus={setUserStatus} />
-        {/* Menu */}
-        <Menu setUserStatus={setUserStatus} />
-        <AppWelcomeMessage
-          countryCode={globalState?.currentCity?.countryCode}
-          cityName={globalState?.currentCity?.cityName}
+      <InfoFixedWrapper>
+        <TimeWeatherInfo
+          temperature={Math.round(
+            globalState?.city?.currentWeather?.main?.temp
+          )}
         />
-        <AppBackgroundImage />
-        <LogInButtonWrapper>
-          <LogInButton setUserStatus={setUserStatus} />
-        </LogInButtonWrapper>
-      </div>
+      </InfoFixedWrapper>
+      <LogInPin setUserStatus={setUserStatus} />
+      {/* Menu */}
+      <Menu setUserStatus={setUserStatus} />
+      <AppWelcomeMessage
+        countryCode={globalState?.currentCity?.countryCode}
+        cityName={globalState?.currentCity?.cityName}
+      />
+      <AppBackgroundImage />
+      <LogInButtonWrapper>
+        <LogInButton setUserStatus={setUserStatus} />
+      </LogInButtonWrapper>
+    </div>
   );
 }
 

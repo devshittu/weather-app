@@ -48,6 +48,7 @@ function LogInPin({ setUserStatus }) {
   const userLogInState = globalState[USER_LOGIN_STATUS];
 
   const [pin, setPinTo] = useState("");
+  const [rememberMe, setRememberMeTo] = useState(false);
 
   const ref = useRef(null);
 
@@ -72,7 +73,7 @@ function LogInPin({ setUserStatus }) {
             return new Promise((resolve, reject) => {
               setTimeout(() => {
                 if (pin === "1234") {
-                  setData(true); //TODO add a remind me checkmark.
+                  if (rememberMe) setData(true); //add a remind me checkmark.
                   resolve(true);
                 } else {
                   reject(`Invalid pin: ${pin}`);
@@ -104,8 +105,11 @@ function LogInPin({ setUserStatus }) {
     }
   };
 
+  const handleOnChangeRememberMe = (e) => {
+    setRememberMeTo(!rememberMe);
+  };
+
   const handleOnClick = () => {
-    console.log("Clicked");
     ref.current.focus();
   };
 
@@ -114,7 +118,7 @@ function LogInPin({ setUserStatus }) {
   };
 
   return (
-    <div className=" absolute z-30 opacity-0 left-[50%] top-[50%] pointer-events-auto text-white app-pin-wrapper">
+    <div className=" absolute z-30 opacity-0 left-[50%] top-[50%] pointer-events-auto text-white app-pin-wrapper space-y-3">
       <input
         className="bg-transparent border-none ring-0 h-0 absolute w-0"
         disabled={
@@ -136,10 +140,30 @@ function LogInPin({ setUserStatus }) {
       </div>
       <h1>
         Enter the "1234"{" "}
-        <a onClick={() => setUserStatus(USER_LOGIN_STATUS_LOGGED_OUT)}>
+        <a
+          onClick={() => setUserStatus(USER_LOGIN_STATUS_LOGGED_OUT)}
+          className="text-blue-600 dark:text-blue-500 hover:underline"
+        >
           Cancel
         </a>
       </h1>
+
+      <div className="flex items-center">
+        <input
+          id="link-checkbox"
+          type="checkbox"
+          checked={rememberMe}
+          onChange={handleOnChangeRememberMe}
+          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <label htmlFor="link-checkbox" className="ml-2 font-medium">
+          Remember me{" "}
+          {/* <a href="#" className="text-blue-600 dark:text-blue-500 hover:underline">
+            terms and conditions
+          </a>
+          . */}
+        </label>
+      </div>
     </div>
   );
 }
