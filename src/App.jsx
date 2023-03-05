@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import AppBackgroundImage from "./components/AppBackgroundImage";
 import TimeWeatherInfo from "./components/TimeWeatherInfo";
@@ -8,24 +8,33 @@ import Menu from "./components/Menu";
 import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
 import { useGlobalState } from "./GlobalState";
-import { USER_LOGIN_STATUS } from "./helpers/constants";
+import {
+  USER_LOGIN_STATUS,
+  USER_LOGIN_STATUS_LOGGED_IN,
+  USER_LOGIN_STATUS_LOGGED_OUT,
+} from "./helpers/constants";
 import AppWelcomeMessage from "./components/AppWidgets/AppWelcomeMessage";
+import { getData, setData } from "./hooks/user.action";
 function App() {
   const [globalState, updateGlobalState] = useGlobalState();
-  // const [userLogInState, setUserLogInState] = useState("logged-out");
-  // const setUserStatus = (status) => {
-  //   setUserLogInState(status);
-  // };
   const userLogInState = globalState[USER_LOGIN_STATUS];
   const setUserStatus = (status) => {
     updateGlobalState(USER_LOGIN_STATUS, status);
   };
 
+  useEffect(() => {
+    const isLoggedIn = getData();
+    if (!isLoggedIn) {
+      setUserStatus(USER_LOGIN_STATUS_LOGGED_OUT);
+    } else {
+      setData(true);
+      setUserStatus(USER_LOGIN_STATUS_LOGGED_IN);
+    }
+  }, []);
+
   return (
-    <>
-      {/* user status */}
-      {/* <GlobalState> */}
       <div className={`bg-slate-800 ${userLogInState}`}>
+      {/* user status */}
         <InfoFixedWrapper>
           <TimeWeatherInfo
             temperature={Math.round(
@@ -45,8 +54,6 @@ function App() {
           <LogInButton setUserStatus={setUserStatus} />
         </LogInButtonWrapper>
       </div>
-      {/* </GlobalState> */}
-    </>
   );
 }
 

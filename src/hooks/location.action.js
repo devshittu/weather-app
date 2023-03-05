@@ -2,7 +2,7 @@ import { LS_PARAMS_CURRENT_LOCATION } from "../helpers/constants";
 
 export function getLocation(){
     const data = localStorage.getItem(LS_PARAMS_CURRENT_LOCATION);
-    return (data !== null) ? JSON.parse(data) : null;;
+    return (data !== null) ? JSON.parse(data) : null;
 }
 
 export function removeLocation(){
@@ -23,7 +23,7 @@ export function setLocation(data){
         timezone: "Europe/London",
       }
     localStorage.setItem(
-        LS_PARAMS_CURRENT_LOCATION, 
+        LS_PARAMS_CURRENT_LOCATION,
         JSON.stringify(cityData)
     );
 }
