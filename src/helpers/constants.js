@@ -11,3 +11,4 @@ export const API_CALL_LIMIT_MIN_POPULATION = 500000;
 
 
 export const LS_PARAMS_CURRENT_LOCATION = "currentLocation";
+export const LS_PARAMS_USER_LOGIN_STATUS = "userLoginStatus";
