@@ -8,6 +8,7 @@ import {
   USER_LOGIN_STATUS_LOG_IN_ERROR,
   USER_LOGIN_STATUS_VERIFYING_LOG_IN,
 } from "../helpers/constants";
+import { setData } from "../hooks/user.action";
 
 function PinDigit(props) {
   const [hidden, setHiddenTo] = useState(false);
@@ -70,12 +71,13 @@ function LogInPin({ setUserStatus }) {
           const verifyC = (pin) => {
             return new Promise((resolve, reject) => {
               setTimeout(() => {
-                if (pin === '1234') {
+                if (pin === "1234") {
+                  setData(true); //TODO add a remind me checkmark.
                   resolve(true);
                 } else {
                   reject(`Invalid pin: ${pin}`);
                 }
-              }, Math.floor(Math.random() * (700 - 300 + 1) ) + 300);
+              }, Math.floor(Math.random() * (700 - 300 + 1)) + 300);
             });
           };
           if (await verifyC(pin)) {
@@ -103,7 +105,7 @@ function LogInPin({ setUserStatus }) {
   };
 
   const handleOnClick = () => {
-    console.log('Clicked')
+    console.log("Clicked");
     ref.current.focus();
   };
 
@@ -113,7 +115,6 @@ function LogInPin({ setUserStatus }) {
 
   return (
     <div className=" absolute z-30 opacity-0 left-[50%] top-[50%] pointer-events-auto text-white app-pin-wrapper">
-      
       <input
         className="bg-transparent border-none ring-0 h-0 absolute w-0"
         disabled={
