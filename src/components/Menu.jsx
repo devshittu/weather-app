@@ -240,8 +240,8 @@ function Menu({ setUserStatus }) {
           </AppSection>
           <AppSection
             title={`${
-              currentLocation?.cityName
-                ? "Today in " + currentLocation?.cityName
+              memoizedState.currentLocation?.cityName
+                ? "Today in " + memoizedState.currentLocation?.cityName
                 : "Weather Today"
             }`}
           >
@@ -267,7 +267,11 @@ function Menu({ setUserStatus }) {
               )}
             </div>
           </AppSection>
-          <AppSection title={`This week in ${currentLocation?.cityName}`}>
+          <AppSection title={`${
+              currentLocation?.cityName
+                ? "This week  in " + currentLocation?.cityName
+                : "Weather this week"
+            }`}>
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
               {!memoizedState.dailyForecast ? (
                 <>

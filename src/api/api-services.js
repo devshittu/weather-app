@@ -20,7 +20,6 @@ export const GeoDBApiService = {
   },
 
   getNearbyCities: async function (cityId, params) {
-    // const param = { radius: 100, limit: 3, minPopulation: API_CALL_LIMIT_MIN_POPULATION, ...params };
     const param = { radius: 100, limit: 3, minPopulation: Math.round(API_CALL_LIMIT_MIN_POPULATION * 0.000025), ...params };
     return await this.get(`cities/${cityId}/nearbyCities`, param);
   },

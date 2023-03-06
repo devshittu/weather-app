@@ -5,6 +5,8 @@ import { useState, useEffect, useCallback, useContext } from "react";
 import { GeoDBApiService } from "../../api/api-services";
 import debounce from "lodash.debounce";
 import { useGlobalState } from "../../GlobalState";
+import { API_CALL_LIMIT_MIN_POPULATION } from "../../helpers/constants";
+import { setLocation } from "../../hooks/location.action";
 
 function AppSearchBox() {
   const [searchResult, setSearchResult] = useState();
@@ -16,7 +18,7 @@ function AppSearchBox() {
     try {
       const response = await GeoDBApiService.get("cities?limit=10", {
         namePrefix: searchTerm, //"lagos"
-        minPopulation: 500000,
+        minPopulation: API_CALL_LIMIT_MIN_POPULATION,
       });
       const jsonData = response.data;
 
@@ -26,6 +28,28 @@ function AppSearchBox() {
     } catch (error) {
       throw error;
     }
+  };
+
+  const getWeatherInfo = async (locationData, event) => {
+    console.log("about to make the default.");
+    const { wikiDataId, type, region, regionCode, latitude, longitude } =
+      locationData;
+
+    const newLocationDetails = {
+      wikiDataId,
+      type,
+      region,
+      regionCode,
+      latitude,
+      longitude,
+    };
+    console.log(
+      "warn that this action is going to trigger reload of the entire page to this location:// ",
+      newLocationDetails,
+      locationData
+    );
+
+    setLocation(locationData);
   };
 
   const getLocationInfo = async (locationData, event) => {
