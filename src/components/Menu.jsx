@@ -224,7 +224,7 @@ function Menu({ setUserStatus }) {
             <AppButton>Cities</AppButton>
           </section> */}
           <AppSection title={`Search Location`}>
-            <AppSearch />
+            <AppSearch handleLocationData={handleLocationData} />
           </AppSection>
           <AppSection title={`How it looks & feel out there?`}>
             {!globalState?.city?.currentWeather ? (

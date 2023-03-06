@@ -5,10 +5,10 @@ import { useState, useEffect, useCallback, useContext } from "react";
 import { GeoDBApiService } from "../../api/api-services";
 import debounce from "lodash.debounce";
 import { useGlobalState } from "../../GlobalState";
-import { API_CALL_LIMIT_MIN_POPULATION } from "../../helpers/constants";
+import { API_CALL_LIMIT_MIN_POPULATION, APP_LOADER } from "../../helpers/constants";
 import { setLocation } from "../../hooks/location.action";
 
-function AppSearchBox() {
+function AppSearchBox({ handleLocationData }) {
   const [searchResult, setSearchResult] = useState();
   const [keyword, setKeyword] = useState("");
 
@@ -31,6 +31,7 @@ function AppSearchBox() {
   };
 
   const getWeatherInfo = async (locationData, event) => {
+    updateGlobalState(APP_LOADER, true);
     console.log("about to make the default.");
     const { wikiDataId, type, region, regionCode, latitude, longitude } =
       locationData;
@@ -49,7 +50,9 @@ function AppSearchBox() {
       locationData
     );
 
-    setLocation(locationData);
+    await handleLocationData(locationData);
+
+    updateGlobalState(APP_LOADER, false);
   };
 
   const getLocationInfo = async (locationData, event) => {
