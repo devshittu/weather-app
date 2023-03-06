@@ -5,7 +5,10 @@ import { useState, useEffect, useCallback, useContext } from "react";
 import { GeoDBApiService } from "../../api/api-services";
 import debounce from "lodash.debounce";
 import { useGlobalState } from "../../GlobalState";
-import { API_CALL_LIMIT_MIN_POPULATION, APP_LOADER } from "../../helpers/constants";
+import {
+  API_CALL_LIMIT_MIN_POPULATION,
+  APP_LOADER,
+} from "../../helpers/constants";
 import { setLocation } from "../../hooks/location.action";
 
 function AppSearchBox({ handleLocationData }) {
@@ -33,21 +36,8 @@ function AppSearchBox({ handleLocationData }) {
   const getWeatherInfo = async (locationData, event) => {
     updateGlobalState(APP_LOADER, true);
     console.log("about to make the default.");
-    const { wikiDataId, type, region, regionCode, latitude, longitude } =
-      locationData;
-
-    const newLocationDetails = {
-      wikiDataId,
-      type,
-      region,
-      regionCode,
-      latitude,
-      longitude,
-    };
     console.log(
-      "warn that this action is going to trigger reload of the entire page to this location:// ",
-      newLocationDetails,
-      locationData
+      "warn that this action is going to trigger reload of the entire page to this location:// "
     );
 
     await handleLocationData(locationData);
@@ -102,12 +92,6 @@ function AppSearchBox({ handleLocationData }) {
             cityInfo: searchedCityInfo,
             cityDateTime: searchedCityDateTime,
             citiesNearby: citiesNearbySearched,
-            // weather: {
-            //   forecast: [],
-            //   today: null,
-            //   daily: null,
-            //   thirdHourly: [],
-            // },
           });
         }
       );
@@ -115,10 +99,6 @@ function AppSearchBox({ handleLocationData }) {
       throw new Error(error);
     }
   };
-
-  useEffect(() => {
-    // doSearch();
-  }, []);
 
   const handleOnChange = (event) => {
     setKeyword(event.target.value);
