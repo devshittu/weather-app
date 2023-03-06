@@ -37,6 +37,13 @@ function Menu({ setUserStatus }) {
   const [dailyForecast, setDailyForecast] = useState();
   const [nearbyCities, setNearbyCities] = useState();
 
+  const filterThisWeekForecastByDate = (forecastItems, todayDate) => {
+    return forecastItems.filter((item) => isThisWeek(parseISO(item.dt_txt)));
+  };
+  const filterTodayForecast = (forecastItems) => {
+    return forecastItems.filter((item) => isToday(parseISO(item.dt_txt)));
+  };
+
   const fetchNearbyCities = async (cityId) => {
     try {
       // updateGlobalState(APP_LOADER, true);
@@ -111,58 +118,46 @@ function Menu({ setUserStatus }) {
       // updateGlobalState(APP_LOADER, false);
     }
   };
-  const filterThisWeekForecastByDate = (forecastItems, todayDate) => {
-    return forecastItems.filter((item) => isThisWeek(parseISO(item.dt_txt)));
+  const handleLocationData = (locationDetails) => {
+    setLocation(locationDetails);
+    setCurrentLocation(locationDetails);
+    updateGlobalState("currentCity", locationDetails);
+    getWeatherForecastInfo({
+      latitude: locationDetails.latitude,
+      longitude: locationDetails.longitude,
+    });
+    fetchNearbyCities(locationDetails.wikiDataId);
   };
-  const filterTodayForecast = (forecastItems) => {
-    return forecastItems.filter((item) => isToday(parseISO(item.dt_txt)));
-  };
-
   const loadLocation = async () => {
+    updateGlobalState(APP_LOADER, true);
+
     try {
-      let autoLocationDetails = {};
-      updateGlobalState(APP_LOADER, true);
-      const response = await autoLocationApiService
-        .get()
-        .then((response) => {
-          const locationData = response.data?.locationData;
-          autoLocationDetails = { ...locationData };
-          const requestParams = {
-            countryIds: locationData?.countryCode,
-            namePrefix: locationData?.cityName,
-          };
-          return GeoDBApiService.getMatchingCities(requestParams);
-        })
-        .then((response) => {
-          // response first data
-          const { wikiDataId, type, region, regionCode, latitude, longitude } =
-            response.data.data[0];
+      const autoLocationResponse = await autoLocationApiService.get();
+      const locationData = autoLocationResponse.data?.locationData;
+      const requestParams = {
+        countryIds: locationData?.countryCode,
+        namePrefix: locationData?.cityName,
+      };
 
-          autoLocationDetails = {
-            ...autoLocationDetails,
-            wikiDataId,
-            type,
-            region,
-            regionCode,
-            latitude,
-            longitude,
-          };
+      const matchingCitiesResponse = await GeoDBApiService.getMatchingCities(
+        requestParams
+      );
+      const firstCity = matchingCitiesResponse.data.data[0];
 
-          setLocation(autoLocationDetails);
-          setCurrentLocation(autoLocationDetails);
-          updateGlobalState("currentCity", autoLocationDetails);
-          getWeatherForecastInfo({
-            latitude,
-            longitude,
-          });
-          fetchNearbyCities(wikiDataId);
-        });
+      const autoLocationDetails = {
+        ...locationData,
+        ...firstCity,
+      };
+
+      handleLocationData(autoLocationDetails);
     } catch (error) {
       throw new Error(error);
     } finally {
       updateGlobalState(APP_LOADER, false);
     }
   };
+  // in this loadLocation function can you improve the code further by creating a seperate 
+  // function for the following function call setLocation, setCurrentLocation, updateGlobalState, getWeatherForecastInfo, fetchNearbyCities
   useEffect(() => {
     // removeLocation();
     const locationNow = getLocation();
@@ -267,11 +262,13 @@ function Menu({ setUserStatus }) {
               )}
             </div>
           </AppSection>
-          <AppSection title={`${
+          <AppSection
+            title={`${
               currentLocation?.cityName
                 ? "This week  in " + currentLocation?.cityName
                 : "Weather this week"
-            }`}>
+            }`}
+          >
             <div className="flex flex-row space-x-4 md:space-x-8 overflow-x-auto">
               {!memoizedState.dailyForecast ? (
                 <>
