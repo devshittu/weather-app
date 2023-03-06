@@ -26,6 +26,7 @@ import Loader from "./Loader";
 import AppTodayPlaceHolder from "./AppWidgets/AppTodayPlaceHolder";
 import AppDailyCardPlaceHolder from "./AppWidgets/AppDailyCardPlaceHolder";
 import AppHourlyCardPlaceHolder from "./AppWidgets/AppHourlyCardPlaceHolder";
+import CityItemPlaceHolder from "./AppWidgets/CityItemPlaceHolder";
 
 function Menu({ setUserStatus }) {
   const [globalState, updateGlobalState] = useGlobalState();
@@ -289,25 +290,27 @@ function Menu({ setUserStatus }) {
               )}
             </div>
           </AppSection>
-          {memoizedState.nearbyCities && (
+          {/* {memoizedState.nearbyCities && ( */}
           <AppSection title={`Nearby Cities`}>
             <div className="flex sm:-m-4 -mx-4 -mb-10 -mt-4 flex-wrap gap-4">
-              {memoizedState.nearbyCities?.map((item) => {
-                return (
-                  <CityItem
-                    key={item.id}
-                    data={item}
-                    photo="https://images.unsplash.com/photo-1444084316824-dc26d6657664?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NzUxNjkxMQ&ixlib=rb-4.0.3&q=80&w=500"
-                  />
-                );
-              })}
-
-              {memoizedState.nearbyCities?.length === 0 && (
-                <SearchNoResultItem keyword={keyword} />
+              {!memoizedState.nearbyCities ? (
+                <>
+                  <CityItemPlaceHolder className="from-sky-700/40" />
+                </>
+              ) : (
+                memoizedState.nearbyCities?.map((item) => {
+                  return (
+                    <CityItem
+                      key={item.id}
+                      data={item}
+                      photo="https://images.unsplash.com/photo-1444084316824-dc26d6657664?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NzUxNjkxMQ&ixlib=rb-4.0.3&q=80&w=500"
+                    />
+                  );
+                })
               )}
             </div>
           </AppSection>
-          )}
+          {/* )} */}
 
           {/* <AppSection title={`Cities Comparison`}>
             <CompareCityWrapper />
