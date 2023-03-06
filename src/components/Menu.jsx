@@ -118,15 +118,15 @@ function Menu({ setUserStatus }) {
       // updateGlobalState(APP_LOADER, false);
     }
   };
-  const handleLocationData = (locationDetails) => {
+  const handleLocationData = async (locationDetails) => {
     setLocation(locationDetails);
     setCurrentLocation(locationDetails);
     updateGlobalState("currentCity", locationDetails);
-    getWeatherForecastInfo({
+    await getWeatherForecastInfo({
       latitude: locationDetails.latitude,
       longitude: locationDetails.longitude,
     });
-    fetchNearbyCities(locationDetails.wikiDataId);
+    await fetchNearbyCities(locationDetails.wikiDataId);
   };
   const loadLocation = async () => {
     updateGlobalState(APP_LOADER, true);
@@ -149,6 +149,7 @@ function Menu({ setUserStatus }) {
         ...firstCity,
       };
 
+      console.log('autoLocationDetails:// ',autoLocationDetails)
       handleLocationData(autoLocationDetails);
     } catch (error) {
       throw new Error(error);
@@ -156,7 +157,7 @@ function Menu({ setUserStatus }) {
       updateGlobalState(APP_LOADER, false);
     }
   };
-  // in this loadLocation function can you improve the code further by creating a seperate 
+  // in this loadLocation function can you improve the code further by creating a seperate
   // function for the following function call setLocation, setCurrentLocation, updateGlobalState, getWeatherForecastInfo, fetchNearbyCities
   useEffect(() => {
     // removeLocation();
@@ -235,8 +236,8 @@ function Menu({ setUserStatus }) {
           </AppSection>
           <AppSection
             title={`${
-              memoizedState.currentLocation?.cityName
-                ? "Today in " + memoizedState.currentLocation?.cityName
+              memoizedState.currentLocation?.city
+                ? "Today in " + memoizedState.currentLocation?.city
                 : "Weather Today"
             }`}
           >
@@ -264,8 +265,8 @@ function Menu({ setUserStatus }) {
           </AppSection>
           <AppSection
             title={`${
-              currentLocation?.cityName
-                ? "This week  in " + currentLocation?.cityName
+              currentLocation?.city
+                ? "This week  in " + currentLocation?.city
                 : "Weather this week"
             }`}
           >

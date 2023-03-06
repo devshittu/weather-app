@@ -9,6 +9,7 @@ import InfoFixedWrapper from "./components/InfoFixedWrapper";
 import LogInButtonWrapper from "./components/LogInButtonWrapper";
 import { useGlobalState } from "./GlobalState";
 import {
+  APP_LOADER,
   USER_LOGIN_STATUS,
   USER_LOGIN_STATUS_LOGGED_IN,
   USER_LOGIN_STATUS_LOGGED_OUT,
@@ -18,6 +19,7 @@ import { getData, removeData, setData } from "./hooks/user.action";
 function App() {
   const [globalState, updateGlobalState] = useGlobalState();
   const userLogInState = globalState[USER_LOGIN_STATUS];
+  // const appLoadingState = globalState[APP_LOADER];
   const setUserStatus = (status) => {
     if (status == USER_LOGIN_STATUS_LOGGED_OUT) {
       removeData();
@@ -50,7 +52,7 @@ function App() {
       <Menu setUserStatus={setUserStatus} />
       <AppWelcomeMessage
         countryCode={globalState?.currentCity?.countryCode}
-        cityName={globalState?.currentCity?.cityName}
+        cityName={globalState?.currentCity?.city}
       />
       <AppBackgroundImage />
       <LogInButtonWrapper>
