@@ -222,11 +222,11 @@ function Menu({ setUserStatus }) {
               </button>
             </div>
           </section>
-          <section className="nav flex gap-3 overflow-auto pb-2 w-full menu-app-section-bound mt-16">
+          {/* <section className="nav flex gap-3 overflow-auto pb-2 w-full menu-app-section-bound mt-16">
             <h1 className="text-2xl leading-5">Categories: </h1>
             <AppButton>Weather</AppButton>
             <AppButton>Cities</AppButton>
-          </section>
+          </section> */}
           <AppSection title={`Search Location`}>
             <AppSearch />
           </AppSection>
@@ -289,9 +289,10 @@ function Menu({ setUserStatus }) {
               )}
             </div>
           </AppSection>
+          {memoizedState.nearbyCities && (
           <AppSection title={`Nearby Cities`}>
             <div className="flex sm:-m-4 -mx-4 -mb-10 -mt-4 flex-wrap gap-4">
-              {nearbyCities?.map((item) => {
+              {memoizedState.nearbyCities?.map((item) => {
                 return (
                   <CityItem
                     key={item.id}
@@ -301,11 +302,12 @@ function Menu({ setUserStatus }) {
                 );
               })}
 
-              {nearbyCities?.length === 0 && (
+              {memoizedState.nearbyCities?.length === 0 && (
                 <SearchNoResultItem keyword={keyword} />
               )}
             </div>
           </AppSection>
+          )}
 
           {/* <AppSection title={`Cities Comparison`}>
             <CompareCityWrapper />
