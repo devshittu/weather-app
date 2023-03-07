@@ -7,7 +7,7 @@ function AppDialog({
   children,
   closable,
   onCancelCallback,
-  okCallback,
+  onOkCallback,
 }) {
   const [globalState, updateGlobalState] = useGlobalState();
   const [isVisible, setVisibleTo] = useState(false);
@@ -25,6 +25,11 @@ function AppDialog({
   const onCancel = () => {
     //   "do something before finally canceling, probably a callback fxn"
     if (onCancelCallback) onCancelCallback();
+    onClose();
+  };
+  const onOk = () => {
+    //   "do something before finally canceling, probably a callback fxn"
+    if (onOkCallback) onOkCallback();
     onClose();
   };
   const onShow = () => {
@@ -117,9 +122,10 @@ function AppDialog({
                   ></path>
                 </svg>
                 <h3 className="mb-5 text-lg font-normal">
-                  Are you sure you want to delete this product?
+                  Are you sure you want to change your current location?
                 </h3>
                 <button
+                  onClick={onCancel}
                   data-modal-hide="popup-modal"
                   type="button"
                   className={`${typeClassNames} text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2`}
