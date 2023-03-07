@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <div className={`bg-slate-800 ${userLogInState} ${appLoadingState && 'loading' }`}>
+    <div className={`bg-slate-800 ${userLogInState + (appLoadingState ? 'loading' :'') }`}>
       {/* user status */}
       <InfoFixedWrapper>
         <TimeWeatherInfo
