@@ -10,6 +10,7 @@ import {
   APP_LOADER,
 } from "../../helpers/constants";
 import { setLocation } from "../../hooks/location.action";
+import AppDialog from "../AppWidgets/AppDialog";
 
 function AppSearchBox({ handleLocationData }) {
   const [searchResult, setSearchResult] = useState();

@@ -42,11 +42,11 @@
   @apply opacity-100;
   transform: translateX(0%);
 }
-
+.loading > .app-bg-image,
 .logging-in .app-bg-image,
 .verifying-log-in .app-bg-image,
 .log-in-error .app-bg-image {
-  @apply blur;
+  @apply blur pointer-events-none;
   transform: scale(1.2);
   transition: all 250ms ease-out;
 }
@@ -71,6 +71,28 @@
   transition: opacity 250ms ease-in, transform 250ms ease-in;
 }
 
+
+dialog[open] {
+  animation: 0.2s linear slidein;
+}
+
+dialog::backdrop {
+  @apply backdrop:blur;
+  backdrop-filter: blur(3px);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
+  /* animation: 0.4s ease fade; */
+  /* animation: appear 0.15s cubic-bezier(0, 1.8, 1, 1.8); */
+  animation: fade 0.15s cubic-bezier(0, 1.8, 1, 1.8);
+}
+
+@keyframes slidein {
+  from {
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    transfrom: translate3d(0, 0, 0);
+  }
+}
 @layer utilities {
   .sky {
     @apply from-sky-700/40;
