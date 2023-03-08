@@ -10,6 +10,8 @@ function LogInButton({ setUserStatus }) {
   return (
     <AppButton
       className="animate-bounce"
+      type="light"
+      size="lg"
       onClick={() => setUserStatus(USER_LOGIN_STATUS_LOGGING_IN)}
     >
       Sign In
