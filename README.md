@@ -40,3 +40,15 @@ Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 1. Load the appropriate icons using [Weather Condition Codes](https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2)
 2. Build the compare city feature
+
+
+# Screencast
+
+https://user-images.githubusercontent.com/54511108/223697018-9a1cf947-b148-431c-8d4b-6ada9fd2ab5a.mp4
+
+https://user-images.githubusercontent.com/54511108/223696847-1bdfb6fc-1dcc-40ed-9f8a-c5eba3a8d554.mp4
+
+
+
+
+ 
