@@ -149,7 +149,6 @@ function Menu({ setUserStatus }) {
         ...firstCity,
       };
 
-      console.log("autoLocationDetails:// ", autoLocationDetails);
       handleLocationData(autoLocationDetails);
     } catch (error) {
       throw new Error(error);
@@ -204,9 +203,8 @@ function Menu({ setUserStatus }) {
               )}
             />
             <div>
-              <button
+              <AppButton
                 type="button"
-                className="inline-block p-2 md:p-6 mt-2 md:mt-0 backdrop-blur bg-white/10 border-2 md:border-4 border-white/20 text-white rounded-lg shadow-md hover:bg-white/30 hover:shadow-lg focus:bg-white/30 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white/50 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => setUserStatus(USER_LOGIN_STATUS_LOGGED_OUT)}
               >
                 <svg
@@ -216,26 +214,32 @@ function Menu({ setUserStatus }) {
                 >
                   <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z" />
                 </svg>
-              </button>
+              </AppButton>
             </div>
           </section>
           {/* <section className="nav flex gap-3 overflow-auto pb-2 w-full menu-app-section-bound mt-16">
             <h1 className="text-2xl leading-5">Categories: </h1>
             <AppButton>Weather</AppButton>
-            <AppButton>Cities</AppButton>
+              <AppButton type="info" size="lg">
+                Info
+              </AppButton>
+              <AppButton type="success" size="md">
+                Success
+              </AppButton>
+              <AppButton type="light" size="md">
+                Light
+              </AppButton>
+              <AppButton type="danger" size="sm">
+                Danger
+              </AppButton>
+              <AppButton size="lg">
+                Neutral
+              </AppButton>
+              <AppButton size="lg" disabled>
+                Disabled
+              </AppButton>
           </section> */}
           <AppSection title={`Search Location`}>
-            <button
-              onClick={() => {
-                updateGlobalState("modalVisibility", true);
-              }}
-              data-modal-target="popup-modal"
-              data-modal-toggle="popup-modal"
-              className="block z-50 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              type="button"
-            >
-              Toggle modal
-            </button>
             <AppSearch handleLocationData={handleLocationData} />
           </AppSection>
           <AppSection title={`How it looks & feel out there?`}>

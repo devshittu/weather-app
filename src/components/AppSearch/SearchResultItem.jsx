@@ -142,11 +142,14 @@ function SearchResultItem({ data, onClickView, onClickMakeDefault }) {
           content={
             <p>
               Are you sure you want to change your current location to{" "}
-              <strong>{`${data.name}, ${data.country}`}</strong>?
+              <strong>{`${data.name}, ${data.country}`}</strong>? This action
+              will require the app to reload.
             </p>
           }
         />
-        <AppButton type="light" onClick={onClickView}>Compare Weather</AppButton>
+        <AppButton type="light" onClick={onClickView} disabled>
+          Compare Weather
+        </AppButton>
       </div>
     </div>
   );

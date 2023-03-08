@@ -65,7 +65,7 @@ function AppButton({ children, nativeType, type, size, className, onClick, disab
       ${typeClassNames}
       ${
         disabled
-          ? "text-slate-500 bg-slate-300/70 dark:bg-slate-600/70 cursor-not-allowed "
+          ? "text-slate-400 hover:text-slate-400 bg-slate-300/70 dark:bg-slate-600/70 cursor-not-allowed "
           : "bg-white/10 hover:bg-white/30 dark:bg-slate-300/10 dark:hover:bg-slate-300/30" //default
       } 
 

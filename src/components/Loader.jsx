@@ -13,7 +13,7 @@ function Loader({ show }) {
         >
           <svg
             aria-hidden="true"
-            className="w-8 h-8 mr-2 text-slate-200 animate-spin dark:text-slate-600 fill-blue-600"
+            className="w-12 h-12 mr-2 text-slate-200 animate-spin dark:text-slate-600 fill-blue-600"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
