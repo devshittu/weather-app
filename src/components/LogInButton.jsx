@@ -12,6 +12,7 @@ function LogInButton({ setUserStatus }) {
       className="animate-bounce"
       type="light"
       size="lg"
+      outlined
       onClick={() => setUserStatus(USER_LOGIN_STATUS_LOGGING_IN)}
     >
       Sign In
