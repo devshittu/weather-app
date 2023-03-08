@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function AppButton({
-  children,
-  type,
-  size,
-  className,
-  onClick,
-  disabled,
-}) {
+function AppButton({ children, nativeType, type, size, className, onClick, disabled }) {
   const [typeClassNames, setTypeClassNames] = useState(null);
   const [sizeClassNames, setSizeClassNames] = useState(null);
   const handleType = () => {
@@ -28,6 +21,10 @@ function AppButton({
       case "info":
         properties =
           "text-blue-600 hover:text-blue-500 focus:ring-blue-500/80 dark:focus:ring-blue-500/90";
+        break;
+      case "light":
+        properties =
+          "text-slate-600 hover:text-slate-500 dark:text-white/60 dark:hover:text-white/50 focus:ring-slate-500/80 dark:focus:ring-slate-500/90";
         break;
       default:
         properties = "text-white focus:ring-white/60";
@@ -62,7 +59,7 @@ function AppButton({
     <button
       onClick={onClick}
       className={`inline-block z-50
-      rounded-lg px-5 py-2.5 text-center
+      rounded-lg mx-1 px-5 py-2.5 text-center
       backdrop-blur focus:ring-4 focus:outline-none 
       ${sizeClassNames}
       ${typeClassNames}
@@ -74,7 +71,7 @@ function AppButton({
 
       ${className}
       `}
-      type="button"
+      type={nativeType? nativeType : "button"}
       disabled={disabled}
     >
       {children}

@@ -14,6 +14,7 @@ function AppDialog({
 }) {
   const [isVisible, setVisibleTo] = useState(false);
   const [typeClassNames, setTypeClassNames] = useState(null);
+  const [strokeColorClassName, setStrokeColorClassName] = useState(null);
   const dialogRef = useRef(null);
 
   const setVisibility = (value) => {
@@ -39,26 +40,32 @@ function AppDialog({
   };
   const handleDialogType = () => {
     let typeClass = "";
+    let strokeClass = "";
     switch (type) {
       case "success":
         typeClass =
           "bg-emerald-600 hover:bg-emerald-800 focus:ring-emerald-300 dark:focus:ring-emerald-800";
+        strokeClass = "stroke-emerald-600";
         break;
       case "warning":
         typeClass =
           "bg-amber-600 hover:bg-amber-800 focus:ring-amber-300 dark:focus:ring-amber-800";
+        strokeClass = "stroke-amber-600";
         break;
       case "danger":
         typeClass =
           "bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800";
+        strokeClass = "stroke-red-600";
         break;
       case "info":
       default:
         typeClass =
           "bg-blue-600 hover:bg-blue-800 focus:ring-blue-300 dark:focus:ring-blue-800";
+        strokeClass = "stroke-blue-600";
         break;
     }
     setTypeClassNames(typeClass);
+    setStrokeColorClassName(strokeClass);
   };
 
   useEffect(() => {
@@ -108,7 +115,7 @@ function AppDialog({
             <div className="p-6 text-center">
               <svg
                 aria-hidden="true"
-                className="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200"
+                className={`mx-auto mb-4 fill-transparent  w-14 h-14 dark:text-gray-200 ${strokeColorClassName}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -121,20 +128,12 @@ function AppDialog({
                   d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
               </svg>
-              <h3 className="mb-5 text-lg font-normal">
-                {content}
-              </h3>
+              <h3 className="mb-5 text-lg font-normal">{content}</h3>
 
-              <AppButton
-                onClick={onOk}
-                type={type}
-              >
+              <AppButton onClick={onOk} type={type}>
                 Yes, I'm sure
               </AppButton>
-              <AppButton
-                onClick={onCancel}
-                className="text-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:focus:ring-gray-600"
-              >
+              <AppButton onClick={onCancel} type="light">
                 No, cancel
               </AppButton>
             </div>
