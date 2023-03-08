@@ -1,9 +1,17 @@
 import React from "react";
-import AppButton from "../AppWidgets/AppButton"
+import { useGlobalState } from "../../GlobalState";
+import AppAlert from "../AppWidgets/AppAlert";
+import AppButton from "../AppWidgets/AppButton";
 
 function SearchResultItem({ data, onClickView, onClickMakeDefault }) {
+  const [globalState, updateGlobalState] = useGlobalState();
+  const save = () => {
+    alert("You clicked save!");
+    // updateGlobalState("modalVisibility", true);
+  };
+
   return (
-    <div className="w-full flex p-3 pl-4 items-center justify-between hover:bg-slate-500/40 dark:hover:bg-white/40 cursor-pointer">
+    <div className="w-full flex p-3 pl-4 items-center justify-between hover:bg-slate-500/40 dark:hover:bg-slate-900/40 cursor-pointer">
       <div className="flex-nowrap flex">
         <div className="mr-4">
           <div className="h-9 w-9 rounded-sm flex items-center justify-center text-3xl">
@@ -124,8 +132,21 @@ function SearchResultItem({ data, onClickView, onClickMakeDefault }) {
         </div>
       </div>
       <div className="justify-end mr-1">
-        <AppButton onClick={onClickMakeDefault}>Make Current Location</AppButton>
-        <AppButton onClick={onClickView}>View Weather</AppButton>
+        <AppAlert
+          modalTitle="Modal One Title"
+          buttonTitle="Make Current Location"
+          onOk={onClickMakeDefault}
+          alertType="info"
+          buttonType="light"
+          // disabled
+          content={
+            <p>
+              Are you sure you want to change your current location to{" "}
+              <strong>{`${data.name}, ${data.country}`}</strong>?
+            </p>
+          }
+        />
+        <AppButton type="light" onClick={onClickView}>Compare Weather</AppButton>
       </div>
     </div>
   );
