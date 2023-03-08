@@ -36,11 +36,6 @@ function AppSearchBox({ handleLocationData }) {
 
   const getWeatherInfo = async (locationData, event) => {
     updateGlobalState(APP_LOADER, true);
-    console.log("about to make the default.");
-    console.log(
-      "warn that this action is going to trigger reload of the entire page to this location:// "
-    );
-
     await handleLocationData(locationData);
 
     updateGlobalState(APP_LOADER, false);
