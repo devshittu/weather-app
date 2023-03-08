@@ -1,22 +1,23 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useGlobalState } from "../../GlobalState";
+import AppButton from "./AppButton";
 
 function AppDialog({
-  type = "info",
+  active,
   heading,
+  content,
   children,
   closable,
   onCancelCallback,
   onOkCallback,
+  handleSave,
+  type = "info",
 }) {
-  const [globalState, updateGlobalState] = useGlobalState();
   const [isVisible, setVisibleTo] = useState(false);
   const [typeClassNames, setTypeClassNames] = useState(null);
   const dialogRef = useRef(null);
 
   const setVisibility = (value) => {
     setVisibleTo(value);
-    updateGlobalState("modalVisibility", value);
   };
   const onClose = () => {
     setVisibility(false);
@@ -27,14 +28,14 @@ function AppDialog({
     if (onCancelCallback) onCancelCallback();
     onClose();
   };
+  const onShow = () => {
+    setVisibility(true);
+    dialogRef.current.showModal();
+  };
   const onOk = () => {
     //   "do something before finally canceling, probably a callback fxn"
     if (onOkCallback) onOkCallback();
     onClose();
-  };
-  const onShow = () => {
-    setVisibility(true);
-    dialogRef.current.showModal();
   };
   const handleDialogType = () => {
     let typeClass = "";
@@ -61,91 +62,86 @@ function AppDialog({
   };
 
   useEffect(() => {
-    if (globalState.modalVisibility) {
+    if (active) {
       onShow();
     } else onClose();
     handleDialogType();
-  }, [globalState.modalVisibility]);
+  }, [active]);
 
   return (
-    <>
-      <dialog
-        ref={dialogRef}
-        id="popup-modal"
-        tabIndex="-1"
-        className={`${
-          !isVisible ? "hidden" : "block"
-        } fixed top-0 left-0 right-0 z-[50]  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-transparent`}
-      >
-        <div className="relative w-full h-full max-w-md md:h-auto">
-          <div className="relative backdrop-blur bg-white/70 dark:bg-slate-900/70 rounded-lg shadow  text-slate-500 dark:text-slate-400">
-            {closable && (
-              <button
-                onClick={onClose}
-                type="button"
-                className="absolute  top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                data-modal-hide="popup-modal"
+    <dialog
+      ref={dialogRef}
+      id="popup-modal"
+      tabIndex="-1"
+      className={`${
+        !isVisible ? "hidden" : "block"
+      } fixed top-0 left-0 right-0 z-[50]  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-transparent`}
+    >
+      <div className="relative w-full h-full max-w-md md:h-auto">
+        <div className="relative backdrop-blur bg-white/70 dark:bg-slate-900/70 rounded-lg shadow  text-slate-500 dark:text-slate-400">
+          {closable && (
+            <button
+              onClick={onClose}
+              type="button"
+              className="absolute  top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+              data-modal-hide="popup-modal"
+            >
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5 fill-red-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5 fill-red-600"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="sr-only">Close modal</span>
-              </button>
-            )}
-            {children ? (
-              children
-            ) : (
-              <div className="p-6 text-center">
-                <svg
-                  aria-hidden="true"
-                  className="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <h3 className="mb-5 text-lg font-normal">
-                  Are you sure you want to change your current location?
-                </h3>
-                <button
-                  onClick={onCancel}
-                  data-modal-hide="popup-modal"
-                  type="button"
-                  className={`${typeClassNames} text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2`}
-                >
-                  Yes, I'm sure
-                </button>
-                <button
-                  onClick={onCancel}
-                  data-modal-hide="popup-modal"
-                  type="button"
-                  className="text-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:focus:ring-gray-600"
-                >
-                  No, cancel
-                </button>
-              </div>
-            )}
-          </div>
+                <path
+                  fillRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <span className="sr-only">Close modal</span>
+            </button>
+          )}
+          {children ? (
+            children
+          ) : (
+            <div className="p-6 text-center">
+              <svg
+                aria-hidden="true"
+                className="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <h3 className="mb-5 text-lg font-normal">
+                {content}
+              </h3>
+
+              <AppButton
+                onClick={onOk}
+                type={type}
+              >
+                Yes, I'm sure
+              </AppButton>
+              <AppButton
+                onClick={onCancel}
+                className="text-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:focus:ring-gray-600"
+              >
+                No, cancel
+              </AppButton>
+            </div>
+          )}
         </div>
-      </dialog>
-    </>
+      </div>
+    </dialog>
   );
 }
 

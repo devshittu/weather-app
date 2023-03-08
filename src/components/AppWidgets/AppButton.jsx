@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 function AppButton({
   children,
   type,
   size,
-  colorless,
   className,
   onClick,
   disabled,
@@ -16,20 +15,20 @@ function AppButton({
     switch (type) {
       case "success":
         properties =
-          "text-emerald-600 hover:text-emerald-800 focus:ring-emerald-300/60 dark:focus:ring-emerald-800/60";
+          "text-emerald-600 hover:text-emerald-500 focus:ring-emerald-500/80 dark:focus:ring-emerald-500/90";
         break;
       case "warning":
         properties =
-          "text-amber-600 hover:text-amber-800 focus:ring-amber-300/60 dark:focus:ring-amber-800/60";
+          "text-amber-600 hover:text-amber-500 focus:ring-amber-500/80 dark:focus:ring-amber-500/90";
         break;
       case "danger":
         properties =
-          "text-red-600 hover:text-red-800 focus:ring-red-300/60 dark:focus:ring-red-800/60";
+          "text-red-600 hover:text-red-500 focus:ring-red-500/80 dark:focus:ring-red-500/90";
         break;
       case "info":
         properties =
-          "text-blue-600 hover:text-blue-800 focus:ring-blue-300/60 dark:focus:ring-blue-800/60";
-          break;
+          "text-blue-600 hover:text-blue-500 focus:ring-blue-500/80 dark:focus:ring-blue-500/90";
+        break;
       default:
         properties = "text-white focus:ring-white/60";
         break;
