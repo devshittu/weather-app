@@ -3,13 +3,14 @@ import AppButton from "./AppButton";
 
 function AppDialog({
   active,
+  updateActiveStatus,
   heading,
   content,
   children,
   closable,
+  toggle,
   onCancelCallback,
   onOkCallback,
-  handleSave,
   type = "info",
 }) {
   const [isVisible, setVisibleTo] = useState(false);
@@ -22,6 +23,7 @@ function AppDialog({
   };
   const onClose = () => {
     setVisibility(false);
+    // if (updateActiveStatus) updateActiveStatus();
     dialogRef.current.close();
   };
   const onCancel = () => {
@@ -73,12 +75,27 @@ function AppDialog({
       onShow();
     } else onClose();
     handleDialogType();
-  }, [active]);
 
+    function onKeyDown(event) {
+      if (event.keyCode === 27) {
+        // Close the modal when the Escape key is pressed
+        onClose();
+        console.log("isVisible after", isVisible);
+      }
+    }
+
+    if (dialogRef && dialogRef.current) {
+      dialogRef.current.addEventListener("keydown", onKeyDown);
+      return () => {
+        dialogRef.current.removeEventListener("keydown", onKeyDown);
+      };
+    }
+  }, [active]);
+  // Use useEffect to add an event listener to the document
+  useEffect(() => {}, []);
   return (
     <dialog
       ref={dialogRef}
-      id="popup-modal"
       tabIndex="-1"
       className={`${
         !isVisible ? "hidden" : "block"
