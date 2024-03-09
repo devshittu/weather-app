@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { APP_LOADER, USER_LOGIN_STATUS_LOGGED_OUT, USER_LOGIN_STATUS } from "./helpers/constants";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const initState = {
   [APP_LOADER]: true,
@@ -27,7 +28,7 @@ function GlobalState({ children }) {
 
   return (
     <GlobalContext.Provider value={[globalState, updateGlobalState]}>
-      {children}
+      <ThemeProvider>{children}</ThemeProvider>
     </GlobalContext.Provider>
   );
 }
