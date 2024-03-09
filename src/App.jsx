@@ -17,10 +17,14 @@ import {
 import AppWelcomeMessage from "./components/AppWidgets/AppWelcomeMessage";
 import { getData, removeData, setData } from "./hooks/user.action";
 import AppDialog from "./components/AppWidgets/AppDialog";
+import { useTheme } from "./context/ThemeContext";
+import { ThemeToggleButton } from "./components/AppWidgets/ThemeToggleButton";
 function App() {
   const [globalState, updateGlobalState] = useGlobalState();
   const userLogInState = globalState[USER_LOGIN_STATUS];
   const appLoadingState = globalState[APP_LOADER];
+  const { theme } = useTheme();
+
   const setUserStatus = (status) => {
     if (status == USER_LOGIN_STATUS_LOGGED_OUT) {
       removeData();
@@ -39,29 +43,35 @@ function App() {
   }, []);
 
   return (
-    <div className={`bg-slate-800 dark:text-white text-slate-700  ${userLogInState + (appLoadingState ? 'loading' :'') }`}>
-      {/* user status */}
-      <InfoFixedWrapper>
-        <TimeWeatherInfo
-          temperature={Math.round(
-            globalState?.city?.currentWeather?.main?.temp
-          )}
+    <>
+      <div
+        className={`bg-slate-800 dark:text-white text-slate-700  ${
+          userLogInState + (appLoadingState ? "loading" : "")
+        } ${theme === "dark" ? "dark" : ""}`}
+      >
+        {/* user status */}
+        <InfoFixedWrapper rightChild={<ThemeToggleButton />}>
+          <TimeWeatherInfo
+            temperature={Math.round(
+              globalState?.city?.currentWeather?.main?.temp
+            )}
+          />
+        </InfoFixedWrapper>
+        <LogInPin setUserStatus={setUserStatus} />
+        {/* Menu */}
+        <Menu setUserStatus={setUserStatus} />
+        <AppWelcomeMessage
+          countryCode={globalState?.currentCity?.countryCode}
+          cityName={globalState?.currentCity?.city}
         />
-      </InfoFixedWrapper>
-      <LogInPin setUserStatus={setUserStatus} />
-      {/* Menu */}
-      <Menu setUserStatus={setUserStatus} />
-      <AppWelcomeMessage
-        countryCode={globalState?.currentCity?.countryCode}
-        cityName={globalState?.currentCity?.city}
-      />
-      <AppBackgroundImage />
-      <LogInButtonWrapper>
-        <LogInButton setUserStatus={setUserStatus} />
-      </LogInButtonWrapper>
+        <AppBackgroundImage />
+        <LogInButtonWrapper>
+          <LogInButton setUserStatus={setUserStatus} />
+        </LogInButtonWrapper>
 
-      <AppDialog />
-    </div>
+        <AppDialog />
+      </div>
+    </>
   );
 }
 
