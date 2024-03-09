@@ -73,24 +73,31 @@ function AppDialog({
   useEffect(() => {
     if (active) {
       onShow();
-    } else onClose();
+    } else {
+      onClose();
+    }
     handleDialogType();
 
-    function onKeyDown(event) {
+    const onKeyDown = (event) => {
       if (event.keyCode === 27) {
         // Close the modal when the Escape key is pressed
         onClose();
         console.log("isVisible after", isVisible);
       }
-    }
+    };
 
-    if (dialogRef && dialogRef.current) {
+    // Ensure dialogRef.current is not null before adding or removing the event listener
+    if (dialogRef.current) {
       dialogRef.current.addEventListener("keydown", onKeyDown);
       return () => {
-        dialogRef.current.removeEventListener("keydown", onKeyDown);
+        // Only attempt to remove the event listener if dialogRef.current is not null
+        if (dialogRef.current) {
+          dialogRef.current.removeEventListener("keydown", onKeyDown);
+        }
       };
     }
-  }, [active]);
+  }, [active, isVisible, onClose, onShow]); // Make sure to include all dependencies here
+
   // Use useEffect to add an event listener to the document
   useEffect(() => {}, []);
   return (
