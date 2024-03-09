@@ -1,26 +1,30 @@
 import { API_CALL_LIMIT_MIN_POPULATION } from "../helpers/constants";
-import {geoDBApi, weatherApi, autoLocationApi} from "./api";
+import { geoDBApi, weatherApi, autoLocationApi } from "./api";
 
 export const GeoDBApiService = {
-
-  get: function (endpoint, params){
+  get: function (endpoint, params) {
     const defaultConfig = {
       params: {
         ...params,
       },
-    }
-    return geoDBApi.request(`/${endpoint}`, defaultConfig).catch(error => {
+    };
+    return geoDBApi.request(`/${endpoint}`, defaultConfig).catch((error) => {
       throw new Error(`GeoApiService ${error}`);
     });
   },
 
   getMatchingCities: async function (params) {
-    const param = { countryIds: '', namePrefix: '', ...params };
+    const param = { countryIds: "", namePrefix: "", ...params };
     return await this.get(`cities/`, param);
   },
 
   getNearbyCities: async function (cityId, params) {
-    const param = { radius: 100, limit: 3, minPopulation: Math.round(API_CALL_LIMIT_MIN_POPULATION * 0.000025), ...params };
+    const param = {
+      radius: 100,
+      limit: 3,
+      minPopulation: Math.round(API_CALL_LIMIT_MIN_POPULATION * 0.000025),
+      ...params,
+    };
     return await this.get(`cities/${cityId}/nearbyCities`, param);
   },
 
@@ -84,53 +88,47 @@ export const GeoDBApiService = {
     } catch (error) {
       throw new Error(error);
     }
-  }
+  },
 };
 
 export const autoLocationApiService = {
   get: () => {
-    return autoLocationApi.request(``).catch(error => {
+    return autoLocationApi.request(``).catch((error) => {
       throw new Error(`autoLocationApiService ${error}`);
     });
   },
-
 };
 
 export const weatherApiService = {
-
   get: function (endpoint, params) {
     const defaultConfig = {
       params: {
         ...params,
       },
-    }
-    return weatherApi.request(`/${endpoint}`, defaultConfig).catch(error => {
+    };
+    return weatherApi.request(`/${endpoint}`, defaultConfig).catch((error) => {
       throw new Error(`weatherApiService ${error}`);
     });
   },
 
   // getWeather: async function (location) {
   getWeather: async function (location) {
-    return await weatherApiService.get(`weather`,
-    {
+    return await weatherApiService.get(`weather`, {
       lat: location?.latitude,
       lon: location?.longitude,
     });
   },
 
   getThirdHourlyForecast: async function (location) {
-    return await this.get(`forecast`,
-    {
+    return await this.get(`forecast`, {
       lat: location?.latitude,
       lon: location?.longitude,
       cnt: 40,
     });
   },
 
-
   getSevenDailyForecast: async function (location) {
-    return await this.get(`onecall`,
-    {
+    return await this.get(`onecall`, {
       lat: location?.latitude,
       lon: location?.longitude,
       cnt: 40,
@@ -138,44 +136,44 @@ export const weatherApiService = {
     });
   },
 
-
   getAllWeatherForecastInfo: async function (location) {
     // try {
-      let endpoints = [
-        {
-          url: `weather`,
-          params: {
-            lat: location?.latitude,
-            lon: location?.longitude,
-          },
+    let endpoints = [
+      {
+        url: `weather`,
+        params: {
+          lat: location?.latitude,
+          lon: location?.longitude,
         },
-        {
-          url: `forecast`,
-          params: {
-            lat: location?.latitude,
-            lon: location?.longitude,
-            cnt: 40,
-          },
+      },
+      {
+        url: `forecast`,
+        params: {
+          lat: location?.latitude,
+          lon: location?.longitude,
+          cnt: 40,
         },
-        {
-          url: `onecall`,
-          params: {
-            lat: location?.latitude,
-            lon: location?.longitude,
-            cnt: 40,
-            exclude: "current,hourly,minutely,alerts",
-          },
+      },
+      {
+        url: `onecall`,
+        params: {
+          lat: location?.latitude,
+          lon: location?.longitude,
+          cnt: 40,
+          exclude: "current,hourly,minutely,alerts",
         },
-      ];
-      // Promise.all() with delays for each promise
+      },
+    ];
+    // Promise.all() with delays for each promise
 
-      // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
-      let tasks = [];
-      for (let i = 1; i < endpoints.length + 1; i++) {
-        const delay = 1501 * i;
-        // const delay = 500 * i;
-        tasks.push(
-          new Promise(async function (resolve) {
+    // https://stackoverflow.com/questions/47419854/delay-between-promises-when-using-promise-all
+    let tasks = [];
+    for (let i = 1; i < endpoints.length + 1; i++) {
+      const delay = 1501 * i;
+      // const delay = 500 * i;
+      tasks.push(
+        new Promise(
+          async function (resolve) {
             // the timer/delay
             await new Promise((res) => setTimeout(res, delay));
             let result = this.get(
@@ -185,19 +183,19 @@ export const weatherApiService = {
             // let result = endpoints[i -1 ](location);
             //resolve outer/original promise with result
             resolve(result);
-          }.bind(this) )
+          }.bind(this)
+        )
         // } )
-        );
-      }
-      return Promise.all(tasks).then(response => response);
+      );
+    }
+    return Promise.all(tasks).then((response) => response);
     // } catch (error) {
     //   throw new Error(error);
     // }
-  }
+  },
 };
 
 export const requestSlower = async function (locations, getFunc) {
-
   const promises = locations.map((location, index) => {
     const delay = 2000 * index; // increase the delay for each endpoint
     return new Promise(function (resolve) {
@@ -209,5 +207,5 @@ export const requestSlower = async function (locations, getFunc) {
 
   const responses = await Promise.all(promises);
   return responses;
-}
+};
 // export default ApiService;
